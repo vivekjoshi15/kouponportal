@@ -1,0 +1,63 @@
+<main ng-app="kmApp.modules.general">
+  <div class="subHeader">
+    <h1>General Settings</h1>
+  </div>
+  <div class="step">
+    <ul>
+      <li><a href="#/general/general">Offers</a></li>
+      <li><a href="#/general/codepools">Code Pools</a></li>
+      <li class="active"><a href="#/general/connected">Connected Apps</a></li>
+      <li><a href="#/general/store">Stores</a></li>
+    </ul>
+  </div>
+  <div class="data">
+    <header>
+      <h1>SMS</h1>
+      <div class="connected"><a href="#">Connected</a></div>
+    </header>
+    <form name="connected">
+      <div class="wrapContain">
+        <div class="smsConnect sSelect">
+          <p>Provider</p>
+          <div class="selection"  select-tabs dataselectlist='selectProviderList' itemval="text" itemselected='NotificationsSelectVal' itemplaceholder="Select Provider">
+           <!-- <input type="text"  name="Provider" ng-model="" />
+            <ul>
+              <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
+              <li>option</li>
+            </ul>-->
+          </div>
+        </div>
+        <div class="smsConnect access">
+          <p>Access Token</p>
+          <input type="text" class="focus" ng-model="model.accesstoken" />
+        </div>
+        <div class="smsConnect shortcode">
+          <p>Shortcode</p>
+          <input type="text" class="focus" ng-model="model.shortcode" />
+        </div>
+        <div class="smsConnect keyword">
+          <p>Keyword</p>
+          <input type="text" class="focus" ng-model="model.keyword" />
+        </div>
+      </div>
+      <!--<div class="title notConnected">
+          <h1>Email</h1>
+          <span>Not Connected</span> </div>
+        <div class="wrapContain">
+          <div class="smsConnect sSelect">
+            <p>Provider</p>
+            <div class="selection">
+              <input type="text" />
+              <ul>
+                <li>option</li>
+                <li>option</li>
+              </ul>
+            </div>
+          </div>
+        </div>-->
+    </form>
+    <br class="clear"/>
+  </div>
+  <footer> <a href="#/general/store">Save Change</a> <br class="clear"/>
+  </footer>
+</main>

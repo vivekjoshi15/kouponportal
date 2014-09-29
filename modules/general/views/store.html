@@ -1,0 +1,66 @@
+<main ng-app="kmApp.modules.general">
+  <div class="subHeader">
+    <h1>General Settings</h1>
+  </div>
+  <!--  setp -->
+  <div class="step">
+    <ul>
+      <li><a href="#/general/general">Offers</a></li>
+      <li><a href="#/general/codepools">Code Pools</a></li>
+      <li><a href="#/general/connected">Connected Apps</a></li>
+      <li class="active"><a href="#/general/store">Stores</a></li>
+    </ul>
+  </div>
+  <!--  end setp -->
+  
+  <div class="data store">
+    <header>
+      <h1>Stores</h1>
+    </header>
+    <div class="wrapContain">
+      <div class="storeCols">
+        <h1 class="store-icon">Store Groups</h1>
+        <div class="category add"><a href="#/stores">+ Add Store Group</a></div>
+        <div class="category" ng-repeat="store in storeGroup">{{store.name}}<span> {{store.value}}</span></div>
+<!--        <div class="category">East Coast  <span>12</span></div>
+              <div class="category">East Coast Stores <span>12</span></div>
+            <div class="category">North Stores <span>04</span></div>
+            <div class="category">Southern Stores <span>04</span></div>-->
+      </div>
+      <div class="storeCols geofence ">
+        <h1 class="geofence-icon">Geofence Groups</h1>
+        <div class="category add"><a href="#/geofence">+ Add Geofence Group</a></div>
+         <div class="category" ng-repeat="Geofence in GeofenceGroup">{{Geofence.name}}<span> {{Geofence.value}}</span></div>
+<!--        <div class="category">East Coast  <span>12</span></div>
+                 <div class="category">East Coast Stores <span>12</span></div>
+            <div class="category">North Stores <span>04</span></div>
+            <div class="category">Southern Stores <span>04</span></div>-->
+        <div class="sdropdown">
+          <p>Selected  10</p>
+          <!--<div class="selection2">
+            <ul>
+              <li>option</li>
+              <li>option</li>
+            </ul>
+          </div>-->
+        </div>
+      </div>
+      <div class="storeCols beacon">
+        <h1 class="beacon-icon">Beacon Groups</h1>
+        <div class="category add"><a href="#">+ Add Beacon Group</a></div>
+        <div class="category" ng-repeat="Beacon in BeaconGroup">{{Beacon.name}}<span> {{Beacon.value}}</span></div>
+<!--        <div class="category">East Coast  <span>12</span></div>
+            <div class="category">East Coast Stores <span>12</span></div>
+            <div class="category">North Stores <span>04</span></div>-->
+        <div class="catinput">
+          <input type="text" class="focus">
+          </div>
+      </div>
+      <br class="clear"/>
+    </div>
+    <br class="clear"/>
+  </div>
+  <!-- end data class  -->
+  <footer> <a href="#/">Save Change</a> <br class="clear"/>
+  </footer>
+</main>

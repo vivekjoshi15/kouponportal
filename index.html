@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Koupon Media</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="KmApp/css/all.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div id="loadingPage" class="loadingPage ng-cloak">
+        <!--<div class="login_logo"></div>-->
+        <div id="spinner" class="progress-loader"><img src="kmApp/images/ajax-load.gif" /></div>
+    </div>
+    <div id="mainPage" ng-cloak class="float ng-cloak" ng-controller="kmApp.controller.rootLayout">
+
+        <!-- NOTIFICATION -->
+        <div id="currentUserNotification" ng-show="notificationMessage">
+            <div class="alert {{notificationClass}}">
+                <span ng-bind-html="to_trusted(notificationMessage)"></span>
+                <a class="alert-close" ng-click="clearNotification()">x</a>
+            </div>
+        </div>
+        <!-- /NOTIFICATION -->
+        <!-- LOGIN -->
+        <div class="float" ng-hide="isLoggedIn()" ng-controller="kmApp.controller.loginAction">
+            <div id="logo"></div>
+            <div class="login">
+                <div class="cLogin">
+                    <!-- login  -->
+                    <div id="login_box" class="float" ng-show="isLoginForm() && !isLogging()">
+                        <form name="login" data-ng-submit="setCredentials({reload:true})" action="" id="loginFrm" method="POST">
+                            <h1>Sign In</h1>
+                            <div class="email">
+                                <input type="email" data-ng-model="loginform.email1" required name="loginEmail" placeholder="Email" />
+                            </div>
+                            <div class="password">
+                                <input type="password" data-ng-model="loginform.pass1" required placeholder="Passsword" />
+                            </div>
+                            <div class="loginIssue">
+                                <div class="cloginIssue">
+                                    <div class="remeber check-box">
+                                        <input type="checkbox" id="RememberMe" />
+                                        <label for="RememberMe"> Remember Me</label>
+                                    </div>
+                                    <a class="forgot" href="#/requestReset"> Forgot Password</a>
+                                </div>
+                            </div>
+                            <div class="signin">
+                                <input class="" type="submit" value="Sign In" />
+                            </div>
+                            <div class="gline">
+                                <div class="line"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--      forgot password           --->
+                    <div id="forgot_password_box" class="float" ng-show="isRequestResetPassword()">
+                        <form name="forgot">
+                            <h1> Forgot Password</h1>
+                            <div class="email">
+                                <input type="email" placeholder="Email" data-ng-form-enter="resetPassword({reload:true})" data-ng-submit="resetPassword()" name="resetPasswordForm" />
+                            </div>
+                            <p>We will email you a link to reset your password</p>
+                            <div class="signin">
+                                <input class="" type="submit" value="Reset Password" />
+                            </div>
+                            <div class="backSign"><a href="#/login">Back to Sign In</a></div>
+                            <div class="gline">
+                                <div class="line"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <footer> Get in Touch with the Koupon Team to Learn more by emailing us at <a href="mailto:info@kou.pn">info@kou.pn</a></footer>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /LOGIN -->
+        <!-- LOGGED IN USERS -->
+        <div class="float" ng-switch="isLoggedIn()">
+            <div id="main" ng-controller="kmApp.controller.rootLayout" ng-switch-when="true">
+                <header>
+                    <div id="logo"></div>
+                    <div class="userInfo" ng-controller="kmApp.controller.logout" ng-hide="isClientNull()">
+
+                        <div class="userDetails">
+                            <img src="KmApp/images/user.jpg" alt="logo" />
+                            <span>{{UserData.clientName}}</span> <a ng-click="LogOut()" href="">Log Out</a>
+                        </div>
+                        <a href="#">Documentation</a>
+
+                    </div>
+                </header>
+                <!--   menu  -->
+                <aside ng:include="'kmApp/views/menu.html'"></aside>
+                <!--  End menu  -->
+                <div class="mainWrap">
+                    <ng-view></ng-view>
+                </div>
+            </div>
+        </div>
+        <!-- mainPage -->
+    </div>
+    <!-- require.js is a core dependency module loader -->
+    <script type="text/javascript" src="require.js" data-main="main"></script>
+</body>
+</html>

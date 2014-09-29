@@ -1,0 +1,95 @@
+<main ng-app="kmApp.modules.general">
+  <div class="subHeader">
+    <h1>General Settings</h1>
+  </div>
+  <div class="step">
+    <ul>
+      <li class="active"><a href="#/general/general">Offers</a></li>
+      <li><a href="#/general/codepools">Code Pools</a></li>
+      <li><a href="#/general/connected">Connected Apps</a></li>
+      <li><a href="#/general/store">Stores</a></li>
+    </ul>
+  </div>
+  <div class="data">
+    <header>
+      <h1>Offer Categories</h1>
+      <div class="check-box ger">
+        <input type="checkbox" id="ownCategories" checked="checked"/>
+        <label for="ownCategories" >Allow users to create their own categories</label>
+      </div>
+    </header>
+    <div class="wrapContain mrg">
+      <h2 class="categories-icon">Avaliable Offer Categories</h2>
+      <div class="crow">
+        <div class="category add"> + Add Category</div>
+        <div class="category">East Coast Stores <span>12</span></div>
+        <div class="category">North Stores <span>04</span></div>
+      </div>
+      <div class="crow">
+        <div class="category">Southern Stores <span>07</span></div>
+        <div class="category">West Coast Stores <span>09</span></div>
+      </div>
+      <br class="clear"/>
+    </div>
+    <div class="title">
+      <h1>Messaging limits</h1>
+    </div>
+    <div class="wrapContain">
+      <div class="push">
+        <h3>Push Notifications</h3>
+        <span>Send no more than</span>
+        <input type="text"  class="inpt3 focus" />
+        <span>to each customer</span>
+        <div class="selper">
+          <div class="selection" select-tabs dataselectlist='NotificationsOption' itemval="text" itemselected='NotificationsSelectVal' itemplaceholder="Per Week">
+           <!-- <input type="text" placeholder="Per Week"/>
+            <ul>
+              <li>Per Month</li>
+              <li>Per Day</li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+      <div class="text">
+        <h3>Text Messages</h3>
+        <span>Send no more than</span>
+        <input type="text"  class="inpt3 focus"  />
+        <span>to each customer</span>
+        <div class="selper">
+          <div class="selection" select-tabs dataselectlist='TextMessagesOption' itemval="text" itemselected='TextMessagesSelectVal' itemplaceholder="Per Month">
+          <!-- <input type="text" placeholder="Per Month"/>
+            <ul>
+              <li>Per Week</li>
+              <li>Per Day</li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+      <div class="email">
+        <h3>Email Messages</h3>
+        <span>Send no more than</span>
+        <input type="text"  class="inpt3 focus" />
+        <span>to each customer</span>
+        <div class="selper">
+          <div class="selection" select-tabs dataselectlist='emailMessagesOption' itemval="text" itemselected='emailSelectVal' itemplaceholder="Per Week">
+           <!-- <input type="text" placeholder="Per Day"/>
+            <ul>
+              <li>Per Week</li>
+              <li>Per Month</li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="title">
+      <h1>Location verification</h1>
+    </div>
+    <div class="wrapContain">
+      <h3>Customer Must Be</h3>
+      <input type="text"  class="inpt3 focus" />
+      <span>miles from a store when using location verification</span> </div>
+    <br class="clear"/>
+  </div>
+  <footer> <a href="#/general/codepools">Save Changes</a> <br class="clear"/>
+  </footer>
+</main>
