@@ -13,12 +13,11 @@ storeModule.controller('kmApp.modules.store.storelistAction', ['$scope',
 
 	    $scope.storeLists = storeService.getStores();
 
-	    $scope.copyStore = function (item) {
-	        storeService.copyStore(item);
-	    }
-
 	    $scope.removeStore = function (item) {
-	        storeService.removeStore(item);
+	        var r = confirm("Are you sure you want to delete " + item.name + "?");
+	        if (r == true) {
+	            storeService.removeStore(item);
+	        }
 	    }
 
 	    $scope.deActiveStore = function (item) {
@@ -36,7 +35,9 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
     '$routeParams',
     '$location',
     'kmApp.libraries.store.storeService',
-	   function ($scope, $rootScope, $routeParams, $location, storeService) {
+    'kmApp.libraries.notification.screenNotifyService',
+    'kmApp.libraries.waitLoader',
+	   function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader) {
 	       $scope.iscopy = $routeParams.copy;
 	       $scope.merchantid = 0;
 	       if ($scope.iscopy == null)
@@ -58,6 +59,9 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
 	               storeService.editStore($scope.storeid, $scope.model);
 	           else
 	               storeService.addStore($scope.model);
+
+	           userNotificationLibrary.addSuccess($scope.model.name + ' saved successfully!!!');
+
 	           $location.path('/store/view');
 	       }
 	   }
@@ -69,6 +73,6 @@ storeModule.controller('kmApp.modules.store.storeImportAction', ['$scope',
     '$location',
     'kmApp.libraries.store.storeService',
 	   function ($scope, $rootScope, $routeParams, $location, storeService) {
-	       
+
 	   }
 ]);
