@@ -1,16 +1,16 @@
-var generalModule= angular.module('kmApp.modules.general',[]);
+var generalModule = angular.module('kmApp.modules.general', ['ngDropdowns']);
 
 generalModule.controller('kmApp.modules.general.offer', function ($scope, $location, $rootScope) {
-    
-	    $scope.TextMessagesOption=[{text:'Per Week'},{text:'Per Month'},{text:'Per Day'}];
-	    $scope.TextMessagesSelectVal;
-		
-		$scope.NotificationsOption=[{text:'Per Week'},{text:'Per Month'},{text:'Per Day'}];
-	    $scope.NotificationsSelectVal;
-		
-		$scope.emailMessagesOption=[{text:'Per Week'},{text:'Per Month'},{text:'Per Day'}];
-	    $scope.emailSelectVal;
-	
+
+    $scope.TextMessagesOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.TextMessagesSelectVal;
+
+    $scope.NotificationsOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.NotificationsSelectVal;
+
+    $scope.emailMessagesOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.emailSelectVal;
+
 });
 
 generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
@@ -37,27 +37,32 @@ generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
         $scope.newpool = false;
         $scope.IsEdit = false;
     }
-	
-	$scope.selectCodeList=[{text:'Code type'},{text:'Code type 2'},{text:'Code type 3'}];
-	
-	
-	
 
+    $scope.selectCodeList = [{ text: 'Code type' }, { text: 'Code type 2' }, { text: 'Code type 3' }];
 });
 
 generalModule.controller('kmApp.modules.general.connected', function ($scope) {
 
     $scope.model = {
-        'provider': [{ text: 'Twillio' },
-                    { text: 'Twillio 2' },
-                    { text: 'Twillio 3' },
+        'provider': [{
+            text: 'Twillio',
+            someprop: 'Twillio'
+        },
+                    {
+                        text: 'Twillio 2',
+                        someprop: 'Twillio 2'
+                    },
+                    {
+                        text: 'Twillio 3',
+                        someprop: 'Twillio 3'
+                    },
         ],
         'accesstoken': '324234asdff',
         'shortcode': '32443',
         'keyword': '234234'
     };
     $scope.selectprovider = $scope.model.provider[0]; // init selected item
-    $scope.selectProviderList=$scope.model.provider;
+    $scope.selectProviderList = $scope.model.provider;
     $scope.selected = function (item) {
         $scope.selectprovider = item;
     }
@@ -65,7 +70,6 @@ generalModule.controller('kmApp.modules.general.connected', function ($scope) {
 });
 
 generalModule.controller('kmApp.modules.general.store', function ($scope) {
-
 
     $scope.storeGroup = [{ name: 'Albany Stores East', value: 12 },
                         { name: 'Coast Stores North', value: 06 },
@@ -78,6 +82,5 @@ generalModule.controller('kmApp.modules.general.store', function ($scope) {
     $scope.BeaconGroup = [{ name: 'Albany Stores East', value: 12 },
                         { name: 'Coast Stores North', value: 06 },
                         { name: 'tores Southern Stores', value: 07 }];
-
 
 });

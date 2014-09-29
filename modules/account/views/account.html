@@ -1,79 +1,57 @@
 <main ng-app="kmApp.modules.account">
-      <div class="subHeader">
+    <div class="subHeader">
         <h1>Account Settings</h1>
-      </div>
-      <div class="step">
+    </div>
+    <div class="step">
         <ul>
-          <li class="active"><a href="#/account">User</a></li>
-          <li><a href="#/account/plan">Plan</a></li>
+            <li class="active"><a href="#/account">User</a></li>
+            <li><a href="#/account/plan">Plan</a></li>
         </ul>
-      </div>
-      <div class="wrapData">
+    </div>
+    <div class="wrapData">
         <div class="data account">
-          <header>
-            <h1>Active users</h1>
-            <div class="addNew"><a ng-click="NewUsr=true">+ New Users</a></div>
-          </header>
-          <div class="wrapContain  no-padd">
-            <div class="accountUserDetails" ng-repeat="item in ActiveUser">
-              <div class="userName">{{item.UserName}}</div>
-              <div class="userEmail">{{item.UserEmail}}</div>
-              <div class="offerManage">
-                <div class="selection" select-tabs dataselectlist='UserManagementList' itemselected='NotificationsSelectVal' itemplaceholder="Select Role Type">
-                  <!--<input type="text" placeholder="Offer Management" value="{{item.UserManagement}}"/>
-                  <ul>
-                    <li>option</li>
-                    <li>option</li>
-                  </ul>-->
+            <header>
+                <h1>Active users</h1>
+                <div class="addNew"><a ng-click="NewUsr=true">+ New Users</a></div>
+            </header>
+            <div class="wrapContain  no-padd">
+                <div class="accountUserDetails" ng-repeat="item in ActiveUser">
+                    <div class="userName">{{item.UserName}}</div>
+                    <div class="userEmail">{{item.UserEmail}}</div>
+                    <div class="offerManage">
+                        <div class="selection" dropdown-select="UserManagementList"
+                             dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Select Role Type">
+                        </div>
+                    </div>
+                    <div class="userOption"> <a ng-click="UsrRemove(item)" class="remove close-green-icon">Remove</a> <a href="#">Reset Password</a></div>
                 </div>
-              </div>
-              <div class="userOption"> <a ng-click="UsrRemove(item)" class="remove close-green-icon">Remove</a> <a href="#">Reset Password</a></div>
             </div>
-            <!--<div class="accountUserDetails">
-              <div class="userName">Samantha Longname</div>
-              <div class="userEmail">samanthalongname@gmail.com</div>
-              <div class="offerManage">
-                <div class="selection">
-                  <input type="text" placeholder="Offer Management"/>
-                  <ul>
-                    <li>option</li>
-                    <li>option</li>
-                  </ul>
+            <div class="wrapContain" ng-init="NewUsr=false" ng-show="NewUsr">
+                <div class="subWrapContain accts ">
+                    <header>
+                        <h2>New user</h2>
+                    </header>
+                    <form name="invite">
+                        <div class="UsrAdd">
+                            <div class="UsrEmail">
+                                <p>Email Address</p>
+                                <input type="email" class="focus" ng-model="Invite.UserEmail" />
+                            </div>
+                            <div class="UsrRole">
+                                <p>Select Role</p>
+                                <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Select Role Type">
+                                </div>
+                            </div>
+                            <div class="UsrOption"> <a ng-click="NewUsr=false">Cancel</a> <a class="invite">Invite</a> </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-              <div class="userOption"> <a href="#" class="remove">Remove</a> <a href="#">Reset Password</a></div>
-            </div>-->
-          </div>
-          <div class="wrapContain" ng-init="NewUsr=false" ng-show="NewUsr">
-            <div class="subWrapContain accts ">
-              <header>
-                <h2>New user</h2>
-              </header>
-              <form name="invite">
-              <div class="UsrAdd">
-                <div class="UsrEmail">
-                  <p>Email Address</p>
-                  <input type="email" class="focus" ng-model="Invite.UserEmail"/>
-                </div>
-                <div class="UsrRole">
-                  <p>Select Role</p>
-                  <div class="selection" select-tabs dataselectlist='selectRoleList' itemselected='selectRoleVal' itemplaceholder="Select Role Type">
-                   <!-- <input type="text" placeholder="Select Role Type" ng-model="Invite.UserManagement"/>
-                    <ul>
-                      <li>option</li>
-                      <li>option</li>
-                    </ul>-->
-                  </div>
-                </div>
-                <div class="UsrOption"> <a ng-click="NewUsr=false" >Cancel</a> <a  class="invite">Invite</a> </div>
-              </div>
-              </form>
+                <br class="clear">
             </div>
             <br class="clear">
-          </div>
-          <br class="clear">
         </div>
-      </div>
-      <br class="clear">
-      
-    </main>
+    </div>
+    <br class="clear">
+
+</main>

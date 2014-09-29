@@ -12,6 +12,7 @@ storeModule.controller('kmApp.modules.store.storelistAction', ['$scope',
 	    $scope.reverse = true;
 
 	    $scope.storeLists = storeService.getStores();
+	    $scope.storeVal = {};
 
 	    $scope.removeStore = function (item) {
 	        var r = confirm("Are you sure you want to delete " + item.name + "?");
@@ -36,35 +37,70 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
     '$location',
     'kmApp.libraries.store.storeService',
     'kmApp.libraries.notification.screenNotifyService',
-    'kmApp.libraries.waitLoader',
-	   function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader) {
-	       $scope.iscopy = $routeParams.copy;
-	       $scope.merchantid = 0;
-	       if ($scope.iscopy == null)
-	           $scope.iscopy = 'false';
+    'kmApp.libraries.waitLoader','$filter',
+    function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader, $filter) {
+        $scope.countryList = [{
+            text: 'USA',
+            someprop: 'USA'
+        }, {
+            text: 'Canada',
+            someprop: 'Canada'
+        }];
+        $scope.countryVal = {};
 
-	       $scope.storeid = $routeParams.storeid;
-	       if ($scope.storeid != 0) {
-	           //finding element from json
-	           $scope.model = storeService.getStore($scope.storeid);
-	           if ($scope.iscopy == 'true') {
-	               $scope.model.name = $scope.model.name + ' copy';
-	               $scope.model.storeid = $scope.model.storeid + 1;
-	           }
-	           $scope.merchantid = $scope.model.merchantid;
-	       }
+        $scope.countyList = [{
+            text: 'Option1',
+            someprop: 'Option1'
+        }, {
+            text: 'Option2',
+            someprop: 'Option2'
+        }];
+        $scope.countyVal = {};
 
-	       $scope.saveStore = function () {
-	           if ($scope.storeid != 0 && $scope.iscopy == 'false')
-	               storeService.editStore($scope.storeid, $scope.model);
-	           else
-	               storeService.addStore($scope.model);
+        $scope.storeLists = storeService.getStores();
+        $scope.storeVal = {};
 
-	           userNotificationLibrary.addSuccess($scope.model.name + ' saved successfully!!!');
+        $scope.iscopy = $routeParams.copy;
+        $scope.merchantid = 0;
+        if ($scope.iscopy == null)
+            $scope.iscopy = 'false';
 
-	           $location.path('/store/view');
-	       }
-	   }
+        $scope.storeid = $routeParams.storeid;
+        if ($scope.storeid != 0) {
+            //finding element from json
+            $scope.model = storeService.getStore($scope.storeid);
+
+            var found = $filter('filter')($scope.countryList, { text: $scope.model.country }, true);
+            $scope.countryVal = found[0];
+
+            var found = $filter('filter')($scope.countyList, { text: $scope.model.county }, true);
+            $scope.countyVal = found[0];
+
+            var found = $filter('filter')($scope.storeLists, { groupname: $scope.model.groupname }, true);
+            $scope.storeVal = found[0];
+
+            if ($scope.iscopy == 'true') {
+                $scope.model.name = $scope.model.name + ' copy';
+                $scope.model.storeid = $scope.model.storeid + 1;
+            }
+            $scope.merchantid = $scope.model.merchantid;
+        }
+
+        $scope.saveStore = function () {
+            $scope.model.country = $scope.countryVal.text;
+            $scope.model.county = $scope.countyVal.text;
+            //$scope.model.groupname = $scope.storeVal.groupname;
+
+            if ($scope.storeid != 0 && $scope.iscopy == 'false')
+                storeService.editStore($scope.storeid, $scope.model);
+            else
+                storeService.addStore($scope.model);
+
+            userNotificationLibrary.addSuccess($scope.model.name + ' saved successfully!!!');
+
+            $location.path('/store/view');
+        }
+    }
 ]);
 
 storeModule.controller('kmApp.modules.store.storeImportAction', ['$scope',

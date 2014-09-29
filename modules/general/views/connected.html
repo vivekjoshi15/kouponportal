@@ -19,13 +19,13 @@
       <div class="wrapContain">
         <div class="smsConnect sSelect">
           <p>Provider</p>
-          <div class="selection"  select-tabs dataselectlist='selectProviderList' itemval="text" itemselected='NotificationsSelectVal' itemplaceholder="Select Provider">
-           <!-- <input type="text"  name="Provider" ng-model="" />
-            <ul>
-              <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
-              <li>option</li>
-            </ul>-->
-          </div>
+            <div class="selection" dropdown-select="selectProviderList"
+                 dropdown-model="selectprovider" dropdown-item-label='text' dropdown-item-placeholder="Select Provider">
+        <ul>
+          <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
+          <li>option</li>
+        </ul>-->
+            </div>
         </div>
         <div class="smsConnect access">
           <p>Access Token</p>

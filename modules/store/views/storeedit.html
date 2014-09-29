@@ -97,32 +97,26 @@
                     <div class="storeCountry">
                         <p>Country</p>
                         <div class="selection">
-                            <input type="text" name="country" placeholder="Country" required ng-model="model.country" />
-                            <ul>
-                                <li>USA</li>
-                                <li>Canada</li>
-                            </ul>
+                            <div class="selection" dropdown-select="countryList"
+                                 dropdown-model="countryVal" dropdown-item-label='text' dropdown-item-placeholder="Country">
+                            </div>
                         </div>
                     </div>
                     <div class="storeCounty">
                         <p>County</p>
                         <div class="selection">
-                            <input type="text" name="county" placeholder="County" required ng-model="model.county" />
-                            <ul>
-                                <li>option</li>
-                                <li>option</li>
-                            </ul>
+                            <div class="selection" dropdown-select="countyList"
+                                 dropdown-model="countyVal" dropdown-item-label='text' dropdown-item-placeholder="Country">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="sets">
                     <p>Group</p>
                     <div class="selection">
-                        <input type="text" name="groupname" required ng-model="model.groupname" />
-                        <ul>
-                            <li>option</li>
-                            <li>option</li>
-                        </ul>
+                        <div class="selection" dropdown-select="storeLists"
+                             dropdown-model="storeVal" dropdown-item-label='groupname' dropdown-item-placeholder="Store Group">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,10 +22,6 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
                 templateUrl: 'modules/general/views/codepools.html',
                 controller: 'kmApp.modules.general.codepools'
             }).
-/*				when('/general/newpool', {
-					templateUrl: 'modules/general/views/newpool.html',
-					controller :'kmApp.modules.general.newpool'
-					}).*/
             when('/general/connected', {
                 templateUrl: 'modules/general/views/connected.html',
                 controller: 'kmApp.modules.general.connected'

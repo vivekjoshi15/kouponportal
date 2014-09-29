@@ -9,11 +9,8 @@
             <input type="text" class="focus search search-icon" placeholder="Search Offer" ng-model="search.$" />
         </div>
         <div class="groups">
-            <div class="selection" select-tabs dataselectlist='storeLists' itemval="groupname" itemselected='search2' itemplaceholder="All Store Group">
-               <!-- <input type="text" ng-model="search.groupname" placeholder="All Store Group" />
-                <ul>
-                    <li ng-repeat="item in storeLists | unique:item.groupname | filter:search.groupname">{{item.groupname}}</li>
-                </ul>-->
+            <div class="selection" dropdown-select="storeLists"
+                 dropdown-model="storeVal" dropdown-item-label='groupname' dropdown-item-placeholder="All Store Group">
             </div>
         </div>
     </div>
