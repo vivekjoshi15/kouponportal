@@ -96,7 +96,7 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
             else
                 storeService.addStore($scope.model);
 
-            userNotificationLibrary.addSuccess($scope.model.name + ' saved successfully!!!');
+            userNotificationLibrary.addSuccess('store saved successfully!!!' + '<a href="#/store/id/' + $scope.storeid + '">' + $scope.model.name + '</a>');
 
             $location.path('/store/view');
         }
