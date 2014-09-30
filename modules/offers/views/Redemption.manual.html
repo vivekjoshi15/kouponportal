@@ -54,13 +54,9 @@
         <div class="sets">
           <p>Code Type </p>
           <div class="codeType">
-            <div class="selection">
-              <input type="text" placeholder="CODE 128 A">
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
+            <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="">
+                                </div>
           </div>
           <div class="mcodeSelect">
             <input type="text" value="17361823612836128"/>
@@ -98,13 +94,9 @@
               <span>offers</span> </div>
           </div>
           <div class="advanceSelectOffer">
-            <div class="selection">
-              <input type="text">
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
+           <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="">
+                                </div>
           </div>
           <div class="advanceOfferRemove"><a class="close-green-icon" href="#">Remove</a></div>
           <div class="advanceOfferAdd"><a href="#">+ Add Cap</a></div>
@@ -114,13 +106,9 @@
         </div>
         <div class="sets">
           <p>Available Stores</p>
-          <div class="selection">
-            <input type="text">
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
+          <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="">
+                                </div>
         </div>
         <div class="sets restrict"> <a href="#" class="click-green">Restrict redemption to customers located at selected stores</a> </div>
       </div>

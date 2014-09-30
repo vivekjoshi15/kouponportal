@@ -16,96 +16,96 @@ var kmApp = angular.module('kmApp', [
 kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider.
 			
-			when('/offers', {
+			when('/:clientName/offers', {
                 templateUrl: 'modules/offers/views/index.html',
                 controller: 'kmApp.modules.offers.offers'
             }).
-			when('/offers/template', {
+			when('/:clientName/offers/template', {
                 templateUrl: 'modules/offers/views/select.template.html',
                 controller: 'kmApp.modules.offers.template'
             }).
-			when('/offers/details', {
+			when('/:clientName/offers/details', {
                 templateUrl: 'modules/offers/views/details.html',
                 controller: 'kmApp.modules.offers.details'
             }).
-			when('/offers/redemption', {
+			when('/:clientName/offers/redemption', {
                 templateUrl: 'modules/offers/views/redemption.html',
                 controller: 'kmApp.modules.offers.redemption'
             }).
-			when('/offers/redemption/manual', {
+			when('/:clientName/offers/redemption/manual', {
                 templateUrl: 'modules/offers/views/redemption.manual.html',
                 controller: 'kmApp.modules.offers.redemption'
             }).
-			when('/offers/channels', {
+			when('/:clientName/offers/channels', {
                 templateUrl: 'modules/offers/views/channels.html',
                 controller: 'kmApp.modules.offers.channels'
             }).
-			when('/offers', {
+			when('/:clientName/offers', {
                 templateUrl: 'modules/offers/views/index.html',
                 controller: 'kmApp.modules.offers.offers'
             }).
-			when('/channels', {
+			when('/:clientName/channels', {
                 templateUrl: 'modules/channels/views/index.html',
                 controller: 'kmApp.modules.channels.channels'
             }).
-			when('/channels/summary', {
+			when('/:clientName/channels/summary', {
                 templateUrl: 'modules/channels/views/summary.html',
                 controller: 'kmApp.modules.channels.summary'
             }).
-			when('/channels/design', {
+			when('/:clientName/channels/design', {
                 templateUrl: 'modules/channels/views/design.html',
                 controller: 'kmApp.modules.channels.design'
             }).
-			when('/channels/design/custom', {
+			when('/:clientName/channels/design/custom', {
                 templateUrl: 'modules/channels/views/design.custom.html',
                 controller: 'kmApp.modules.channels.design.custom'
             }).
-			when('/channels/details', {
+			when('/:clientName/channels/details', {
                 templateUrl: 'modules/channels/views/details.html',
                 controller: 'kmApp.modules.channels.details'
             }).
-			when('/channels/details/done', {
+			when('/:clientName/channels/details/done', {
                 templateUrl: 'modules/channels/views/details.done.html',
                 controller: 'kmApp.modules.channels.details.done'
             }).
-            when('/general', {
+            when('/:clientName/general', {
                 templateUrl: 'modules/general/views/index.html',
                 controller: 'kmApp.modules.general.offer'
             }).
 
-            when('/general/codepools', {
+            when('/:clientName/general/codepools', {
                 templateUrl: 'modules/general/views/codepools.html',
                 controller: 'kmApp.modules.general.codepools'
             }).
-            when('/general/connected', {
+            when('/:clientName/general/connected', {
                 templateUrl: 'modules/general/views/connected.html',
                 controller: 'kmApp.modules.general.connected'
             }).
-            when('/account', {
+            when('/:clientName/account', {
                 templateUrl: 'modules/account/views/account.html',
                 controller: 'kmApp.modules.account.user'
             }).
-            when('/account/plan', {
+            when('/:clientName/account/plan', {
                 templateUrl: 'modules/account/views/plan.html',
                 controller: 'kmApp.modules.account.plan'
             }).
-            when('/general/store', {
+            when('/:clientName/general/store', {
                 templateUrl: 'modules/general/views/store.html',
                 controller: 'kmApp.modules.general.store'
             }).
-            when('/store/view', {
+            when('/:clientName/store/view', {
                 templateUrl: 'modules/store/views/storelist.html',
                 controller: 'kmApp.modules.store.storelistAction'
             }).
-            when('/store/id/:storeid/copy/:copy', {
+            when('/:clientName/store/id/:storeid/copy/:copy', {
                 templateUrl: 'modules/store/views/storeedit.html',
                 controller: 'kmApp.modules.store.storeEditAction'
             }).
-            when('/store/id/:storeid', {
+            when('/:clientName/store/id/:storeid', {
                 templateUrl: 'modules/store/views/storeedit.html',
                 controller: 'kmApp.modules.store.storeEditAction'
             }).
-            when('/store/import', {
+            when('/:clientName/store/import', {
                 templateUrl: 'modules/store/views/storeimport.html',
                 controller: 'kmApp.modules.store.storeImportAction'
             }).
@@ -113,7 +113,7 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 		  when('/requestReset', {}).
 
 
-            otherwise({ redirectTo: '/general' });
+            otherwise({ redirectTo: '/:clientName/general' });
 
     $locationProvider.html5Mode(false);
 }]);
@@ -305,7 +305,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
 
         var renewPath = function () {
             var url = $location.path().split("/");
-            url.splice(1, 0);
+            url.splice(1, 1);
             return "#" + url.join("/");
         };
         var therenewpath = renewPath();
@@ -382,7 +382,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
             var date = new Date();
             $rootScope.UserData = {
                 clientId: 01
-                   , clientName: 'james stevenson'
+                   , clientName: 'james'
                    , authKey: 'fgdfhgtfgjhytgj6756456'
                    , roleId: 1
                    , email: email
@@ -401,7 +401,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
             waitLoader.endLoader('#login_box');
             $scope.isLoggin = false;
 
-            $location.path('/');
+            $location.path('/'+$rootScope.UserData.clientName+'/general');
         }
         else {
             userNotificationLibrary.addError('Login unsuccessful!');

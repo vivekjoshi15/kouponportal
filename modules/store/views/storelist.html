@@ -2,7 +2,7 @@
 <main class="stores" ng-app="kmApp.modules.store">
     <div class="subHeader">
         <h1>Stores</h1>
-        <div class="option"> <a class="import" href="#/store/import">Import</a> <a class="newStore" href="#/store/id/0">+ New Store </a> </div>
+        <div class="option"> <a class="import" href="{{'store/import'|links}}">Import</a> <a class="newStore" href="{{'store/id/0'|links}}">+ New Store </a> </div>
     </div>
     <div class="filter">
         <div class="search">
@@ -27,8 +27,8 @@
             <div class="body">
                 <div class="sets" ng-repeat='item in storeLists | filter:search | orderBy:sortField:reverse track by $index'>
                     <div class="options">
-                        <li><a href="#/store/id/{{item.storeid}}" class="remove-icon">Edit</a></li>
-                        <li><a href="#/store/id/{{item.storeid}}/copy/true" class="copy-icon">Copy</a></li>
+                        <li><a href="#/{{UserData.clientName}}/store/id/{{item.storeid}} " class="remove-icon">Edit</a></li>
+                        <li><a href="#/{{UserData.clientName}}/store/id/{{item.storeid}}/copy/true" class="copy-icon">Copy</a></li>
                         <li><a ng-click="removeStore(item)" class="remove-icon">Remove</a></li>
                         <li><a ng-click="deActiveStore(item)" class="de-active-icon">De-Active</a></li>
                         <li><a ng-click="saveAsTempStore(item)" class="save-as-temp-icon">Save As Template</a></li>

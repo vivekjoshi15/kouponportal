@@ -63,18 +63,19 @@
         <p>Certain channel types offer more than one method of redemption. Select the methods that customers can redeem below. </p>
       </div>
       <div class="sets">
-        <div class="check-row">
-          <input type="checkbox" />
-          <span>Print</span> </div>
-        <div class="check-row">
-          <input type="checkbox" />
-          <span>Print</span> </div>
+        <div class="check-row check-box gBox">
+          <input type="checkbox" id="print" checked="checked"/>
+          <label for="print" >Print</label> </div>
+        <div class="check-row check-box gBox">
+          <input type="checkbox" id="smsText" checked="checked" />
+          <label for="smsText">SMS Text</label> </div>
       </div>
       <div class="setSubDesign">
         <header>
-          <h1>
-            <input type="checkbox"/>
-            <span>Include barcode in text message</span></h1>
+          <h1 class="check-box gBox">
+            <input type="checkbox" id="barcodeText" checked="checked"/>
+            <label for="barcodeText">Include barcode in text message</label></h1>
+           
           <span>40 / 120</span> </header>
         <div class="wrapSetSubDesign"> <span>Here is your Victoria's Secret Offer!</span> <a href="#">Offer Link</a><a href="#">Barcode Number</a> </div>
         <div> </div>

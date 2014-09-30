@@ -1,4 +1,5 @@
 <main class="offer" ng-app="kmApp.modules.offer">
+<form name="offer">
   <div class="subHeader">
     <h1>General Settings</h1>
   </div>
@@ -17,45 +18,37 @@
       <div class="wrapContainer">
         <div class="sets">
           <p>Name</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus"  required="required" ng-model="model.offer_name"/>
         </div>
         <div class="sets">
           <p>Headline</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus" required="required"  ng-model="model.offer_headline"/>
         </div>
         <div class="sets">
           <p>Sub Headline</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus" ng-model="model.sub_headline" />
         </div>
         <div class="sets">
           <p>Offer Categories</p>
-          <div class="selection">
-            <input type="text">
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
+           <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="model.offer_categories" dropdown-item-label='text' dropdown-item-placeholder=" ">
+                                </div>
         </div>
         <div class="sets">
           <div class="percentage">
             <p>Offer Type</p>
-            <div class="selection">
-              <input type="text" placeholder="Percentage Off" >
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
+            <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="model.offer_type" dropdown-item-label='text' dropdown-item-placeholder="Percentage Off">
+                                </div>
           </div>
           <div class="discount">
             <p>% Discount</p>
-            <input type="text" />
+            <input type="text" ng-model="model.offer_discount"/>
           </div>
           <div class="off"> <span>off</span> </div>
           <div class="amount">
             <p>$ Amount</p>
-            <input type="text" />
+            <input type="text" ng-model="model.offer_amount"/>
           </div>
         </div>
       </div>
@@ -65,13 +58,9 @@
       <div class="wrapContainer">
         <div class="sets">
           <p>Offer Categories</p>
-          <div class="selection">
-            <input type="text">
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
+          <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="model.offer_mob_category" dropdown-item-label='text' dropdown-item-placeholder="">
+                                </div>
         </div>
       </div>
       <div class="title">
@@ -80,15 +69,15 @@
       <div class="wrapContainer">
         <div class="sets">
           <p>Offer Disclaimer</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus" required="required" ng-model="model.offer_disclaimer"/>
         </div>
         <div class="sets">
           <p>Offer Instructions</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus" required="required" ng-model="model.offer_instructions"/>
         </div>
         <div class="sets">
           <p>Offer Redemption Copy</p>
-          <input  type="text"  class="focus" />
+          <input  type="text"  class="focus" required="required" ng-model="model.offer_redemption_copy"/>
         </div>
       </div>
     </div>
@@ -121,6 +110,7 @@
     </div>
   </div>
   <br class="clear"/>
-  <footer> <a >Save Change</a> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+  <footer><button ng-disabled="offer.$invalid" ng-click="saveStore()">Save Changes</button> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
   </footer>
+  </form>
 </main>

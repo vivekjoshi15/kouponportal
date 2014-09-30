@@ -54,13 +54,8 @@
         <div class="sets">
           <p>Select Pool</p>
           <div class="selectpool">
-            <div class="selection">
-              <input type="text">
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
+            <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder=""> </div>
           </div>
           <div class="removepool"><a href="#" class="close-green-icon">Remove</a></div>
           <div class="poolDetails"> <a href="#">+ Add Code Pool</a> <span>2,549 Codes Left</span> </div>
@@ -71,7 +66,10 @@
         <span class="question-icon"></span> </div>
       <div class="wrapContainer wrapRedemption">
         <div class="sets redemptionLimit"> <span>Redemptions Per Customer</span>
-          <div class="limits"> <a class="click">Limited</a> <a class="unclick">Unlimited</a> </div>
+          <div class="limits check-box"> 
+           <div class="a"><input type="radio" ng-model="model.limits" id="limited" value="limited" ng-init="model.limits=limited" /><label for="limited">Limited</a></label></div>
+           <div class="a"><input type="radio" ng-model="model.limits" id="unlimited" value="Unlimited" /><label for="unlimited">Unlimited</a></label></div>
+          </div>
         </div>
       </div>
       <div class="divider no-btm"></div>
@@ -99,13 +97,8 @@
               <span>offers</span> </div>
           </div>
           <div class="advanceSelectOffer">
-            <div class="selection">
-              <input type="text">
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
+            <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder=""> </div>
           </div>
           <div class="advanceOfferRemove"><a class="close-green-icon" href="#">Remove</a></div>
           <div class="advanceOfferAdd"><a href="#">+ Add Cap</a></div>
@@ -115,15 +108,10 @@
         </div>
         <div class="sets">
           <p>Available Stores</p>
-          <div class="selection">
-            <input type="text">
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
+          <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder=""> </div>
         </div>
-        <div class="sets restrict"> <a href="#" class="click-green">Restrict redemption to customers located at selected stores</a> </div>
+        <div class="sets restrict check-box"><input type="checkbox" id="restrict"/> <label for="restrict">Restrict redemption to customers located at selected stores</label> </div>
       </div>
     </div>
     <div class="offer-right-panel preview">

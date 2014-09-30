@@ -1,4 +1,4 @@
-﻿<main class="white">
+﻿<main class="white" ng-app="kmApp.modules.store">
     <div class="subHeader">
         <h1>Import a Store File</h1>
     </div>
@@ -11,11 +11,11 @@
                 <span>Upload File</span>
                 <div class="mfile">
                     <ul>
-                        <li>filename.cvs <a style="float:right;  padding-top: 27px; width:22px;height: 11px;" class="close-green-icon"></a></li>
+                        <li ng-show="(fileInfo.name != null)">{{fileInfo.name}}<a style="float:right;  padding-top: 27px; width:22px;height: 11px;" class="close-green-icon"></a></li>
                     </ul>
                     <div class="btnFile">
                         <span>Browse</span>
-                        <input type="file" name="fileUpload" class="custom-file-input" />
+                        <input type="file" name="fileUpload" class="custom-file-input" onchange="angular.element(this).scope().upload(this.files[0])"/>
                     </div>
                 </div>
             </div>

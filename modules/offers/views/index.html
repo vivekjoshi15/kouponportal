@@ -2,38 +2,23 @@
 <main class="offers" ng-app="kmApp.modules.offer">
   <div class="subHeader">
     <h1>Offers</h1>
-    <div class="option"> <a class="newStore" href="#/offers/template" > Create Offer </a> </div>
+    <div class="option"> <a class="newStore" href="{{'offers/template'|links}}" > Create Offer </a> </div>
   </div>
   <div class="filter">
     <div class="search">
       <input type="text" class="focus search-icon" placeholder="search offers"/>
     </div>
     <div class="groups">
-      <div class="selection">
-        <input type="text" placeholder="Status: All" />
-        <ul>
-          <li>option</li>
-          <li>option</li>
-        </ul>
-      </div>
+      <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Status: All"> </div>
     </div>
     <div class="groups">
-      <div class="selection">
-        <input type="text" placeholder="Category: All"/>
-        <ul>
-          <li>option</li>
-          <li>option</li>
-        </ul>
-      </div>
+      <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Category: All"> </div>
     </div>
     <div class="groups">
-      <div class="selection">
-        <input type="text" placeholder="Manage Columns"/>
-        <ul>
-          <li>option</li>
-          <li>option</li>
-        </ul>
-      </div>
+      <div class="selection" dropdown-select="UserManagementList"
+                                     dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Manage: All"> </div>
     </div>
   </div>
   <div class="wrapGridList">

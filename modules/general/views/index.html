@@ -4,10 +4,10 @@
   </div>
   <div class="step">
     <ul>
-      <li class="active"><a href="#/general/general">Offers</a></li>
-      <li><a href="#/general/codepools">Code Pools</a></li>
-      <li><a href="#/general/connected">Connected Apps</a></li>
-      <li><a href="#/general/store">Stores</a></li>
+      <li class="active"><a href="{{'general/general'|links}}">Offers</a></li>
+      <li><a href="{{'general/codepools'|links}}">Code Pools</a></li>
+      <li><a href="{{'general/connected'|links}}">Connected Apps</a></li>
+      <li><a href="{{'general/store'|links}}">Stores</a></li>
     </ul>
   </div>
   <div class="data">
@@ -41,13 +41,15 @@
         <input type="text"  class="inpt3 focus" />
         <span>to each customer</span>
         <div class="selper">
-          <div class="selection" select-tabs dataselectlist='NotificationsOption' itemval="text" itemselected='NotificationsSelectVal' itemplaceholder="Per Week">
+          <div class="selection" dropdown-select="NotificationsOption"
+                                     dropdown-model="NotificationsSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Week">
+                                </div>
            <!-- <input type="text" placeholder="Per Week"/>
             <ul>
               <li>Per Month</li>
               <li>Per Day</li>
             </ul>-->
-          </div>
+          
         </div>
       </div>
       <div class="text">
@@ -56,13 +58,14 @@
         <input type="text"  class="inpt3 focus"  />
         <span>to each customer</span>
         <div class="selper">
-          <div class="selection" select-tabs dataselectlist='TextMessagesOption' itemval="text" itemselected='TextMessagesSelectVal' itemplaceholder="Per Month">
+           <div class="selection" dropdown-select="TextMessagesOption"
+                                     dropdown-model="TextMessagesSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Month">
+                                </div>
           <!-- <input type="text" placeholder="Per Month"/>
             <ul>
               <li>Per Week</li>
               <li>Per Day</li>
             </ul>-->
-          </div>
         </div>
       </div>
       <div class="email">
@@ -71,7 +74,9 @@
         <input type="text"  class="inpt3 focus" />
         <span>to each customer</span>
         <div class="selper">
-          <div class="selection" select-tabs dataselectlist='emailMessagesOption' itemval="text" itemselected='emailSelectVal' itemplaceholder="Per Week">
+           <div class="selection" dropdown-select="emailMessagesOption"
+                                     dropdown-model="emailSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Week">
+                             
            <!-- <input type="text" placeholder="Per Day"/>
             <ul>
               <li>Per Week</li>

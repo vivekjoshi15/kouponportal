@@ -108,7 +108,40 @@ storeModule.controller('kmApp.modules.store.storeImportAction', ['$scope',
     '$routeParams',
     '$location',
     'kmApp.libraries.store.storeService',
-	   function ($scope, $rootScope, $routeParams, $location, storeService) {
-
+	'kmApp.libraries.notification.screenNotifyService',
+	   function ($scope, $rootScope, $routeParams, $location, storeService,userNotificationLibrary) {
+		   
+		   $scope.fileInfo;
+		   $scope.csvJSON=function (csv){	 
+			  var lines=csv.split("\n");	 
+			  var result = [];	 
+			  var headers=lines[0].split(",");		 
+			  for(var i=1;i<lines.length;i++){		 
+				  var obj = {};
+				  var currentline=lines[i].split(","); 
+				  for(var j=0;j<headers.length;j++){
+					  obj[headers[j]] = currentline[j];
+				  }
+				  result.push(obj); 
+			  }
+			  return JSON.stringify(result);
+			}
+			$scope.upload=function(file) {	
+			 	
+				if(file.type.match(/text\/csv/)){
+					  $scope.fileInfo=file;	
+					oFReader = new FileReader();
+					oFReader.onloadend = function() {	
+						var json = $scope.csvJSON(this.result);		
+		                // console.log(json);
+						 console.log(json);
+						 $scope.$apply();
+					};
+					oFReader.readAsText(file);
+				} else {
+					console.log('error');
+					userNotificationLibrary.addError("This file does not seem to be a CSV.");
+				}
+			}
 	   }
 ]);
