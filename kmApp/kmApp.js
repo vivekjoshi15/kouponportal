@@ -6,6 +6,8 @@ var kmApp = angular.module('kmApp', [
     'kmApp.libraries.waitLoader',
     'kmApp.libraries.toolTip',
     'kmApp.libraries.store',
+	'kmApp.modules.offer',
+	'kmApp.modules.channel',
     'kmApp.modules.store',
 	'kmApp.modules.general',
 	'kmApp.modules.account'
@@ -13,6 +15,59 @@ var kmApp = angular.module('kmApp', [
 
 kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider.
+			
+			when('/offers', {
+                templateUrl: 'modules/offers/views/index.html',
+                controller: 'kmApp.modules.offers.offers'
+            }).
+			when('/offers/template', {
+                templateUrl: 'modules/offers/views/select.template.html',
+                controller: 'kmApp.modules.offers.template'
+            }).
+			when('/offers/details', {
+                templateUrl: 'modules/offers/views/details.html',
+                controller: 'kmApp.modules.offers.details'
+            }).
+			when('/offers/redemption', {
+                templateUrl: 'modules/offers/views/redemption.html',
+                controller: 'kmApp.modules.offers.redemption'
+            }).
+			when('/offers/redemption/manual', {
+                templateUrl: 'modules/offers/views/redemption.manual.html',
+                controller: 'kmApp.modules.offers.redemption'
+            }).
+			when('/offers/channels', {
+                templateUrl: 'modules/offers/views/channels.html',
+                controller: 'kmApp.modules.offers.channels'
+            }).
+			when('/offers', {
+                templateUrl: 'modules/offers/views/index.html',
+                controller: 'kmApp.modules.offers.offers'
+            }).
+			when('/channels', {
+                templateUrl: 'modules/channels/views/index.html',
+                controller: 'kmApp.modules.channels.channels'
+            }).
+			when('/channels/summary', {
+                templateUrl: 'modules/channels/views/summary.html',
+                controller: 'kmApp.modules.channels.summary'
+            }).
+			when('/channels/design', {
+                templateUrl: 'modules/channels/views/design.html',
+                controller: 'kmApp.modules.channels.design'
+            }).
+			when('/channels/design/custom', {
+                templateUrl: 'modules/channels/views/design.custom.html',
+                controller: 'kmApp.modules.channels.design.custom'
+            }).
+			when('/channels/details', {
+                templateUrl: 'modules/channels/views/details.html',
+                controller: 'kmApp.modules.channels.details'
+            }).
+			when('/channels/details/done', {
+                templateUrl: 'modules/channels/views/details.done.html',
+                controller: 'kmApp.modules.channels.details.done'
+            }).
             when('/general', {
                 templateUrl: 'modules/general/views/index.html',
                 controller: 'kmApp.modules.general.offer'

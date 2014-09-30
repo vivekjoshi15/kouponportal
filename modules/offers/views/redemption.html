@@ -1,0 +1,150 @@
+<main class="offer" ng-app="kmApp.modules.offer">
+  <div class="subHeader">
+    <h1>General Settings</h1>
+  </div>
+  <div class="step arrow">
+    <ul>
+      <li><a href="#/offers/details">Details</a></li>
+      <li class="active"><a href="#/offers/redemption">Redemption</a></li>
+      <li><a href="#/offers/channels">Channels</a></li>
+    </ul>
+  </div>
+  <div class="offerContainer">
+    <div class="offer-left-panel">
+      <header>
+        <h1>Scheduling</h1>
+        <span class="question-icon"></span> </header>
+      <div class="wrapContainer">
+        <div class="sets rdate">
+          <div class="from">
+            <p>Dates Available for Redemption</p>
+            <div class="timeDetails calender-icon">
+              <p>Jul 24 2014 </p>
+              <time>12:35 PM</time>
+            </div>
+          </div>
+          <span>to</span>
+          <div class="to">
+            <p>&nbsp;</p>
+            <div class="timeDetails calender-icon">
+              <p>Jul 24 2014 </p>
+              <time>12:35 PM</time>
+            </div>
+          </div>
+        </div>
+        <div class="sets layout"> <a href="#" class="click-green">Schedule preview for this offer</a>
+          <div class="timeDetails calender-icon">
+            <p>Jul 24 2014 </p>
+            <time>12:35 PM</time>
+          </div>
+        </div>
+        <div class="sets schedule">
+          <p>Scheduling copy </p>
+          <input  type="text"  class="focus" />
+          <span>Copy will replace auto-generate text driven by the dates </span> </div>
+      </div>
+      <div class="title">
+        <h1 >Code source</h1>
+        <span class="question-icon"></span> </div>
+      <div class="wrapContainer codepool">
+        <div class="sets codeSource"> <a href="#" class="click">Code Pool</a> <a href="#/offers/redemption/manual" class="unclick">Manual Entry</a> </div>
+      </div>
+      <div class="divider no-btm"></div>
+      <div class="wrapContainer">
+        <div class="sets">
+          <p>Select Pool</p>
+          <div class="selectpool">
+            <div class="selection">
+              <input type="text">
+              <ul>
+                <li>option</li>
+                <li>option</li>
+              </ul>
+            </div>
+          </div>
+          <div class="removepool"><a href="#" class="close-green-icon">Remove</a></div>
+          <div class="poolDetails"> <a href="#">+ Add Code Pool</a> <span>2,549 Codes Left</span> </div>
+        </div>
+      </div>
+      <div class="title">
+        <h1>usage and availability </h1>
+        <span class="question-icon"></span> </div>
+      <div class="wrapContainer wrapRedemption">
+        <div class="sets redemptionLimit"> <span>Redemptions Per Customer</span>
+          <div class="limits"> <a class="click">Limited</a> <a class="unclick">Unlimited</a> </div>
+        </div>
+      </div>
+      <div class="divider no-btm"></div>
+      <div class="wrapContainer">
+        <div class="sets">
+          <div class="half">
+            <p>Redemptions allowed per customer</p>
+            <input type="text" class="focus"/>
+          </div>
+          <div class="half">
+            <p>Maxiumum Redemptions</p>
+            <input type="text" class="focus"/>
+          </div>
+        </div>
+        <div class="sets layout"> <a class="click-green" href="#">Use an Offer Timer </a>
+          <div class="timeDetails timer">
+            <p>15 </p>
+            <span>MIN</span> </div>
+        </div>
+        <div class="sets advancedCap">
+          <div class="advancedCap">
+            <p>Advanced Cap</p>
+            <div class="offerDesc">
+              <p>500</p>
+              <span>offers</span> </div>
+          </div>
+          <div class="advanceSelectOffer">
+            <div class="selection">
+              <input type="text">
+              <ul>
+                <li>option</li>
+                <li>option</li>
+              </ul>
+            </div>
+          </div>
+          <div class="advanceOfferRemove"><a class="close-green-icon" href="#">Remove</a></div>
+          <div class="advanceOfferAdd"><a href="#">+ Add Cap</a></div>
+        </div>
+        <div class="sets">
+          <div class="divider"></div>
+        </div>
+        <div class="sets">
+          <p>Available Stores</p>
+          <div class="selection">
+            <input type="text">
+            <ul>
+              <li>option</li>
+              <li>option</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sets restrict"> <a href="#" class="click-green">Restrict redemption to customers located at selected stores</a> </div>
+      </div>
+    </div>
+    <div class="offer-right-panel preview">
+      <header>
+        <h1>PREVIEW </h1>
+        <p class="set"> Offer styling might differ by channel</p>
+        <span class="question-icon"></span> </header>
+      <div class="wrapPreviewOffer">
+        <div class="previewOffer">
+          <div class="previewOfferTemplate"> <img src="kmApp/images/offer-image.png" alt=""/>
+            <h1>Buy One Get One Free</h1>
+            <h2>Buy one of our new paint seats. get another free</h2>
+            <h6>Valid throught jul 20</h6>
+            <p>Offer good at participating U.S. Daury Queen stores.</p>
+            <p>Offer good at participating U.S. Daury Queen stores. Limited one coupon or discount. no cash value.  Limited one coupon or discount. no cash value.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br class="clear"/>
+  <footer> <a >Save Change</a> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+  </footer>
+</main>

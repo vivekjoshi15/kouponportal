@@ -39,6 +39,8 @@ require.config({
 		//rCOLORPICKER: 'libraries/3rdParty/colorPicker/bootstrap-colorpicker-module',
 		
 		/* modules */
+		rMODULES_OFFER:   'modules/offers/offers',
+		rMODULES_CHANNEL: 'modules/channels/channels',
 		rMODULES_GENERAL: 'modules/general/general',
 		rMODULES_ACCOUNT: 'modules/account/account',
 		rMODULES_STORE: 'modules/store/store',		
@@ -96,6 +98,8 @@ require.config({
 		'rKMAPP': ['rANGULARRESOURCE', 'rANGULAR', 'rANGULAR_SANITIZE', 'rANGULAR_ROUTE'],
 
 		/* phase 5 - kmapp dependencies */
+		'rMODULES_OFFER':['rKMAPP'],
+		'rMODULES_CHANNEL':['rKMAPP'],
 		'rMODULES_GENERAL': ['rKMAPP'],
 		'rMODULES_ACCOUNT': ['rKMAPP'],
 		'rMODULES_STORE': ['rKMAPP'],
@@ -185,6 +189,8 @@ require([
     'rLIBRARIES_STORE',
     
 /* angular modules */
+    'rMODULES_OFFER',
+    'rMODULES_CHANNEL',
 	'rMODULES_GENERAL',
 	'rMODULES_ACCOUNT',
 	'rMODULES_STORE'],
