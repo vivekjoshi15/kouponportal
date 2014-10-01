@@ -1,6 +1,6 @@
 
 <main class="offers" ng-app="kmApp.modules.offer">
-  <div class="subHeader">
+<!--  <div class="subHeader">
     <h1>Offers</h1>
     <div class="option"> <a class="newStore" href="{{'offers/template'|links}}" > Create Offer </a> </div>
   </div>
@@ -165,5 +165,21 @@
   <div class="gridDetials">
     <div class="total">135 Total Offers</div>
     <div class="paging"> <a href="#">Previous</a> <span>1 of 5</span> <a href="#">Next</a></div>
-  </div>
+  </div>-->
+ <div class="wrapGridList" generaltable
+                    tabledata='tabledata'
+                    groupeditmode="groupeditmode"
+                    deletetargetlist='deleteTemplate(I, K)'
+                    edittargetlist='editTemplate(I, K)'
+                    copytargetlist='copyTemplate(I, K)'
+                    selecttargetlist='selectedTemplate(I, K)'
+                    inserttargetlist='inserttargetlist(I)'
+                    getnextpage='getnextpage()'
+                    getprevpage='getprevpage()'
+                    getselectpage='getselectpage(num)'
+                    searchtext='searchtext'
+                    pagesize='pagesize'
+                    currentpage='currentpage'
+                    pagenumbers='pagenumbers'>
+                </div>
 </main>

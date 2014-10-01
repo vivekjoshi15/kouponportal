@@ -29,7 +29,7 @@
             <div class="login">
                 <div class="cLogin">
                     <!-- login  -->
-                    <div id="login_box" class="float" ng-show="isLoginForm() && !isLogging()">
+                    <div id="login_box" class="float" ng-show="isLoginForm()" ng-hide="isLogging()">
                         <form name="login" data-ng-submit="setCredentials({reload:true})" action="" id="loginFrm" method="POST">
                             <h1>Sign In</h1>
                             <div class="email">
@@ -96,8 +96,7 @@
                 <!--   menu  -->
                 <aside ng:include="'kmApp/views/menu.html'"></aside>
                 <!--  End menu  -->
-                <div class="mainWrap">
-                    <ng-view></ng-view>
+                <div class="mainWrap" ng-view loader>
                 </div>
             </div>
         </div>

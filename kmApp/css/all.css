@@ -1195,12 +1195,12 @@ main .filter {
     cursor: pointer;
 }
 
-.gridList .head span.sel {
+.gridList .head span.sel ,.sortindicator .arrow-up{
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ0N0RENkQzMzhDMDExRTRBRkU3OTdFNkRGQ0NBNTIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ0N0RENkQ0MzhDMDExRTRBRkU3OTdFNkRGQ0NBNTIxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDQ3REQ2RDEzOEMwMTFFNEFGRTc5N0U2REZDQ0E1MjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDQ3REQ2RDIzOEMwMTFFNEFGRTc5N0U2REZDQ0E1MjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz62adDhAAAAaElEQVR42mJsnDzrCgMDAwsQu9TlpD5hQAJNU2bLAKk9QPyHCapIHYgPQCWQFR2AyrGATYIKKEMVO0DVwsTugtQw/v//H1k3TIIBie0AchJYIZpVylCFcEUgDlwhkuLdUK4rsucAAgwA/p0u0Hl0VYIAAAAASUVORK5CYII=") no-repeat scroll right 7px rgba(0, 0, 0, 0) !important;
     padding-right: 20px;
 }
 
-.gridList .head span.selR {
+.gridList .head span.selR,.sortindicator .arrow-down {
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ0N0RENkQzMzhDMDExRTRBRkU3OTdFNkRGQ0NBNTIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ0N0RENkQ0MzhDMDExRTRBRkU3OTdFNkRGQ0NBNTIxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDQ3REQ2RDEzOEMwMTFFNEFGRTc5N0U2REZDQ0E1MjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDQ3REQ2RDIzOEMwMTFFNEFGRTc5N0U2REZDQ0E1MjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz62adDhAAAAaElEQVR42mJsnDzrCgMDAwsQu9TlpD5hQAJNU2bLAKk9QPyHCapIHYgPQCWQFR2AyrGATYIKKEMVO0DVwsTugtQw/v//H1k3TIIBie0AchJYIZpVylCFcEUgDlwhkuLdUK4rsucAAgwA/p0u0Hl0VYIAAAAASUVORK5CYII=") no-repeat scroll right 7px rgba(0, 0, 0, 0) !important;
     padding-right: 20px;
     -webkit-transform: rotate(180deg);
@@ -1218,8 +1218,11 @@ main .filter {
     float: left;
     width: 100%;
 }
+.cell-action{
+ display:none;	
+}
 
-    .gridList .body .sets {
+    .gridList .body .sets,.gridList .body .row {
         border-bottom: 1px solid #e0e0e2;
         box-sizing: border-box;
         float: left;
@@ -1237,6 +1240,10 @@ main .filter {
         width: 100%;
         float: left;
     }
+
+.gridList .body .row  .cell{
+	float:left;
+}
 
 .sdropdown {
     float: left;
@@ -1293,7 +1300,7 @@ main .filter {
             line-height: 23px;
         }
 
-.gridList .body div.sets:hover {
+.gridList .body div.sets:hover,.gridList .body div.row:hover {
     background: #f9fafb;
 }
 
@@ -1306,14 +1313,14 @@ main .filter {
     border: 0 none;
 }
 
-.gridList .body .sets > div {
+.gridList .body .sets > div{
     color: #81939a;
     float: left;
     font-size: 12px;
     line-height: 20px;
 }
 
-    .gridList .body .sets > div span {
+    .gridList .body .sets > div span,.gridList .body .row .cell div > span  {
         padding-right: 25px;
         font-size: 12px;
         color: #2a3b41;
@@ -2297,27 +2304,27 @@ main.offers {
     text-transform: capitalize;
 }
 
-.gridList.offers .row1 {
+.gridList.offers .row1,.cell.offer {
     width: 27%;
 }
 
-.gridList.offers .row2 {
+.gridList.offers .row2,.cell.headline {
     width: 30%;
 }
 
-.gridList.offers .row3 {
+.gridList.offers .row3,.cell.start {
     width: 11%;
 }
 
-.gridList.offers .row4 {
+.gridList.offers .row4,.cell.end {
     width: 11%;
 }
 
-.gridList.offers .row5 {
+.gridList.offers .row5,.cell.status {
     width: 15%;
 }
 
-.gridList.offers .row6 {
+.gridList.offers .row6{
     width: 6%;
 }
 

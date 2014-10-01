@@ -11,7 +11,7 @@
                 <span>Upload File</span>
                 <div class="mfile">
                     <ul>
-                        <li ng-show="(fileInfo.name != null)">{{fileInfo.name}}<a style="float:right;  padding-top: 27px; width:22px;height: 11px;" class="close-green-icon"></a></li>
+                        <li ng-show="(fileInfo.name != null)">{{fileInfo.name}}<a style="float:right;  padding-top: 27px; width:22px;height: 11px;" ng-click="removeFile()" class="close-green-icon"></a></li>
                     </ul>
                     <div class="btnFile">
                         <span>Browse</span>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <p>Store list must be uploaded in CSV. format must match the specified format.<br />Learn more about uploading Store lists <a href="#">here</a>.</p>
-            <div class="fileUpload"> <a href="#">Upload List</a> </div>
+            <div class="fileUpload"> <a ng-click="storeUpload()">Upload List</a> </div>
         </div>
 
         <br class="clear" />

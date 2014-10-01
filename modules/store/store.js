@@ -112,6 +112,10 @@ storeModule.controller('kmApp.modules.store.storeImportAction', ['$scope',
 	   function ($scope, $rootScope, $routeParams, $location, storeService,userNotificationLibrary) {
 		   
 		   $scope.fileInfo;
+		   $scope.removeFile=function(){
+			     $scope.fileInfo='';
+				 $scope.storeList="";
+		   }
 		   $scope.csvJSON=function (csv){	 
 			  var lines=csv.split("\n");	 
 			  var result = [];	 
@@ -124,24 +128,37 @@ storeModule.controller('kmApp.modules.store.storeImportAction', ['$scope',
 				  }
 				  result.push(obj); 
 			  }
-			  return JSON.stringify(result);
+			  return result;
 			}
 			$scope.upload=function(file) {	
-			 	
-				if(file.type.match(/text\/csv/)){
-					  $scope.fileInfo=file;	
+			 	console.log(file)
+				//if(file.type.match(/text\/csv/)){
+				if(file.name.match(/csv/)){
+					$scope.fileInfo=file;	
 					oFReader = new FileReader();
 					oFReader.onloadend = function() {	
-						var json = $scope.csvJSON(this.result);		
+						$scope.storeList = $scope.csvJSON(this.result);		
 		                // console.log(json);
-						 console.log(json);
+						// console.log($scope.storeList);
 						 $scope.$apply();
 					};
 					oFReader.readAsText(file);
 				} else {
-					console.log('error');
 					userNotificationLibrary.addError("This file does not seem to be a CSV.");
+					$scope.$apply();
 				}
+			}
+			$scope.storeUpload =function(){
+				if($scope.storeList != null){
+			      for(var i=0;i<$scope.storeList.length;i++){
+					   storeService.addStore($scope.storeList[i]);   
+				  }
+				  userNotificationLibrary.addSuccess('Upload list Successfully');
+				}
+				else{
+					 userNotificationLibrary.addError('Please Select a CSV file');
+				}
+				$scope.$apply();
 			}
 	   }
 ]);

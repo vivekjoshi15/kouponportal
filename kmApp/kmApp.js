@@ -1,6 +1,7 @@
 var kmApp = angular.module('kmApp', [
     'ngRoute',
     'ngSanitize',
+	'Scope.onReady',
     'angular.filter',
     'kmApp.libraries.notification',
     'kmApp.libraries.waitLoader',
@@ -113,7 +114,7 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 		  when('/requestReset', {}).
 
 
-            otherwise({ redirectTo: '/:clientName/general' });
+           otherwise({ redirectTo: '/:clientName/general' });
 
     $locationProvider.html5Mode(false);
 }]);
@@ -400,8 +401,8 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
             localStorage.setItem("Session.UserData", JSON.stringify($rootScope.UserData));
             waitLoader.endLoader('#login_box');
             $scope.isLoggin = false;
-
-            $location.path('/'+$rootScope.UserData.clientName+'/general');
+            $location.path('/'+ $rootScope.UserData.clientName+'/general');
+			$scope.$apply();
         }
         else {
             userNotificationLibrary.addError('Login unsuccessful!');

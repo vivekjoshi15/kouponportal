@@ -5,7 +5,7 @@ require.config({
 	    rANGULARRESOURCE: 'libraries/core/angular/angular-resource.min',
 		rJQUERY: 'libraries/core/jQuery/jquery.min',
 		//rANGULARUI: 'libraries/core/angularui/angular-ui',
-		//rANGULAR_ONREADY: 'libraries/core/angular/angularOnReady',
+		rANGULAR_ONREADY: 'libraries/core/angular/angularOnReady',
 	    rANGULAR_SANITIZE: 'libraries/core/angular/angular-sanitize.min',
 	    rANGULAR_ROUTE: 'libraries/core/angular/angular-route.min',
 		//rANGULAR_GRID: 'libraries/3rdParty/nggrid/ng-grid.min',
@@ -55,7 +55,7 @@ require.config({
 		rSERVICES_GLOBAL: 'services/globalServices',
 
 		/* directives */
-		//rDIRECTIVES_GLOBAL: 'directives/globalDirectives',
+		rDIRECTIVES_GLOBAL: 'directives/globalDirectives',
 	    //rCLIENT_DIRECTIVES: 'directives/clientDirectives',
 	    rSELECT_DIRECTIVES: 'directives/select',
 
@@ -86,7 +86,7 @@ require.config({
 		/* phase 3 - angular dependencies */
 		'rANGULARRESOURCE': ['rANGULAR'],
 		//'rANGULARUI': ['rANGULAR'],
-		//'rANGULAR_ONREADY': ['rANGULAR'],
+		'rANGULAR_ONREADY': ['rANGULAR'],
 		'rANGULAR_SANITIZE': ['rANGULAR'],
 		'rANGULAR_ROUTE': ['rANGULAR'],
 		
@@ -120,7 +120,7 @@ require.config({
 		'rLIBRARIES_STORE': ['rKMAPP'],
 		'rSERVICES_GLOBAL': ['rKMAPP'],
 		//'rFACEBOOK_HELPER_LIBRARY': ['rKMAPP'],
-		//'rDIRECTIVES_GLOBAL': ['rKMAPP'],
+		'rDIRECTIVES_GLOBAL': ['rKMAPP'],
 	    //'rCLIENT_DIRECTIVES': ['rKMAPP','rMODULES_CLIENTS'],
 		'rSELECT_DIRECTIVES': ['rKMAPP'],
 		'rFILTERS_GLOBAL': ['rKMAPP'],
@@ -157,7 +157,7 @@ require([
 	//'rJQUERYFORM',
 	//'rJSONJS',
 	//'rJQUERY_TOOLS',
-	//'rANGULAR_ONREADY',
+	'rANGULAR_ONREADY',
     //'rANGULAR_GRID',
 	//'rMOMENT',
 	//'rKOUPON_MEDIA_FACEBOOK',
@@ -174,7 +174,7 @@ require([
 	'rSERVICES_GLOBAL',
 
 	/* global angular directives */
-	//'rDIRECTIVES_GLOBAL',
+	'rDIRECTIVES_GLOBAL',
     //'rCLIENT_DIRECTIVES',
      'rSELECT_DIRECTIVES',
 

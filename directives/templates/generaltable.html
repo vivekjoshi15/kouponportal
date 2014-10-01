@@ -1,0 +1,68 @@
+<!--<div class="table messaging">-->
+<div class="data gridList">
+    <div class="head">
+        <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
+            ng-click='selectHeaderIndex($index)'>
+            <span>{{m.desc}}</span><span class="sortindicator"></span>
+        </div>
+        <div class="cell-action cell">
+            <div class="dd_options leftopen right">
+                <div class="label">
+                    <em class="fs1 edit" aria-hidden="true" data-icon="&#57384;" title="Edit"></em><span>
+                        &#9660;</span>
+                </div>
+                <ul>
+                    <li ng-repeat="m in tabledata.header | filter:noIDFilter">
+                        <label>
+                            <input type="checkbox" checked="checked" name="{{m.name}}" data-column="{{m.name}}" />
+                            <span class="fs1 unchecked icon-unchecked" style="display: none;"></span><span class="fs1 checked icon-checked"
+                                style="display: block;"></span><span>{{m.desc}}</span>
+                        </label>
+                    </li>
+                    <li ng-repeat="m in tabledata.header | filter:hideCountyFilter">
+                        <label>
+                            <input type="checkbox" checked="checked" name="{{m.name}}" data-column="{{m.name}}" />
+                            <span class="fs1 unchecked icon-unchecked" style="display: block;"></span><span class="fs1 checked icon-checked"
+                                style="display: none;"></span><span>{{m.desc}}</span>
+                        </label>
+                    </li>
+                </ul>
+               <!--  dd_options -->
+            </div>
+            <!--cell-action -->
+        </div>
+        <!-- header end -->
+    </div>
+   <div class="body">
+    <div class="row hoverrow" ng-repeat="k in filtered = tabledata.rowval | tableColumnSort: (reverse * (sortcolumn+1)):sorttype ">
+        <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
+            ng-click="selecttargetlist({I:$parent.$index, K:k})">
+            <div ng-bind-html="getCell(k[$index],m.type)"></div>
+
+
+
+        </div>
+        <div class="cell-action cell">
+            <div class="options">
+                <a ng-show="hasdelete==1" class="fs1 remove" aria-hidden="true" data-icon="&#57388;"
+                    title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a><a ng-show="hasedit==1"
+                        class="fs1 edit" aria-hidden="true" data-icon="&#57391;" title="Edit" ng-click="edittargetlist({I:$parent.$index, K:k})">
+                    </a><a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
+                        title="Copy" ng-click="copytargetlist({I:$parent.$index, K:k})"></a>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+    </div>
+    <!-- table -->
+</div>
+<div class="pagination">
+    <a ng-hide="isFirstPage()" ng-click="getprevpage()">Prev</a>
+    <a ng-hide="isFirstPageSegment()" ng-click="getprevpageNums()">....</a>
+    <div ng-repeat="pagenum in pagenumbers">
+        <a ng-class="{active:pagenum==currentpage}" ng-click="getselectpage({num:pagenum})">
+            {{pagenum}}</a>
+    </div>
+    <a ng-hide="isLastPageSegment()" ng-click="getnextpageNums()">....</a> <a ng-hide="isLastPage()"
+        ng-click="getnextpage()">Next</a>
+</div>
