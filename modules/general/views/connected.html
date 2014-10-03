@@ -1,63 +1,66 @@
 <main ng-app="kmApp.modules.general">
-  <div class="subHeader">
-    <h1>General Settings</h1>
-  </div>
-  <div class="step">
-    <ul>
-      <li><a href="{{'general/general'|links}}">Offers</a></li>
-      <li><a href="{{'general/codepools'|links}}">Code Pools</a></li>
-      <li class="active"><a href="{{'general/connected'|links}}">Connected Apps</a></li>
-      <li><a href="{{'general/store'|links}}">Stores</a></li>
-    </ul>
-  </div>
-  <div class="data">
-    <header>
-      <h1>SMS</h1>
-      <div class="connected"><a href="#">Connected</a></div>
-    </header>
-    <form name="connected">
-      <div class="wrapContain">
-        <div class="smsConnect sSelect">
-          <p>Provider</p>
-            <div class="selection" dropdown-select="selectProviderList"
-                 dropdown-model="selectprovider" dropdown-item-label='text' dropdown-item-placeholder="Select Provider">
+    <div class="subHeader">
+        <h1>General Settings</h1>
+    </div>
+    <!--  setp -->
+    <div class="step">
         <ul>
-          <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
-          <li>option</li>
-        </ul>-->
+            <li><a href="{{'general'|links}}">Offers</a></li>
+            <li><a href="{{'general/codepools'|links}}">Code Pools</a></li>
+            <li class="active"><a href="{{'general/connected'|links}}">Connected Apps</a></li>
+            <li><a href="{{'general/store'|links}}">Stores</a></li>
+        </ul>
+    </div>
+    <!--  end setp -->
+    <div class="data">
+        <header>
+            <h1>SMS</h1>
+            <div class="connected"><a href="#">Connected</a></div>
+        </header>
+        <form name="connected">
+            <div class="wrapContain">
+                <div class="smsConnect sSelect">
+                    <p>Provider</p>
+                    <div class="selection" dropdown-select="selectProviderList"
+                         dropdown-model="selectprovider" dropdown-item-label='text' dropdown-item-placeholder="Select Provider">
+                        <ul>
+                            <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
+                            <li>option</li>
+                        </ul>-->
+                    </div>
+                </div>
+                <div class="smsConnect access">
+                    <p>Access Token</p>
+                    <input type="text" class="focus" ng-model="model.accesstoken" />
+                </div>
+                <div class="smsConnect shortcode">
+                    <p>Shortcode</p>
+                    <input type="text" class="focus" ng-model="model.shortcode" />
+                </div>
+                <div class="smsConnect keyword">
+                    <p>Keyword</p>
+                    <input type="text" class="focus" ng-model="model.keyword" />
+                </div>
             </div>
-        </div>
-        <div class="smsConnect access">
-          <p>Access Token</p>
-          <input type="text" class="focus" ng-model="model.accesstoken" />
-        </div>
-        <div class="smsConnect shortcode">
-          <p>Shortcode</p>
-          <input type="text" class="focus" ng-model="model.shortcode" />
-        </div>
-        <div class="smsConnect keyword">
-          <p>Keyword</p>
-          <input type="text" class="focus" ng-model="model.keyword" />
-        </div>
-      </div>
-      <!--<div class="title notConnected">
-          <h1>Email</h1>
-          <span>Not Connected</span> </div>
-        <div class="wrapContain">
-          <div class="smsConnect sSelect">
-            <p>Provider</p>
-            <div class="selection">
-              <input type="text" />
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
-            </div>
-          </div>
-        </div>-->
-    </form>
-    <br class="clear"/>
-  </div>
-  <footer> <a href="#/general/store">Save Change</a> <br class="clear"/>
-  </footer>
+            <!--<div class="title notConnected">
+                <h1>Email</h1>
+                <span>Not Connected</span> </div>
+              <div class="wrapContain">
+                <div class="smsConnect sSelect">
+                  <p>Provider</p>
+                  <div class="selection">
+                    <input type="text" />
+                    <ul>
+                      <li>option</li>
+                      <li>option</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>-->
+        </form>
+        <br class="clear" />
+    </div>
+    <footer>
+        <a href="#/general/store">Save Change</a> <br class="clear" />
+    </footer>
 </main>

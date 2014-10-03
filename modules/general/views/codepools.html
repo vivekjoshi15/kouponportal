@@ -1,71 +1,70 @@
 <main ng-app="kmApp.modules.general">
-  <div class="subHeader">
-    <h1>General Settings</h1>
-  </div>
-  <div class="step">
-    <ul>
-      <li><a href="{{'general/general'|links}}">Offers</a></li>
-      <li class="active"><a href="{{'general/codepools'|links}}">Code Pools</a></li>
-      <li><a href="{{'general/connected'|links}}">Connected Apps</a></li>
-      <li><a href="{{'general/store'|links}}">Stores</a></li>
-    </ul>
-  </div>
-  <div class="data">
-    <header>
-      <h1>CODE POOLS</h1>
-      <div class="addNew"><a ng-click="newpool=true;model='';IsEdit=false">+ New Pool</a></div>
-    </header>
-    <div class="wrapContain pools">
-      <div class="subWrapContain">
-        <header class="high">
-         <div class="float" ng-repeat="item in poolList | filter:search as results">
-          <h2>{{item.name}}</h2>
-          <a item-id="item.name" ng-click="edit(item)" >Edit</a> <a class="remove close-green-icon" ng-click="remove(item)">Remove</a>
-         </div>
-         <div class="float" ng-class="{'ng-hide':results.length!=0}" >Data Not Found </div>
-          </header>
-        <input type="text" ng-model="search.name" class="focus codeInp"/>
-        <span>3,450 Codes Left</span> <a class="addMore" href="#">+ Add More Codes</a> </div>
+    <div class="subHeader">
+        <h1>General Settings</h1>
     </div>
-    <div class="float newPols" ng-show="newpool" ng-init="newpool=false">
-      <div class="divider no-btm"></div>
-      <div class="wrapContain pools bg">
-        <div class="subWrapContain newpols">
-          <header>
-            <h2>NEW CODE POOL</h2>
-          </header>
-          <div class="newpolsWrap">
-            <div class="newpolcod">
-              <p>Code Pool Name</p>
-              <input type="text" class="focus" ng-model="model.name"/>
+    <div class="step">
+        <ul>
+            <li><a href="{{'general'|links}}">Offers</a></li>
+            <li class="active"><a href="{{'general/codepools'|links}}">Code Pools</a></li>
+            <li><a href="{{'general/connected'|links}}">Connected Apps</a></li>
+            <li><a href="{{'general/store'|links}}">Stores</a></li>
+        </ul>
+    </div>
+    <div class="data">
+        <header>
+            <h1>CODE POOLS</h1>
+            <div class="addNew"><a ng-click="newpool=true;model='';IsEdit=false">+ New Pool</a></div>
+        </header>
+        <div class="wrapContain pools">
+            <div class="subWrapContain">
+                <header class="high">
+                    <div class="float" ng-repeat="item in poolList | filter:search as results">
+                        <h2>{{item.name}}</h2>
+                        <a item-id="item.name" ng-click="edit(item)">Edit</a> <a class="remove close-green-icon" ng-click="remove(item)">Remove</a>
+                    </div>
+                    <div class="float" ng-class="{'ng-hide':results.length!=0}">Data Not Found </div>
+                </header>
+                <input type="text" ng-model="search.name" class="focus codeInp" />
+                <span>3,450 Codes Left</span> <a class="addMore" href="#">+ Add More Codes</a>
             </div>
-            <div class="newpolcod mrnone" >
-              <p>Code Type</p>
-              <div class="selection" select-tabs dataselectlist='selectCodeList' itemselected='selectCodeType' itemplaceholder="Select Code Type">
-               <!-- <input type="text" placeholder="Select Code Type" ng-model="model.selectCodeType"/>
-                <ul>
-                  <li>option</li>
-                  <li>option</li>
-                </ul>-->
-              </div>
-            </div>
-            <div class="UploadFile"> <span>Upload File</span>
-              <div class="mfile">
-                <ul>
-                  <li>{{model.file}}<a href="#"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
-                </ul>
-                <div class="btnFile"> <span>Browse</span>
-                  <input type="file" class="custom-file-input" >
-                </div>
-              </div>
-            </div>
-            <p>Code Pools must be uploaded in CSV. format and match the selected Code Type. Learn more about uploading Code Pools <a href="#">here</a>.</p>
-            <div class="fileUpload" ng-hide="IsEdit"> <a ng-click="uploadPool()">Upload Pool</a> </div>
-            <div class="fileUpload" ng-show="IsEdit"> <a ng-click="UpdatePool()">UpDate Pool</a> </div>
-          </div>
         </div>
-      </div>
+        <div class="float newPols" ng-show="newpool" ng-init="newpool=false">
+            <div class="divider no-btm"></div>
+            <div class="wrapContain pools bg">
+                <div class="subWrapContain newpols">
+                    <header>
+                        <h2>NEW CODE POOL</h2>
+                    </header>
+                    <div class="newpolsWrap">
+                        <div class="newpolcod">
+                            <p>Code Pool Name</p>
+                            <input type="text" class="focus" ng-model="model.name" />
+                        </div>
+                        <div class="newpolcod mrnone">
+                            <p>Code Type</p>
+                            <div class="selection" dropdown-select="selectCodeList"
+                                 dropdown-model="selectCodeType" dropdown-item-label='text' dropdown-item-placeholder="Select Code Type">
+                            </div>
+                        </div>
+                        <div class="UploadFile">
+                            <span>Upload File</span>
+                            <div class="mfile">
+                                <ul>
+                                    <li>{{model.file}}<a href="#"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
+                                </ul>
+                                <div class="btnFile">
+                                    <span>Browse</span>
+                                    <input type="file" class="custom-file-input">
+                                </div>
+                            </div>
+                        </div>
+                        <p>Code Pools must be uploaded in CSV. format and match the selected Code Type. Learn more about uploading Code Pools <a href="#">here</a>.</p>
+                        <div class="fileUpload" ng-hide="IsEdit"> <a ng-click="uploadPool()">Upload Pool</a> </div>
+                        <div class="fileUpload" ng-show="IsEdit"> <a ng-click="UpdatePool()">UpDate Pool</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br class="clear" />
     </div>
-    <br class="clear"/>
-  </div>
 </main>
