@@ -21,12 +21,17 @@
             <div class="wrapContain">
                 <div class="smsConnect sSelect">
                     <p>Provider</p>
-                    <div class="selection" dropdown-select="selectProviderList"
-                         dropdown-model="selectprovider" dropdown-item-label='text' dropdown-item-placeholder="Select Provider">
-                        <ul>
-                            <li ng-repeat="item in model.provider" ng-click="selected(item)">{{item.list}}</li>
-                            <li>option</li>
-                        </ul>-->
+                    <div class="selection2">
+                       <ui-select multiple ng-model="model.provider" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                        <ui-select-match placeholder="Select Provider">{{$item.text}} &lt;{{$item.someprop}}&gt;</ui-select-match>
+                        <ui-select-choices repeat="person.text as person in provider | propsFilter: {text: $select.search, someprop: $select.search}">
+                          <div ng-bind-html="person.text | highlight: $select.search"></div>
+                          <small>
+                            someprop: {{person.someprop}}
+                            text: <span ng-bind-html="''+person.text | highlight: $select.search"></span>
+                          </small>
+                        </ui-select-choices>
+                      </ui-select>
                     </div>
                 </div>
                 <div class="smsConnect access">

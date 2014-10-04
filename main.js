@@ -17,7 +17,7 @@ require.config({
 		//rJQUERY_PLUGIN_VALIDATOR: 'libraries/3rdParty/jqueryValidator/jquery.validator.min',
 		//rJQUERY_PLUGIN_JTAGS: 'libraries/3rdParty/jqueryjTags/jtags',
 		//rJQUERY_PLUGIN_TINYMCE: 'libraries/3rdParty/tinyMce/jquery.tinymce',
-		//rJQUERY_SELECT2: 'libraries/3rdParty/select2/select2.min',
+		rJQUERY_SELECT2: 'libraries/3rdParty/select2/select2',
 		//rLIGHTBOX: 'libraries/3rdParty/lightbox/lightbox',
 		//rCHART: 'libraries/3rdParty/chart/highcharts',
 		//rCHARTEXP: 'libraries/3rdParty/chart/modules/exporting',
@@ -73,7 +73,7 @@ require.config({
 		//'rMOMENT' : ['rJQUERY'],
 		//'rJQUERY_TOOLS': ['rJQUERY'],
 		//'rLIGHTBOX': ['rJQUERY'],
-		//'rJQUERY_SELECT2': ['rJQUERY'],
+		'rJQUERY_SELECT2': ['rJQUERY'],
 
 		/* phase 2a - jqueryui dependencies */
 		//'rJQUERYUI_PLUGIN_TIMEPICKER': ['rJQUERYUI'],
@@ -142,7 +142,7 @@ require([
 	//'rJQUERY_PLUGIN_VALIDATOR',
 	//'rJQUERY_PLUGIN_JTAGS',
 	//'rJQUERY_PLUGIN_TINYMCE',
-    //'rJQUERY_SELECT2',
+    'rJQUERY_SELECT2',
 	//'rLIGHTBOX',
 	//'rCHART',
 	//'rCHARTEXP',

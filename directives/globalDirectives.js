@@ -372,6 +372,9 @@ kmApp.directive('generaltable', ['$sce', function ($sce){
                 }
                 else { return false; }
             };
+			$scope.tableInfo=function(){
+			   return 	$scope.currentpage +' of '+ $scope.numberOfPages() ;
+			}
             $scope.isFirstPage = function () {
                 if (($scope.currentpage % $scope.pagesize) == 1) {
                     return true;
@@ -433,21 +436,21 @@ kmApp.directive('generaltable', ['$sce', function ($sce){
     }
 }]);
 
-//
-//kmApp.directive('ngSearchenter', function () {
-//    return function (scope, element, attrs) {
-//        element.bind("keydown keypress", function (event) {
-//            if (event.which === 13) {
-//                scope.$apply(function () {
-//                    scope.$eval(attrs.ngSearchenter);
-//                });
-//
-//                event.preventDefault();
-//            }
-//        });
-//    };
-//});
-//
+
+kmApp.directive('ngSearchenter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngSearchenter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 //kmApp.directive('tagSelect', function () {
 //    //    var searchData = [
 //    //        { text: "BG Color", children: [

@@ -41,13 +41,13 @@ generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
     $scope.selectCodeList = [{ text: 'Code type' }, { text: 'Code type 2' }, { text: 'Code type 3' }];
 });
 
-generalModule.controller('kmApp.modules.general.connected', function ($scope) {
+generalModule.controller('kmApp.modules.general.connected', function ($scope, $http, $timeout) {
 
     $scope.model = {
         'provider': [{
             text: 'Twillio',
             someprop: 'Twillio'
-        },
+                   },
                     {
                         text: 'Twillio 2',
                         someprop: 'Twillio 2'
@@ -61,11 +61,72 @@ generalModule.controller('kmApp.modules.general.connected', function ($scope) {
         'shortcode': '32443',
         'keyword': '234234'
     };
+	$scope.provider=[{ text: 'Twillio', someprop: 'Twillio'},
+                     {text: 'Twillio 2', someprop: 'Twillio 2'},
+                     {text: 'Twillio 3',someprop: 'Twillio 3'},
+                    ];
+	
     $scope.selectprovider = $scope.model.provider[0]; // init selected item
     $scope.selectProviderList = $scope.model.provider;
     $scope.selected = function (item) {
         $scope.selectprovider = item;
     }
+	$scope.disabled = undefined;
+  $scope.searchEnabled = undefined;
+
+  $scope.enable = function() {
+    $scope.disabled = false;
+  };
+
+  $scope.disable = function() {
+    $scope.disabled = true;
+  };
+
+  $scope.enableSearch = function() {
+    $scope.searchEnabled = true;
+  }
+
+  $scope.disableSearch = function() {
+    $scope.searchEnabled = false;
+  }
+
+  $scope.clear = function() {
+    $scope.person.selected = undefined;
+    $scope.address.selected = undefined;
+    $scope.country.selected = undefined;
+  };
+
+  $scope.someGroupFn = function (item){
+
+    if (item.name[0] >= 'A' && item.name[0] <= 'M')
+        return 'From A - M';
+
+    if (item.name[0] >= 'N' && item.name[0] <= 'Z')
+        return 'From N - Z';
+
+  };
+
+
+  $scope.counter = 0;
+  $scope.someFunction = function (item, model){
+    $scope.counter++;
+    $scope.eventResult = {item: item, model: model};
+  };
+
+  $scope.person = {};
+  $scope.people = [
+    { name: 'Adam',      email: 'adam@email.com',      age: 12, country: 'United States' },
+    { name: 'Amalie',    email: 'amalie@email.com',    age: 12, country: 'United States' },
+    { name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'United States' }
+  ];
+
+  $scope.country = {};
+  $scope.countries = [ 
+    {name: 'Afghanistan', code: 'AF'},
+    {name: 'Åland Islands', code: 'AX'},
+    {name: 'Albania', code: 'AL'},
+
+  ];
 
 });
 

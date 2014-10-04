@@ -1,12 +1,12 @@
 
 <main class="offers" ng-app="kmApp.modules.offer">
-<!--  <div class="subHeader">
+  <div class="subHeader">
     <h1>Offers</h1>
     <div class="option"> <a class="newStore" href="{{'offers/template'|links}}" > Create Offer </a> </div>
   </div>
   <div class="filter">
     <div class="search">
-      <input type="text" class="focus search-icon" placeholder="search offers"/>
+      <input type="text" class="focus search-icon" ng-model="searchtext"  ng-searchenter="currentpage=1;skipsize=0;getPassTableDetail()" placeholder="search offers"/>
     </div>
     <div class="groups">
       <div class="selection" dropdown-select="UserManagementList"
@@ -21,7 +21,7 @@
                                      dropdown-model="UserManagementVal" dropdown-item-label='text' dropdown-item-placeholder="Manage: All"> </div>
     </div>
   </div>
-  <div class="wrapGridList">
+<!--  <div class="wrapGridList">
     <div class="data gridList offers">
       <div class="head">
         <div class="row1"><span>Offer</span></div>

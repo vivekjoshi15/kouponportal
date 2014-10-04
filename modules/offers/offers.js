@@ -1,6 +1,6 @@
 var offerModule = angular.module('kmApp.modules.offer', ['ngDropdowns']);
 
-offerModule.controller('kmApp.modules.offers.offers',['$scope','$sce', function ($scope,$sce) {
+offerModule.controller('kmApp.modules.offers.offers',['$scope','$sce','$rootScope', '$filter' ,function ($scope,$sce,$rootScope,$filter) {
 	 $scope.to_trusted = function (html_code) {
 		 console.log(html_code);
         return $sce.trustAsHtml(html_code);
@@ -13,7 +13,58 @@ offerModule.controller('kmApp.modules.offers.offers',['$scope','$sce', function 
 	$scope.currentpage = 1;
 	$scope.skipsize = 0;
 	$scope.pagenumbers = [1];
-	
+	$rootScope.getPassTableDetail = function () {
+	        var stext = $scope.searchtext;
+	        if (stext == '') {
+	            stext = '-';
+	        }
+			
+		    //    $scope.$prepareForReady();
+//
+//	        GetTemplateListTableSvc.get({
+//	            pagesize: $scope.pagesize.toString(),
+//	            skipsize: $scope.skipsize.toString(),
+//	            searchtext: stext,
+//	            tagid: $scope.selectedtagid.toString()
+//	        }, function (data) {
+//
+//	            var text = "[";
+//
+//	            for (var i = 0; i < data.templates.length; i++) {
+//	                text += "[" + '"' + data.templates[i].templateId + '"';
+//	                text += "," + '"' + data.templates[i].templateName + '"';
+//	                text += "," + '"' + data.templates[i].templateConfig + '"';
+//	                text += "," + '"' + "Store Card" + '"' + "],";
+//	            }
+//	            if (data.templates.length != 0)
+//	                text = text.substr(0, text.length - 1);
+//	            text += "]";
+//	            $scope.tabledata = {
+//	                "header": [
+//                            { "name": "Id", "desc": "Id", "type": "n" },
+//                            { "name": "name", "desc": "Template Name", "type": "s" },
+//                            { "name": "wallet_type", "desc": "Wallet Type", "type": "s" },
+//                            { "name": "wallet_style", "desc": "Template Style", "type": "s" },
+//	                ],
+//	                "rowval": eval(text)
+//	            };
+//
+//	            $scope.tabledata.totalcount = $scope.tabledata.rowval.length;
+//	            if ($scope.currentpage == 1) {
+//	                $scope.getPageNumbers($scope.currentpage);
+//	            }
+//	            $scope.$onReady();
+//	        }, function (data) {
+//	            console.log("Error");
+//	            $scope.tabledata = data;
+//	            if ($scope.currentpage == 1) {
+//	                $scope.getPageNumbers($scope.currentpage);
+//	            }
+//	            $scope.$onReady();
+//	        });
+
+
+	    }
 	$scope.getnextpage = function () {
 		$rootScope.skipsize = $scope.currentpage;
 		$scope.currentpage = $scope.currentpage + 1;
@@ -65,10 +116,17 @@ offerModule.controller('kmApp.modules.offers.offers',['$scope','$sce', function 
 								  ['d French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'],
 								  ['c French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'],
 								  ['a French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'],
-								  ['f French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'] 
+								  ['f French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'],
+								  ['a French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated'],
+						          ['b French Fry Promotion','Save 50% off French Fries Today','jul 6 2014','jul 26 2014','DeActivated']
 								 ]
 	                 }
 	 $scope.tabledata.totalcount = $scope.tabledata.rowval.length;
+	 $scope.tabledata.totalcounttext = 'Total Offers';
+	 
+	 $scope.deleteTemplate=function(I, K){
+		 //alert($scope.tabledata.rowval.indexOf(K));	
+	 }
 
 }]);
 offerModule.controller('kmApp.modules.offers.template', function ($scope) {
