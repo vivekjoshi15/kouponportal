@@ -4,7 +4,7 @@ require.config({
 		rANGULAR: 'libraries/core/angular/angular',
 	    rANGULARRESOURCE: 'libraries/core/angular/angular-resource.min',
 	    rJQUERY: 'libraries/core/jquery/jquery.min',
-		//rANGULARUI: 'libraries/core/angularui/angular-ui',
+		rANGULARUI: 'libraries/core/angularui/ui-bootstrap-tpls-0.11.2.min',
 		rANGULAR_ONREADY: 'libraries/core/angular/angularOnReady',
 	    rANGULAR_SANITIZE: 'libraries/core/angular/angular-sanitize.min',
 	    rANGULAR_ROUTE: 'libraries/core/angular/angular-route.min',
@@ -85,7 +85,7 @@ require.config({
 
 		/* phase 3 - angular dependencies */
 		'rANGULARRESOURCE': ['rANGULAR'],
-		//'rANGULARUI': ['rANGULAR'],
+		'rANGULARUI': ['rANGULAR'],
 		'rANGULAR_ONREADY': ['rANGULAR'],
 		'rANGULAR_SANITIZE': ['rANGULAR'],
 		'rANGULAR_ROUTE': ['rANGULAR'],
@@ -138,6 +138,7 @@ require.config({
 require([
 /* core and 3rd party */
 	'rJQUERY',
+	'rANGULARUI',
 	//'rJQUERYUI',
 	//'rJQUERYUI_PLUGIN_TIMEPICKER',
 	//'rJQUERY_PLUGIN_VALIDATOR',

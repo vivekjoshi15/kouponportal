@@ -1119,6 +1119,7 @@ main .wrapContain {
 
 .wrapContain .push, .wrapContain .text, .wrapContain .email {
     width: 100%;
+	float:left;
 }
 
 .wrapContain .push, .wrapContain .text {
@@ -2090,6 +2091,7 @@ main .filter {
         color: #2a3b41;
         font-size: 16px;
         font-family: 'Open Sans Semibold';
+		text-transform: capitalize;
     }
 
     .data.plan .planCat {
@@ -2744,7 +2746,7 @@ span.question-icon {
     float: left;
 }
 
-.offerContainer .sets.rdate span {
+.offerContainer .sets.rdate > span {
     width: 8%;
     float: left;
     text-align: center;

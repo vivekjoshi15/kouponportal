@@ -22,16 +22,12 @@
                 <div class="smsConnect sSelect">
                     <p>Provider</p>
                     <div class="selection2">
-                       <ui-select multiple ng-model="model.provider" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                        <ui-select-match placeholder="Select Provider">{{$item.text}} &lt;{{$item.someprop}}&gt;</ui-select-match>
-                        <ui-select-choices repeat="person.text as person in provider | propsFilter: {text: $select.search, someprop: $select.search}">
-                          <div ng-bind-html="person.text | highlight: $select.search"></div>
-                          <small>
-                            someprop: {{person.someprop}}
-                            text: <span ng-bind-html="''+person.text | highlight: $select.search"></span>
-                          </small>
-                        </ui-select-choices>
-                      </ui-select>
+                        <ui-select multiple ng-model="selectprovider" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Code Type">{{$item}}</ui-select-match>
+                                <ui-select-choices repeat="List in selectProviderList | filter:$select.search">
+                                    {{List}}
+                                </ui-select-choices>
+                         </ui-select>
                     </div>
                 </div>
                 <div class="smsConnect access">

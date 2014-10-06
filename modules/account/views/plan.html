@@ -14,11 +14,9 @@
       <h1>YOUR CURRENT PLAN</h1>
     </header>
     <div class="wrapContain">
-      <div class="headPlan"><span>Advanced </span>Up to 250 Stores</div>
+      <div class="headPlan"><span>{{currentPlan.plan}}</span> Up to {{currentPlan.stores}} Stores</div>
       <div class="planCat">
-        <li>Offer Management</li>
-        <li>Offer Distribution</li>
-        <li>Location Targeting</li>
+        <li ng-repeat="item in currentPlan.features">{{item}}</li>
       </div>
     </div>
     <br class="clear"/>
@@ -28,30 +26,10 @@
       <h1>Interested in upgrading</h1>
       <span class="question-icon" style="margin-right:36px;"></span> </header>
     <div class="wrapContain set">
-      <div class="sets add">
-        <div class="headPlan"><span>Pro </span>Up to 250 Stores</div>
-        <div class="planCat">
-          <li>Offer Management</li>
-          <li>Offer Distribution</li>
-          <li>Location Targeting</li>
-        </div>
-        <div class="learnMore"><a href="#">Learn More </a></div>
-      </div>
-      <div class="sets add">
-        <div class="headPlan"><span>Enterprise </span>500+ Stores</div>
-        <div class="planCat">
-          <li>Offer Management</li>
-          <li>Offer Distribution</li>
-          <li>Location Targeting</li>
-        </div>
-        <div class="learnMore"><a href="#">Learn More </a></div>
-      </div>
-      <div class="sets add">
-        <div class="headPlan"><span>Core </span>Up to 250 Stores</div>
-        <div class="planCat">
-          <li>Offer Management</li>
-          <li>Offer Distribution</li>
-          <li>Location Targeting</li>
+      <div class="sets add" ng-repeat="item in planList">
+        <div class="headPlan"><span>{{item.plan}} </span> Up to {{item.stores}} Stores</div>
+        <div class="planCat" >
+          <li ng-repeat="feature in item.features">{{feature}}</li>
         </div>
         <div class="learnMore"><a href="#">Learn More </a></div>
       </div>

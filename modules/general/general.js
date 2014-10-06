@@ -2,13 +2,13 @@ var generalModule = angular.module('kmApp.modules.general', ['angular.filter', '
 
 generalModule.controller('kmApp.modules.general.offer', function ($scope, $location, $rootScope) {
 
-    $scope.TextMessagesOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.TextMessagesOption = ['Per Week', 'Per Month','Per Day'];
     $scope.TextMessagesSelectVal;
 
-    $scope.NotificationsOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.NotificationsOption = ['Per Week','Per Month','Per Day'];
     $scope.NotificationsSelectVal;
 
-    $scope.emailMessagesOption = [{ text: 'Per Week' }, { text: 'Per Month' }, { text: 'Per Day' }];
+    $scope.emailMessagesOption = ['Per Week','Per Month','Per Day'];
     $scope.emailSelectVal;
 
 });
@@ -48,7 +48,10 @@ generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
 });
 
 generalModule.controller('kmApp.modules.general.connected', function ($scope, $http, $timeout) {
-
+	$scope.disabled = undefined;
+    $scope.disable = function () {
+        $scope.disabled = true;
+    };
     $scope.model = {
         'provider': [{
             text: 'Twillio',
@@ -72,67 +75,8 @@ generalModule.controller('kmApp.modules.general.connected', function ($scope, $h
                      {text: 'Twillio 3',someprop: 'Twillio 3'},
                     ];
 	
-    $scope.selectprovider = $scope.model.provider[0]; // init selected item
-    $scope.selectProviderList = $scope.model.provider;
-    $scope.selected = function (item) {
-        $scope.selectprovider = item;
-    }
-	$scope.disabled = undefined;
-  $scope.searchEnabled = undefined;
-
-  $scope.enable = function() {
-    $scope.disabled = false;
-  };
-
-  $scope.disable = function() {
-    $scope.disabled = true;
-  };
-
-  $scope.enableSearch = function() {
-    $scope.searchEnabled = true;
-  }
-
-  $scope.disableSearch = function() {
-    $scope.searchEnabled = false;
-  }
-
-  $scope.clear = function() {
-    $scope.person.selected = undefined;
-    $scope.address.selected = undefined;
-    $scope.country.selected = undefined;
-  };
-
-  $scope.someGroupFn = function (item){
-
-    if (item.name[0] >= 'A' && item.name[0] <= 'M')
-        return 'From A - M';
-
-    if (item.name[0] >= 'N' && item.name[0] <= 'Z')
-        return 'From N - Z';
-
-  };
-
-
-  $scope.counter = 0;
-  $scope.someFunction = function (item, model){
-    $scope.counter++;
-    $scope.eventResult = {item: item, model: model};
-  };
-
-  $scope.person = {};
-  $scope.people = [
-    { name: 'Adam',      email: 'adam@email.com',      age: 12, country: 'United States' },
-    { name: 'Amalie',    email: 'amalie@email.com',    age: 12, country: 'United States' },
-    { name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'United States' }
-  ];
-
-  $scope.country = {};
-  $scope.countries = [ 
-    {name: 'Afghanistan', code: 'AF'},
-    {name: 'Åland Islands', code: 'AX'},
-    {name: 'Albania', code: 'AL'},
-
-  ];
+    $scope.selectprovider = ['Twillio','asdas']; // init selected item
+    $scope.selectProviderList = ['Twillio','Twillio 2','Twillio 3'];
 
 });
 

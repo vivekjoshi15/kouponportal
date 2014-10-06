@@ -41,15 +41,12 @@
         <input type="text"  class="inpt3 focus" />
         <span>to each customer</span>
         <div class="selper">
-          <div class="selection" dropdown-select="NotificationsOption"
-                                     dropdown-model="NotificationsSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Week">
-                                </div>
-           <!-- <input type="text" placeholder="Per Week"/>
-            <ul>
-              <li>Per Month</li>
-              <li>Per Day</li>
-            </ul>-->
-          
+          <div class="selection2" >
+            <ui-select multiple ng-model="NotificationsSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+              <ui-select-match placeholder="Per Week">{{$item}}</ui-select-match>
+              <ui-select-choices repeat="List in NotificationsOption | filter:$select.search"> {{List}} </ui-select-choices>
+            </ui-select>
+          </div>
         </div>
       </div>
       <div class="text">
@@ -58,14 +55,12 @@
         <input type="text"  class="inpt3 focus"  />
         <span>to each customer</span>
         <div class="selper">
-           <div class="selection" dropdown-select="TextMessagesOption"
-                                     dropdown-model="TextMessagesSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Month">
-                                </div>
-          <!-- <input type="text" placeholder="Per Month"/>
-            <ul>
-              <li>Per Week</li>
-              <li>Per Day</li>
-            </ul>-->
+          <div class="selection2" >
+            <ui-select multiple ng-model="TextMessagesSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+              <ui-select-match placeholder="Per Month">{{$item}}</ui-select-match>
+              <ui-select-choices repeat="List in TextMessagesOption | filter:$select.search"> {{List}} </ui-select-choices>
+            </ui-select>
+          </div>
         </div>
       </div>
       <div class="email">
@@ -74,14 +69,11 @@
         <input type="text"  class="inpt3 focus" />
         <span>to each customer</span>
         <div class="selper">
-           <div class="selection" dropdown-select="emailMessagesOption"
-                                     dropdown-model="emailSelectVal" dropdown-item-label='text' dropdown-item-placeholder="Per Week">
-                             
-           <!-- <input type="text" placeholder="Per Day"/>
-            <ul>
-              <li>Per Week</li>
-              <li>Per Month</li>
-            </ul>-->
+          <div class="selection2" >
+            <ui-select multiple ng-model="emailMessagesSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+              <ui-select-match placeholder="Per Week">{{$item}}</ui-select-match>
+              <ui-select-choices repeat="List in emailMessagesOption | filter:$select.search"> {{List}} </ui-select-choices>
+            </ui-select>
           </div>
         </div>
       </div>

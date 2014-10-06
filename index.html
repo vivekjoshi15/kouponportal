@@ -9,17 +9,108 @@
     <!--<link href="kmApp/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
     <link href="kmApp/css/select.css" rel="stylesheet" type="text/css" />
     <!-- Select2 theme -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="kmApp/css/select2.css">
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
 
     <style>
+	    ul.select2-choices{
+			border:1px solid #e3e6e6 !important;
+			background:#fff;
+			background-image: none !important;
+		}
+		.select2-container-multi .select2-search-choice-close{
+		    margin-top: 5px;
+			padding-left: 2px;
+			position: static;
+		}
+		.select2-container-multi .select2-choices .select2-search-choice{
+			background: none repeat scroll 0 0 #39b54a !important;
+			border: 1px solid #33a142;
+			border-radius: 1px;
+			box-shadow: none !important;
+			box-sizing: border-box;
+			color: #fff !important;
+			height: 32px;
+			margin: 1px;
+			padding-left: 5px;
+		}
+		.select2-container-multi .select2-choices .select2-search-choice span{
+			 color: #fff !important;
+			 float: left;
+			 margin-top: 2px;
+		}
+		.select2-results .select2-highlighted{
+			background:#39b54a;
+		}
+		.select2-results .select2-highlighted span{
+		   color:#fff;
+		}
+		.select2-drop-active{
+			border:1px solid #d1d1d3;
+			border-top:none;
+		}
+		.select2-results{
+		 padding:0;
+		}
+		.select2-search-choice-close{
+		  background-position:right 3px !important;
+		  float:right;	
+		}
+		.select2-search-field{
+			box-sizing:border-box;
+			height:34px;
+		}
         .select2 > .select2-choice.ui-select-match {
             /* Because of the inclusion of Bootstrap */
             height: 29px;
         }
-
         .selectize-control > .selectize-dropdown {
             top: 36px;
         }
+		.select2-container-multi.select2-container-active .select2-choices{
+			 box-shadow: none;
+		}
+		.select2-drop{
+			 box-shadow: none;
+		}
+		.calender-icon .dropdown-menu{
+			position:absolute;
+			background:#fff;
+			padding-bottom:10px;
+			border:1px solid #d1d1d3;
+			padding:0 10px 10px 10px;
+		}
+		.calender-icon .dropdown-menu table thead tr small {
+			font-size:12px;
+			color:#000;
+		}
+		.calender-icon .dropdown-menu table thead tr:last-child th{
+		   height:20px;	
+		}
+		.calender-icon .dropdown-menu table {
+				border-spacing: 4px;
+			}
+		.calender-icon .dropdown-menu table thead th button {
+		            background:#fff;              
+		}
+		.calender-icon .dropdown-menu table tbody td {
+			background: none repeat scroll 0 0 ;
+			border-radius: 26px;
+			height: 30px;
+			padding:0 5px;
+			border:1px solid #efeff0;
+         }
+		.calender-icon .dropdown-menu td button {
+				background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+				text-align: center;
+			}
+	    .calender-icon .dropdown-menu button:disabled span{
+				color:#ccc !important;
+			}
+		ul.dropdown-menu li:last-child{
+			display:none;
+		}
+		
     </style>
 </head>
 <body>

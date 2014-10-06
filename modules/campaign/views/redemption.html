@@ -4,9 +4,9 @@
   </div>
   <div class="step arrow">
     <ul>
-      <li><a href="#/{{UserData.clientName}}/offers/details">Details</a></li>
-      <li class="active"><a href="#/{{UserData.clientName}}/offers/redemption">Redemption</a></li>
-      <li><a href="#/{{UserData.clientName}}/offers/channels">Channels</a></li>
+      <li><a href="#/{{UserData.clientName}}/campaign/details">Details</a></li>
+      <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption">Redemption</a></li>
+      <li><a href="#/{{UserData.clientName}}/campaign/channels">Channels</a></li>
     </ul>
   </div>
   <div class="offerContainer">
@@ -19,7 +19,7 @@
           <div class="from">
             <p>Dates Available for Redemption</p>
             <div class="timeDetails calender-icon">
-              <p>Jul 24 2014 </p>
+              <p ng-click="open($event)" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true">Jul 24 2014 </p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -47,7 +47,7 @@
         <h1 >Code source</h1>
         <span class="question-icon"></span> </div>
       <div class="wrapContainer codepool">
-        <div class="sets codeSource"> <a href="#" class="click">Code Pool</a> <a href="#/{{UserData.clientName}}/offers/redemption/manual" class="unclick">Manual Entry</a> </div>
+        <div class="sets codeSource"> <a href="#" class="click">Code Pool</a> <a href="#/{{UserData.clientName}}/campaign/redemption/manual" class="unclick">Manual Entry</a> </div>
       </div>
       <div class="divider no-btm"></div>
       <div class="wrapContainer">

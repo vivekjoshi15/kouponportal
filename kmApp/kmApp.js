@@ -19,7 +19,7 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     $locationProvider.html5Mode(false);
 
     $routeProvider.
-			when('/:clientName/campaigns', {
+			when('/:clientName/campaign', {
 			    templateUrl: 'modules/campaign/views/index.html',
 			    controller: 'kmApp.modules.campaign.offer'
 			}).
