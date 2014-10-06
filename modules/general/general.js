@@ -1,4 +1,4 @@
-var generalModule = angular.module('kmApp.modules.general', ['ngDropdowns']);
+var generalModule = angular.module('kmApp.modules.general', ['angular.filter', 'kmApp.libraries.notification', 'ui.select']);
 
 generalModule.controller('kmApp.modules.general.offer', function ($scope, $location, $rootScope) {
 
@@ -14,6 +14,11 @@ generalModule.controller('kmApp.modules.general.offer', function ($scope, $locat
 });
 
 generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
+    $scope.disabled = undefined;
+    $scope.disable = function () {
+        $scope.disabled = true;
+    };
+
     $scope.poolList = [
                  { name: "Victoria's Secret PLU Codes", id: 1, selectCodeType: "Select Code Type", file: 'filename.cvs' }
     ];
@@ -38,7 +43,8 @@ generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
         $scope.IsEdit = false;
     }
 
-    $scope.selectCodeList = [{ text: 'Code type' }, { text: 'Code type 2' }, { text: 'Code type 3' }];
+    $scope.codeList = ['Code type', 'Code type1', 'Code type 2', 'Code type 3'];
+    $scope.selectedCodeList = ['Code type', 'Code type1'];
 });
 
 generalModule.controller('kmApp.modules.general.connected', function ($scope, $http, $timeout) {

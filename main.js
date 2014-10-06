@@ -1,9 +1,9 @@
 require.config({
 	paths: {
 		/* core */
-		rANGULAR: 'libraries/core/angular/angular.min',
+		rANGULAR: 'libraries/core/angular/angular',
 	    rANGULARRESOURCE: 'libraries/core/angular/angular-resource.min',
-		rJQUERY: 'libraries/core/jQuery/jquery.min',
+	    rJQUERY: 'libraries/core/jquery/jquery.min',
 		//rANGULARUI: 'libraries/core/angularui/angular-ui',
 		rANGULAR_ONREADY: 'libraries/core/angular/angularOnReady',
 	    rANGULAR_SANITIZE: 'libraries/core/angular/angular-sanitize.min',
@@ -12,12 +12,12 @@ require.config({
 
 	    /* 3rd party */
 	    rANGULAR_FILTER: 'libraries/3rdParty/angular-filter.min',
+	    rANGULAR_SELECT: 'libraries/3rdParty/select.min',
 		//rJQUERYUI: 'libraries/3rdParty/jqueryUI/jquery-ui-custom.min',
 		//rJQUERYUI_PLUGIN_TIMEPICKER: 'libraries/3rdParty/jqueryUI/jquery-ui-timepicker-addon',
 		//rJQUERY_PLUGIN_VALIDATOR: 'libraries/3rdParty/jqueryValidator/jquery.validator.min',
 		//rJQUERY_PLUGIN_JTAGS: 'libraries/3rdParty/jqueryjTags/jtags',
 		//rJQUERY_PLUGIN_TINYMCE: 'libraries/3rdParty/tinyMce/jquery.tinymce',
-		rJQUERY_SELECT2: 'libraries/3rdParty/select2/select2',
 		//rLIGHTBOX: 'libraries/3rdParty/lightbox/lightbox',
 		//rCHART: 'libraries/3rdParty/chart/highcharts',
 		//rCHARTEXP: 'libraries/3rdParty/chart/modules/exporting',
@@ -39,7 +39,7 @@ require.config({
 		//rCOLORPICKER: 'libraries/3rdParty/colorPicker/bootstrap-colorpicker-module',
 		
 		/* modules */
-		rMODULES_OFFER:   'modules/offers/offers',
+		rMODULES_OFFER: 'modules/campaign/campaign',
 		rMODULES_CHANNEL: 'modules/channels/channels',
 		rMODULES_GENERAL: 'modules/general/general',
 		rMODULES_ACCOUNT: 'modules/account/account',
@@ -57,7 +57,7 @@ require.config({
 		/* directives */
 		rDIRECTIVES_GLOBAL: 'directives/globalDirectives',
 	    //rCLIENT_DIRECTIVES: 'directives/clientDirectives',
-	    rSELECT_DIRECTIVES: 'directives/select',
+	    //rSELECT_DIRECTIVES: 'directives/select',
 
 		/* filters */
 		rFILTERS_GLOBAL: 'filters/globalFilters'
@@ -73,7 +73,7 @@ require.config({
 		//'rMOMENT' : ['rJQUERY'],
 		//'rJQUERY_TOOLS': ['rJQUERY'],
 		//'rLIGHTBOX': ['rJQUERY'],
-		'rJQUERY_SELECT2': ['rJQUERY'],
+		//'rJQUERY_SELECT2': ['rJQUERY'],	    
 
 		/* phase 2a - jqueryui dependencies */
 		//'rJQUERYUI_PLUGIN_TIMEPICKER': ['rJQUERYUI'],
@@ -124,7 +124,8 @@ require.config({
 	    //'rCLIENT_DIRECTIVES': ['rKMAPP','rMODULES_CLIENTS'],
 		'rSELECT_DIRECTIVES': ['rKMAPP'],
 		'rFILTERS_GLOBAL': ['rKMAPP'],
-		'rANGULAR_FILTER': ['rKMAPP']
+		'rANGULAR_FILTER': ['rKMAPP'],
+		'rANGULAR_SELECT': ['rANGULAR']
         //'rANGULARUI_MAPS': ['rKMAPP'],
         //'rANGULARUI_EVENT': ['rKMAPP'],
         //'rANGULARUI_MAP_UTILS': ['rKMAPP','rANGULARUI_MAPS'],
@@ -141,8 +142,7 @@ require([
 	//'rJQUERYUI_PLUGIN_TIMEPICKER',
 	//'rJQUERY_PLUGIN_VALIDATOR',
 	//'rJQUERY_PLUGIN_JTAGS',
-	//'rJQUERY_PLUGIN_TINYMCE',
-    'rJQUERY_SELECT2',
+	//'rJQUERY_PLUGIN_TINYMCE',   
 	//'rLIGHTBOX',
 	//'rCHART',
 	//'rCHARTEXP',
@@ -152,6 +152,7 @@ require([
 	'rANGULAR_SANITIZE',
 	'rKMAPP',
     'rANGULAR_FILTER',
+     'rANGULAR_SELECT',
 	//'rBASE64',
 	//'rSTORELOC',
 	//'rJQUERYFORM',
@@ -176,7 +177,7 @@ require([
 	/* global angular directives */
 	'rDIRECTIVES_GLOBAL',
     //'rCLIENT_DIRECTIVES',
-     'rSELECT_DIRECTIVES',
+    // 'rSELECT_DIRECTIVES',
 
 	/* global angular filters */
 	'rFILTERS_GLOBAL',

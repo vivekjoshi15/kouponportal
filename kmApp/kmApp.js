@@ -1,14 +1,14 @@
 var kmApp = angular.module('kmApp', [
     'ngRoute',
-    'ngSanitize',
+    'ngSanitize',    
 	'Scope.onReady',
     'angular.filter',
+    'ui.select',
     'kmApp.libraries.notification',
     'kmApp.libraries.waitLoader',
     'kmApp.libraries.toolTip',
-	'ui.select',
     'kmApp.libraries.store',
-	'kmApp.modules.offer',
+	'kmApp.modules.campaign',
 	'kmApp.modules.channel',
     'kmApp.modules.store',
 	'kmApp.modules.general',
@@ -16,60 +16,57 @@ var kmApp = angular.module('kmApp', [
 ]);
 
 kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(false);
+
     $routeProvider.
-			
-			when('/:clientName/offers', {
-                templateUrl: 'modules/offers/views/index.html',
-                controller: 'kmApp.modules.offers.offers'
-            }).
-			when('/:clientName/offers/template', {
-                templateUrl: 'modules/offers/views/select.template.html',
-                controller: 'kmApp.modules.offers.template'
-            }).
-			when('/:clientName/offers/details', {
-                templateUrl: 'modules/offers/views/details.html',
-                controller: 'kmApp.modules.offers.details'
-            }).
-			when('/:clientName/offers/redemption', {
-                templateUrl: 'modules/offers/views/redemption.html',
-                controller: 'kmApp.modules.offers.redemption'
-            }).
-			when('/:clientName/offers/redemption/manual', {
-                templateUrl: 'modules/offers/views/redemption.manual.html',
-                controller: 'kmApp.modules.offers.redemption'
-            }).
-			when('/:clientName/offers/channels', {
-                templateUrl: 'modules/offers/views/channels.html',
-                controller: 'kmApp.modules.offers.channels'
-            }).
-			when('/:clientName/offers', {
-                templateUrl: 'modules/offers/views/index.html',
-                controller: 'kmApp.modules.offers.offers'
-            }).
+			when('/:clientName/campaigns', {
+			    templateUrl: 'modules/campaign/views/index.html',
+			    controller: 'kmApp.modules.campaign.offer'
+			}).
+			when('/:clientName/campaign/template', {
+			    templateUrl: 'modules/campaign/views/select.template.html',
+			    controller: 'kmApp.modules.campaign.template'
+			}).
+			when('/:clientName/campaign/details', {
+			    templateUrl: 'modules/campaign/views/details.html',
+			    controller: 'kmApp.modules.campaign.details'
+			}).
+			when('/:clientName/campaign/redemption', {
+			    templateUrl: 'modules/campaign/views/redemption.html',
+			    controller: 'kmApp.modules.campaign.redemption'
+			}).
+			when('/:clientName/campaign/redemption/manual', {
+			    templateUrl: 'modules/campaign/views/redemption.manual.html',
+			    controller: 'kmApp.modules.campaign.redemption'
+			}).
+			when('/:clientName/campaign/channels', {
+			    templateUrl: 'modules/campaign/views/channels.html',
+			    controller: 'kmApp.modules.campaign.channels'
+			}).
 			when('/:clientName/channels', {
-                templateUrl: 'modules/channels/views/index.html',
-                controller: 'kmApp.modules.channels.channels'
-            }).
+			    templateUrl: 'modules/channels/views/index.html',
+			    controller: 'kmApp.modules.channels.channels'
+			}).
 			when('/:clientName/channels/summary', {
-                templateUrl: 'modules/channels/views/summary.html',
-                controller: 'kmApp.modules.channels.summary'
-            }).
+			    templateUrl: 'modules/channels/views/summary.html',
+			    controller: 'kmApp.modules.channels.summary'
+			}).
 			when('/:clientName/channels/design', {
-                templateUrl: 'modules/channels/views/design.html',
-                controller: 'kmApp.modules.channels.design'
-            }).
+			    templateUrl: 'modules/channels/views/design.html',
+			    controller: 'kmApp.modules.channels.design'
+			}).
 			when('/:clientName/channels/design/custom', {
-                templateUrl: 'modules/channels/views/design.custom.html',
-                controller: 'kmApp.modules.channels.design.custom'
-            }).
+			    templateUrl: 'modules/channels/views/design.custom.html',
+			    controller: 'kmApp.modules.channels.design.custom'
+			}).
 			when('/:clientName/channels/details', {
-                templateUrl: 'modules/channels/views/details.html',
-                controller: 'kmApp.modules.channels.details'
-            }).
+			    templateUrl: 'modules/channels/views/details.html',
+			    controller: 'kmApp.modules.channels.details'
+			}).
 			when('/:clientName/channels/details/done', {
-                templateUrl: 'modules/channels/views/details.done.html',
-                controller: 'kmApp.modules.channels.details.done'
-            }).
+			    templateUrl: 'modules/channels/views/details.done.html',
+			    controller: 'kmApp.modules.channels.details.done'
+			}).
             when('/:clientName/general', {
                 templateUrl: 'modules/general/views/index.html',
                 controller: 'kmApp.modules.general.offer'
@@ -111,13 +108,19 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
                 templateUrl: 'modules/store/views/storeimport.html',
                 controller: 'kmApp.modules.store.storeImportAction'
             }).
-		  when('/login', {}).
-		  when('/requestReset', {}).
-
-
-           otherwise({ redirectTo: '/:clientName/general' });
-
-    $locationProvider.html5Mode(false);
+		  when('/login', {
+		  }).
+		  when('/requestReset', {
+		  }).
+          when('/signUp', {
+          }).
+          when('/:clientName/kmAdmin', {
+              templateUrl: 'modules/admin/views/adminsidebar.html',
+              controller: 'kmApp.modules.admin.adminsidebar'
+          }).
+          otherwise({
+              redirectTo: '/:clientName/dashboard'
+          });
 }]);
 
 //logout controller
@@ -249,7 +252,7 @@ function ($scope, $location, $rootScope, $timeout, waitLoader, userNotificationL
 //main bootstrap
 kmApp.controller('kmApp.controller.rootLayout', ['$scope', '$rootScope', '$route', '$routeParams', '$location', '$window',
 'kmApp.libraries.notification.screenNotifyService',
-'kmApp.libraries.waitLoader','$sce',
+'kmApp.libraries.waitLoader', '$sce',
 function ($scope, $rootScope, $route, $routeParams, $location, $window,
 	userNotificationLibrary,
 	waitLoader, $sce) {
@@ -402,8 +405,8 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
             localStorage.setItem("Session.UserData", JSON.stringify($rootScope.UserData));
             waitLoader.endLoader('#login_box');
             $scope.isLoggin = false;
-            $location.path('/'+ $rootScope.UserData.clientName+'/general');
-			$scope.$apply();
+            $location.path('/' + $rootScope.UserData.clientName + '/general');
+            $scope.$apply();
         }
         else {
             userNotificationLibrary.addError('Login unsuccessful!');
@@ -523,11 +526,11 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
 
         }
 
-        //    //clear existing notifications
-        //    userNotificationLibrary.clearNotification();
+        //clear existing notifications
+        userNotificationLibrary.clearNotification();
 
-        //    //process redirect notifications
-        //    userNotificationLibrary.processQueue('redirect');
+        //process redirect notifications
+        userNotificationLibrary.processQueue('redirect');
 
         //    //push new location to google analytics
         //    $window._gaq.push(['_trackPageview', $location.path()]);

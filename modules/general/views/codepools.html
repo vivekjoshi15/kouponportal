@@ -42,9 +42,12 @@
                         </div>
                         <div class="newpolcod mrnone">
                             <p>Code Type</p>
-                            <div class="selection" dropdown-select="selectCodeList"
-                                 dropdown-model="selectCodeType" dropdown-item-label='text' dropdown-item-placeholder="Select Code Type">
-                            </div>
+                            <ui-select multiple ng-model="selectedCodeList" theme="select2" ng-disabled="disabled" style="width: 252px;">
+                                <ui-select-match placeholder="Select Code Type">{{$item}}</ui-select-match>
+                                <ui-select-choices repeat="List in codeList | filter:$select.search">
+                                    {{List}}
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                         <div class="UploadFile">
                             <span>Upload File</span>

@@ -1,4 +1,4 @@
-var accountModule = angular.module('kmApp.modules.account', ['angular.filter', 'kmApp.libraries.notification', 'ngDropdowns']);
+var accountModule = angular.module('kmApp.modules.account', ['angular.filter', 'kmApp.libraries.notification']);
 
 accountModule.controller('kmApp.modules.account.user', function ($scope, $location, $rootScope) {
 
