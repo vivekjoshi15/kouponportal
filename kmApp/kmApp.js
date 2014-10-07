@@ -8,6 +8,7 @@ var kmApp = angular.module('kmApp', [
     'kmApp.libraries.waitLoader',
     'kmApp.libraries.toolTip',
     'kmApp.libraries.store',
+	'kmApp.libraries.campaign',
 	'kmApp.modules.campaign',
 	'kmApp.modules.channel',
     'kmApp.modules.store',

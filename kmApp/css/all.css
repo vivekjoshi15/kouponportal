@@ -509,7 +509,7 @@ input[type=submit] {
     margin: 20px 0;
 }
 
-    .centerButtom a {
+    .centerButtom a{
         color: #fff;
         background: #39b54a;
         border-radius: 3px;
@@ -519,7 +519,20 @@ input[type=submit] {
         font-size: 12px;
         box-sizing: border-box;
     }
-
+.centerButtom button {
+    background: none repeat scroll 0 0 #39b54a;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 12px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+	cursor:pointer;
+}
+.centerButtom button:disabled{
+	 background: #ccc;
+}
 .gline {
     float: left;
     margin-bottom: 28px;
@@ -2696,7 +2709,20 @@ span.question-icon {
     float: left;
     width: 100%;
 }
-
+.draft{
+    border: 1px solid #e0e0e2;
+    border-radius: 30px;
+    box-sizing: border-box;
+    color: #c9d2d6;
+    float: left;
+    font-family: "Open Sans Semibold";
+    font-size: 12px;
+    height: 24px;
+    line-height: 22px;
+    margin-left: 13px;
+    margin-top: 15px;
+    padding: 0 12px;	
+}
 .previewOfferTemplate {
     width: 288px;
     margin: auto;
@@ -2781,13 +2807,20 @@ span.question-icon {
     line-height: 36px;
 }
 
-    .sets.layout a {
+    .sets.layout .check-row {
         color: #2a3b41;
         font-size: 12px;
         width: 54%;
         float: left;
-        background-position: 7px center !important;
     }
+	.sets.layout .check-row label {
+		background-position: 7px center !important;
+		height: 36px;
+		line-height: 36px;
+	}
+	.sets.layout .check-row input[type="checkbox"]:checked + label{
+		background-position: 7px center !important;
+	}
 
 .wrapContainer div.sets .timeDetails {
     background-position: 96% center;
@@ -2826,7 +2859,10 @@ div.sets .timeDetails time {
 .wrapContainer.codepool {
     padding-bottom: 22px;
 }
-
+.codeSource .check-box {
+    float: left;
+    padding-right: 21px;
+}
 .sets .selectpool {
     width: 80%;
     float: left;
@@ -2907,6 +2943,7 @@ div.sets .timeDetails time {
 
 .sets.layout .timeDetails.timer {
     background: #f7f7f7;
+	width:50%;
 }
 
     .sets.layout .timeDetails.timer span {
@@ -2915,7 +2952,9 @@ div.sets .timeDetails time {
         color: #81939a;
         padding-right: 10px;
     }
-
+.layout .check-row.timer{
+	width:50% !important;
+}
 .sets .advancedCap {
     width: 37%;
     float: left;

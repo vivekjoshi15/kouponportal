@@ -1,6 +1,7 @@
 var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter', 'kmApp.libraries.notification','ui.bootstrap','ui.select']);
 
-offerModule.controller('kmApp.modules.campaign.offer', ['$scope', '$sce', '$rootScope', '$filter', function ($scope, $sce, $rootScope, $filter) {
+offerModule.controller('kmApp.modules.campaign.offer', ['$scope', '$sce', '$rootScope', '$filter','kmApp.libraries.campaign.campaignService',
+                                               function ($scope, $sce, $rootScope, $filter,campaignService) {
     $scope.to_trusted = function (html_code) {
         console.log(html_code);
         return $sce.trustAsHtml(html_code);
@@ -18,7 +19,19 @@ offerModule.controller('kmApp.modules.campaign.offer', ['$scope', '$sce', '$root
         if (stext == '') {
             stext = '-';
         }
-
+	  var data=campaignService.searchCampaign(stext);
+	  console.log(data);
+	  var rowval=[];
+	  for (var i = 0; i < data.length; i++) {
+		    var rowdata=[];
+				rowdata.push(data[i].campaign_name);
+				rowdata.push(data[i].campaign_title);
+				rowdata.push(data[i].start_date_date);
+				rowdata.push(data[i].end_date_date);
+				rowdata.push(data[i].isActive);
+				rowval.push(rowdata);
+		 } 
+	 //$scope.tabledata.rowval=rowval
         //    $scope.$prepareForReady();
         //
         //	        GetTemplateListTableSvc.get({
@@ -103,30 +116,52 @@ offerModule.controller('kmApp.modules.campaign.offer', ['$scope', '$sce', '$root
             return 0;
         return Math.ceil($scope.tabledata.totalcount / $scope.pagesize);
     }
+	
+	var data=campaignService.getCampaigns();
+	var rowval=[];
+	 for (var i = 0; i < data.length; i++) {
+		    var rowdata=[];
+				rowdata.push(data[i].campaign_name);
+				rowdata.push(data[i].campaign_title);
+				rowdata.push(data[i].start_date_date);
+				rowdata.push(data[i].end_date_date);
+				rowdata.push(data[i].isActive);
+				rowval.push(rowdata);
+		 } 
     $scope.tabledata = {
         "header": [
                 { "name": "offer", "desc": "Offer", "type": "n" },
                 { "name": "headline", "desc": "Headline", "type": "s" },
                 { "name": "start", "desc": "Start", "type": "s" },
                 { "name": "end", "desc": "End ", "type": "s" },
-                { "name": "status", "desc": "Status ", "type": "s" },
+                { "name": "status", "desc": "Status ", "type": "s" }
         ],
-        "rowval": [['a French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['b French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['d French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['c French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['a French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['f French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['a French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated'],
-                  ['b French Fry Promotion', 'Save 50% off French Fries Today', 'jul 6 2014', 'jul 26 2014', 'DeActivated']
-        ]
-    }
+        "rowval": []
+    };
+	$scope.tabledata.rowval=rowval;
+	
     $scope.tabledata.totalcount = $scope.tabledata.rowval.length;
     $scope.tabledata.totalcounttext = 'Total Offers';
 
     $scope.deleteTemplate = function (I, K) {
+		 var data=campaignService.removeCampaign(K);
+		 var rowval=[];
+			 for (var i = 0; i < data.length; i++) {
+					var rowdata=[];
+						rowdata.push(data[i].campaign_name);
+						rowdata.push(data[i].campaign_title);
+						rowdata.push(data[i].start_date_date);
+						rowdata.push(data[i].end_date_date);
+						rowdata.push(data[i].isActive);
+						rowval.push(rowdata);
+				 } 	
+		 $scope.tabledata.rowval=rowval;
+		  $scope.tabledata.totalcount = $scope.tabledata.rowval.length;
         //alert($scope.tabledata.rowval.indexOf(K));	
     }
+	$scope.editTemplate=function(I,K){
+	     	
+	}
 
 }]);
 offerModule.controller('kmApp.modules.campaign.template', function ($scope) {
@@ -134,56 +169,80 @@ offerModule.controller('kmApp.modules.campaign.template', function ($scope) {
 
 
 });
-offerModule.controller('kmApp.modules.campaign.details', function ($scope) {
+offerModule.controller('kmApp.modules.campaign.details',['$scope','$rootScope','kmApp.libraries.campaign.campaignService','$filter','kmApp.libraries.store.storeService',
+                                                           function ($scope,$rootScope,campaignService,$filter,storeService) {
 	 $scope.disabled = undefined;
 	  $scope.disable = function () {
 		  $scope.disabled = true;
 	  };
-	  $scope.offertypeList=['AORPI','AORPI 2','AORPI 3'];
-	  $scope.offer_categoriesList=['categories','categories 2','categories 3'];
-	  $scope.offer_mob_categoriesList=['Mob categories','Mob categories 2','Mob categories 3']
-    $scope.model2 = { offerid: 1, offer_name: 'Scratcher 60+10% (1 in 5)', offer_headline: '60% Off + 10% Off Sale Price Classic Collections', sub_headline: 'Valid 1/6-1/12/13', offer_type: 'AORPI', offer_categories: '', offer_discount: '50%', offer_amount: '$50', offer_mob_category: '', offer_disclaimer: 'Customer must be 13 years or older to participate. (1) One game play allowed per customer.', offer_instructions: 'Valid in U.S. only. We accept competitor custom frame coupons.', offer_redemption_copy: 'THANKS! Looking for more Michaels?' };
-
-});
-offerModule.controller('kmApp.modules.campaign.redemption', function ($scope,datepickerConfig) {
+	  $scope.ddTypeList=['AORPI','AORPI 2','AORPI 3'];
+	  $scope.ddType;
+	  $scope.categoriesList=['categories','categories 2','categories 3'];
+	  $scope.categories;
+	  $scope.mob_categoriesList=['Mob categories','Mob categories 2','Mob categories 3']
+	  $scope.mob_categories;
+      
+      $scope.saveCampaign=function(){
+		  var date=new Date();
+		    $scope.model.start_date_date=$filter('date')(date, 'MMM dd yyyy', 'UTC');
+			$scope.model.end_date_date=$filter('date')(date, 'MMM dd yyyy', 'UTC');
+			$scope.model.isActive="DeActivated";
+		    campaignService.addCampaign($scope.model);
+	  }
+}]);
+offerModule.controller('kmApp.modules.campaign.redemption',['$scope','datepickerConfig','kmApp.libraries.store.storeService', function ($scope,datepickerConfig,storeService) {
 	  datepickerConfig.showWeeks = false;
 	  $scope.showButtonBar=false;
 	  $scope.today = function() {
 		$scope.dt = new Date();
+		$scope.dt2 = new Date();
+		$scope.dt3 = new Date();
 	  };
-	  $scope.today();
-	
-	  $scope.clear = function () {
-		$scope.dt = null;
-	  };
-	
-	  // Disable weekend selection
-	  $scope.disabled = function(date, mode) {
-		return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-	  };
-	
+	  $scope.today();	
 	  $scope.toggleMin = function() {
 		$scope.minDate = $scope.minDate ? null : new Date();
 	  };
 	  $scope.toggleMin();
 	
-	  $scope.open = function($event) {
+	  $scope.open = function($event,opens) {
 		$event.preventDefault();
 		$event.stopPropagation();
-	
-		$scope.opened = true;
+		$scope.opened=false;
+		$scope.opened2 = false;
+		$scope.opened3 = false;
+		switch(opens){
+		 case 'opened':
+		   $scope.opened = true;
+		        break;
+		 case 'opened2':
+		 	   $scope.opened2 = true;
+		        break;
+		 case 'opened3':
+		 	  $scope.opened3 = true;
+		      break;
+		  default:
+		  console.log('undefined');
+		}
+		
 	  };
 	
 	  $scope.dateOptions = {
 		formatYear: 'yy',
 		startingDay: 1
 	  };
-	
 	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	  $scope.codetypeList=['CODE 128 A','CODE 128 B','CODE 128 C'];
+	  $scope.codetype;
 	  $scope.format = $scope.formats[0];
+      $scope.advancedCapList=['cap','cap 2','cap 3'];
+	  $scope.advancedCap;
+	  $scope.availableStoreList=storeService.getStoreName();
 
-
-});
+	  console.log($scope.availableStoreList);
+      $scope.availableStore;
+	  $scope.poolList=['pool','pool 2','pool 3'];
+	  $scope.pool;
+}]);
 offerModule.controller('kmApp.modules.campaign.channels', function ($scope) {
 
 

@@ -1,7 +1,7 @@
 <main class="offer" ng-app="kmApp.modules.offer">
 <form name="offer">
   <div class="subHeader">
-    <h1>General Settings</h1>
+    <h1>New Offer</h1>
   </div>
   <div class="step arrow">
     <ul>
@@ -18,22 +18,22 @@
       <div class="wrapContainer">
         <div class="sets">
           <p>Name</p>
-          <input  type="text"  class="focus"  required="required" ng-model="model.offer_name"/>
+          <input  type="text"  class="focus"  required="required" ng-model="model.campaign_name"/>
         </div>
         <div class="sets">
           <p>Headline</p>
-          <input  type="text"  class="focus" required="required"  ng-model="model.offer_headline"/>
+          <input  type="text"  class="focus" required="required"  ng-model="model.campaign_title"/>
         </div>
         <div class="sets">
           <p>Sub Headline</p>
-          <input  type="text"  class="focus" ng-model="model.sub_headline" />
+          <input  type="text"  class="focus"   required="required" ng-model="model.valid_date_description" />
         </div>
         <div class="sets">
           <p>Offer Categories</p>
            <div class="selection2">
-                  <ui-select multiple ng-model="offer_categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in offer_categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
+                    <ui-select-choices repeat="List in categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
             </div>
         </div>
@@ -41,20 +41,20 @@
           <div class="percentage">
             <p>Offer Type</p>
             <div class="selection2">
-                  <ui-select multiple ng-model="offer_type" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="model.ddType" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in offertypeList | filter:$select.search"> {{List}} </ui-select-choices>
+                    <ui-select-choices repeat="List in ddTypeList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
                 </div>
           </div>
           <div class="discount">
             <p>% Discount</p>
-            <input type="text" ng-model="model.offer_discount"/>
+            <input type="text" ng-model="model.discount" />
           </div>
           <div class="off"> <span>off</span> </div>
           <div class="amount">
             <p>$ Amount</p>
-            <input type="text" ng-model="model.offer_amount"/>
+            <input type="text" ng-model="model.amount"/>
           </div>
         </div>
       </div>
@@ -65,9 +65,9 @@
         <div class="sets">
           <p>Offer Categories</p>
           <div class="selection2">
-                  <ui-select multiple ng-model="offer_mob_categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="model.mob_categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in offer_mob_categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
+                    <ui-select-choices repeat="List in mob_categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
                 </div>
         </div>
@@ -78,15 +78,15 @@
       <div class="wrapContainer">
         <div class="sets">
           <p>Offer Disclaimer</p>
-          <input  type="text"  class="focus" required="required" ng-model="model.offer_disclaimer"/>
+          <input  type="text"  class="focus" required="required" ng-model="model.Disclaimer"/>
         </div>
         <div class="sets">
           <p>Offer Instructions</p>
-          <input  type="text"  class="focus" required="required" ng-model="model.offer_instructions"/>
+          <input  type="text"  class="focus" required="required" ng-model="model.coupon_instructions"/>
         </div>
         <div class="sets">
           <p>Offer Redemption Copy</p>
-          <input  type="text"  class="focus" required="required" ng-model="model.offer_redemption_copy"/>
+          <input  type="text"  class="focus" required="required" ng-model="model.DoneMsg"/>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@
     </div>
   </div>
   <br class="clear"/>
-  <footer><button ng-disabled="offer.$invalid" ng-click="saveStore()">Save Changes</button> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+  <footer><button ng-disabled="offer.$invalid" ng-click="saveCampaign()">Save Changes</button> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
   </footer>
   </form>
 </main>

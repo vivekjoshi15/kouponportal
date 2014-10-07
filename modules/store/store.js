@@ -39,25 +39,13 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
     'kmApp.libraries.notification.screenNotifyService',
     'kmApp.libraries.waitLoader','$filter',
     function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader, $filter) {
-        $scope.countryList = [{
-            text: 'USA',
-            someprop: 'USA'
-        }, {
-            text: 'Canada',
-            someprop: 'Canada'
-        }];
-        $scope.countryVal = {};
+        $scope.countryList = ['USA','Canada'];
+        $scope.countryVal;
 
-        $scope.countyList = [{
-            text: 'Option1',
-            someprop: 'Option1'
-        }, {
-            text: 'Option2',
-            someprop: 'Option2'
-        }];
+        $scope.countyList = ['Option1','Option2'];
         $scope.countyVal = {};
 
-        $scope.storeLists = storeService.getStores();
+        $scope.storeLists = storeService.getStoreName();
         $scope.storeVal = {};
 
         $scope.iscopy = $routeParams.copy;

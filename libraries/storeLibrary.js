@@ -3,10 +3,10 @@ var storeLibrary = angular.module('kmApp.libraries.store', []);
 storeLibrary.service('kmApp.libraries.store.storeService', ['$filter', function ($filter) {
     var storeList = [
 							{ storeid: 1, merchantid: 1701, name: 'Town Center San Antonio ', groupname: 'West Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'USA', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
-							{ storeid: 2, merchantid: 2642, name: 'Town Center San Antonio ', groupname: 'East Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'USA', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
+							{ storeid: 2, merchantid: 2642, name: 'Town Center San Antonio 2 ', groupname: 'East Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'USA', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
 							{ storeid: 3, merchantid: 3453, name: 'Town San Antonio ', groupname: 'North Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'USA', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
 							{ storeid: 4, merchantid: 4464, name: 'Town Center San  ', groupname: 'West Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'USA', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
-							{ storeid: 5, merchantid: 5235, name: 'Town Center San ', groupname: 'East Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'Canada', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
+							{ storeid: 5, merchantid: 5235, name: 'Town Center San 2', groupname: 'East Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'Canada', county: 'Option1', latitude: 121.2432, longitude: -424.24234 },
 							{ storeid: 6, merchantid: 6436, name: 'Town  San Antonio ', groupname: 'North Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'Canada', county: 'Option2', latitude: 121.2432, longitude: -424.24234 },
 							{ storeid: 7, merchantid: 7236, name: 'Center San Antonio', groupname: 'South Store', address: '108 Callery Pera', city: 'Jacksonville', state: 'TX', zip: 32444, country: 'Canada', county: 'Option2', latitude: 121.2432, longitude: -424.24234 }
     ];
@@ -16,7 +16,13 @@ storeLibrary.service('kmApp.libraries.store.storeService', ['$filter', function 
     var addStore = function (item) {
         storeList.push(item);
     }
-
+    var getStoreName=function(){
+		var storeName=[];
+	        for(var i=0;i<storeList.length;i++){
+			 storeName.push(storeList[i].name);
+	       }
+		 return storeName;	
+	}
     var getStores = function () {
         return storeList;
     }
@@ -49,7 +55,8 @@ storeLibrary.service('kmApp.libraries.store.storeService', ['$filter', function 
         removeStore: removeStore,
         copyStore: copyStore,
         getStore: getStore,
-        editStore: editStore
+        editStore: editStore,
+		getStoreName:getStoreName
     };
 
 }
