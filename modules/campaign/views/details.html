@@ -5,9 +5,9 @@
   </div>
   <div class="step arrow">
     <ul>
-      <li class="active"><a href="#/{{UserData.clientName}}/campaign/details">Details</a></li>
-      <li><a href="#/{{UserData.clientName}}/campaign/redemption">Redemption</a></li>
-      <li><a href="#/{{UserData.clientName}}/campaign/channels">Channels</a></li>
+      <li class="active"><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}">Details</a></li>
+      <li><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}">Redemption</a></li>
+      <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}">Channels</a></li>
     </ul>
   </div>
   <div class="offerContainer">
@@ -119,7 +119,7 @@
     </div>
   </div>
   <br class="clear"/>
-  <footer><button ng-disabled="offer.$invalid" ng-click="saveCampaign()">Save Changes</button> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+  <footer><button ng-disabled="offer.$invalid" ng-click="saveCampaign()">Save Changes</button> <button class="border-links" ng-disabled="offer.$invalid" ng-click="saveCampaign()">Save As Draft</button> <a href="#/{{UserData.clientName}}/campaign" class="cancel">cancel</a> <br class="clear">
   </footer>
   </form>
 </main>

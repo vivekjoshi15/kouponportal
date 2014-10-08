@@ -67,7 +67,7 @@
     <!-- table -->
 </div>
 <div class="pagination">
-    <div class="total">{{tabledata.totalcount}} {{tabledata.totalcounttext}}</div>
+    <div class="total">{{tabledata.rowval.length}} {{tabledata.totalcounttext}}</div>
     <div class="paging">
     <a ng-hide="isFirstPage()" ng-click="getprevpage()">Previous</a>
     <span>{{tableInfo()}}</span>

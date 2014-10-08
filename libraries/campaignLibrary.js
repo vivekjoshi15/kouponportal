@@ -8,7 +8,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   end_date_date:'jul 16 2014',
 							   end_date_time:'03:99 AM',
 							   campaign_name: 'Scratcher 60+10% (1 in 5)',
-							   campaign_title: '60% Off + 10% Off Sale Price Classic Collections',
+							   campaign_title: '$10 Off Sale Price Classic',
 							   campaign_desc:'',
 							   valid_date_description: 'Valid 1/6-1/12/13', 
 							   ddType: 'AORPI', 
@@ -25,8 +25,8 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   start_date_time:'04:00 AM',
 							   end_date_date:'jul 16 2014',
 							   end_date_time:'03:99 AM',
-							   campaign_name: 'Scratcher 60+10% (1 in 5)',
-							   campaign_title: '60% Off + 10% Off Sale Price Classic Collections',
+							   campaign_name: 'Offer 60+10% (1 in 5)',
+							   campaign_title: 'Sale Price Classic Collections',
 							   campaign_desc:'',
 							   valid_date_description: 'Valid 1/6-1/12/13', 
 							   ddType: 'AORPI', 
@@ -43,7 +43,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   start_date_time:'04:00 AM',
 							   end_date_date:'jul 16 2014',
 							   end_date_time:'03:99 AM',
-							   campaign_name: 'Scratcher 60+10% (1 in 5)',
+							   campaign_name: 'Campaign 60+10% (1 in 5)',
 							   campaign_title: '60% Off + 10% Off Sale Price Classic Collections',
 							   campaign_desc:'',
 							   valid_date_description: 'Valid 1/6-1/12/13', 
@@ -61,8 +61,8 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   start_date_time:'04:00 AM',
 							   end_date_date:'jul 16 2014',
 							   end_date_time:'03:99 AM',
-							   campaign_name: 'Scratcher 60+10% (1 in 5)',
-							   campaign_title: '60% Off + 10% Off Sale Price Classic Collections',
+							   campaign_name: 'Item 60+10% (1 in 5)',
+							   campaign_title: '40% Off + 10% Off Sale Price Classic Collections',
 							   campaign_desc:'',
 							   valid_date_description: 'Valid 1/6-1/12/13', 
 							   ddType: 'AORPI', 
@@ -78,7 +78,13 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
     ];
 
     //console.log(storeList[0]);
-
+	var draftCampaign;
+	var draftCampaign=function(){
+		 return draftCampaign;
+	 }
+    var addDraftCampaign=function(item){
+		  draftCampaign=item;
+	 }
     var addCampaign = function (item) {
         campaignList.push(item);
     }
@@ -90,7 +96,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
         return $filter('filter')(campaignList,{$:stext}, true);
     }
     var getCampaign = function (campaignid) {
-        var found = $filter('filter')(campaignList, { campaignid: parseInt(campaignid) }, true);
+        var found = $filter('filter')(campaignList, { campaign_id: parseInt(campaignid) }, true);
         return found[0];
     }
 
@@ -111,7 +117,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
         campaignList.push(item);
         return campaignList;
     }
-
+     
     return {
         addCampaign: addCampaign,
         getCampaigns: getCampaigns,
@@ -119,7 +125,9 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
         copyCampaign: copyCampaign,
         getCampaign: getCampaign,
         editCampaign: editCampaign,
-		searchCampaign:searchCampaign
+		searchCampaign:searchCampaign,
+		draftCampaign:draftCampaign,
+		addDraftCampaign:addDraftCampaign
     };
 
 }

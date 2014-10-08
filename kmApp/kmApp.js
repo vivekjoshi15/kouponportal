@@ -9,6 +9,8 @@ var kmApp = angular.module('kmApp', [
     'kmApp.libraries.toolTip',
     'kmApp.libraries.store',
 	'kmApp.libraries.campaign',
+	'kmApp.libraries.channel',
+	'kmApp.libraries.account',
 	'kmApp.modules.campaign',
 	'kmApp.modules.channel',
     'kmApp.modules.store',
@@ -28,19 +30,23 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			    templateUrl: 'modules/campaign/views/select.template.html',
 			    controller: 'kmApp.modules.campaign.template'
 			}).
-			when('/:clientName/campaign/details', {
+			when('/:clientName/campaign/details/edit/:id', {
 			    templateUrl: 'modules/campaign/views/details.html',
 			    controller: 'kmApp.modules.campaign.details'
 			}).
-			when('/:clientName/campaign/redemption', {
+			when('/:clientName/campaign/details/:id', {
+			    templateUrl: 'modules/campaign/views/details.html',
+			    controller: 'kmApp.modules.campaign.detailsEditAction'
+			}).
+			when('/:clientName/campaign/details/:id/copy/:copy', {
+			    templateUrl: 'modules/campaign/views/details.html',
+			    controller: 'kmApp.modules.campaign.detailsEditAction'
+			}).
+			when('/:clientName/campaign/redemption/:id', {
 			    templateUrl: 'modules/campaign/views/redemption.html',
 			    controller: 'kmApp.modules.campaign.redemption'
 			}).
-			when('/:clientName/campaign/redemption/manual', {
-			    templateUrl: 'modules/campaign/views/redemption.manual.html',
-			    controller: 'kmApp.modules.campaign.redemption'
-			}).
-			when('/:clientName/campaign/channels', {
+			when('/:clientName/campaign/channels/:id', {
 			    templateUrl: 'modules/campaign/views/channels.html',
 			    controller: 'kmApp.modules.campaign.channels'
 			}).
@@ -48,9 +54,9 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			    templateUrl: 'modules/channels/views/index.html',
 			    controller: 'kmApp.modules.channels.channels'
 			}).
-			when('/:clientName/channels/summary', {
+			when('/:clientName/channels/summary/:id', {
 			    templateUrl: 'modules/channels/views/summary.html',
-			    controller: 'kmApp.modules.channels.summary'
+			    controller: 'kmApp.modules.channels.summaryEditAction'
 			}).
 			when('/:clientName/channels/design', {
 			    templateUrl: 'modules/channels/views/design.html',

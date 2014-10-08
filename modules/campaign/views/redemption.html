@@ -7,9 +7,12 @@
   
   <div class="step arrow">
     <ul>
-      <li><a href="#/{{UserData.clientName}}/campaign/details">Details</a></li>
+<!--      <li><a href="#/{{UserData.clientName}}/campaign/details">Details</a></li>
       <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption">Redemption</a></li>
-      <li><a href="#/{{UserData.clientName}}/campaign/channels">Channels</a></li>
+      <li><a href="#/{{UserData.clientName}}/campaign/channels">Channels</a></li>-->
+      <li><a >Details</a></li>
+      <li class="active"><a >Redemption</a></li>
+      <li><a >Channels</a></li>
     </ul>
   </div>
   <div class="offerContainer">
@@ -22,7 +25,7 @@
           <div class="from">
             <p>Dates Available for Redemption</p>
             <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{dt| date:'MMM dd yyyy'}}</p>
+              <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{start_date_date| date:'MMM dd yyyy'}}</p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -30,7 +33,7 @@
           <div class="to">
             <p>&nbsp;</p>
             <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true">{{dt2| date:'MMM dd yyyy'}}</p>
+              <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="end_date_date" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true">{{end_date_date| date:'MMM dd yyyy'}}</p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -42,13 +45,13 @@
               </label>
            </div>
           <div class="timeDetails calender-icon">
-            <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="dt3" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{dt3| date:'MMM dd yyyy'}}</p>
+            <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{publish_date_date| date:'MMM dd yyyy'}}</p>
             <time>12:35 PM</time>
           </div>
         </div>
         <div class="sets schedule">
           <p>Scheduling copy </p>
-          <input  type="text" ng-model="model.scheduling_copy"  class="focus" />
+          <input  type="text" ng-model="model.scheduling_copy" required  class="focus" />
           <span>Copy will replace auto-generate text driven by the dates </span> </div>
       </div>
       <div class="title">
@@ -118,7 +121,7 @@
           </div>
           <div class="half">
             <p>Maxiumum Redemptions</p>
-            <input type="text" class="focus" ng-model="model.max_redemption"/>
+            <input type="text" class="focus"  ng-model="model.max_redemption"/>
           </div>
         </div>
         <div class="sets layout">
@@ -128,7 +131,7 @@
               </label>
            </div>
           <div class="timeDetails timer">
-            <p>15 </p>
+            <p ng-model="model.limitPertimeType">15 </p>
             <span>MIN</span> </div>
         </div>
         <div class="sets advancedCap">
@@ -183,7 +186,7 @@
     </div>
   </div>
   <br class="clear"/>
-  <footer> <button ng-click="saveStore()" ng-disabled="redemption.$invalid" disabled="disabled">Save Changes</button> <a  class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+  <footer> <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled">Save Changes</button> <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled" class="border-links">Save As Draft</button> <a href="#/{{UserData.clientName}}/campaign" class="cancel">cancel</a> <br class="clear">
   </footer>
   </form>
 </main>

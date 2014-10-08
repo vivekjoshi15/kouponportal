@@ -1,23 +1,35 @@
 var accountModule = angular.module('kmApp.modules.account', ['angular.filter', 'kmApp.libraries.notification','ui.select']);
 
-accountModule.controller('kmApp.modules.account.user', function ($scope, $location, $rootScope) {
+accountModule.controller('kmApp.modules.account.user',
+						 ['$scope',
+						  '$rootScope',
+						  '$location',
+						  'kmApp.libraries.account.accountService',
+						 function ($scope,$rootScope,$location, accountService) {
 	$scope.disabled = undefined;
     $scope.disable = function () {
         $scope.disabled = true;
     };
-    $scope.ActiveUser = [
-            { UserID: 1, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management' },
-            { UserID: 2, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management' }
-    ]
+    $scope.ActiveUser=accountService.getAccounts();
+	
     $scope.UsrRemove = function (item) {
         var r = confirm("Are you sure you want to delete '" + item.UserName + "'?");
         if (r == true) {
-            $scope.ActiveUser.splice($scope.ActiveUser.indexOf(item), 1);
+             accountService.removeAccount(item.UserID)
         }
     }
+	$scope.model;
     $scope.Invite = function () {
+		 
         //alert(console.log($scope.InviteUser));
     }
+	$scope.addUser=function(){
+	      $scope.NewUsr=false;
+		  $scope.model.UserID = Math.floor((Math.random() * 1000) + 1);
+		  $scope.model.UserName ="Samantha Longname";
+		  accountService.addAccount($scope.model);
+		  console.log($scope.model);	
+	}
 
     $scope.userManagementList = ['Offer Management','Offer Distribution', 'Location Targeting'];
     $scope.userManagementVal;
@@ -36,7 +48,7 @@ accountModule.controller('kmApp.modules.account.user', function ($scope, $locati
     $scope.Invite.UserManagement = $scope.selectRoleVal;
 
 
-});
+}]);
 
 accountModule.controller('kmApp.modules.account.plan', function ($scope, $location, $rootScope) {
 

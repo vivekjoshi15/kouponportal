@@ -27,19 +27,19 @@
       </div>
       <div class="sets">
         <p>Name</p>
-        <input type="text" ng-model="model.name" required class="focus"/>
+        <input type="text" ng-model="model.channel_name" required class="focus"/>
       </div>
       <div class="sets">
         <p>Channel ID</p>
-        <input type="text" ng-model="model.ChannelId" required class="focus"/>
+        <input type="text" ng-model="model.channelid" required class="focus"/>
       </div>
       <div class="sets">
         <p>Description</p>
-        <textarea rows="5" ng-model="model.description" ></textarea>
+        <textarea rows="5" ng-model="model.channel_desc" ></textarea>
       </div>
     </div>
     <div class="divider no-btm"></div>
-    <div class="centerButtom"><button ng-disabled="channel.$invalid" ng-click="saveStore();">Save Changes</button> </div>
+    <div class="centerButtom"><button ng-disabled="channel.$invalid" ng-click="saveChannel();">Save Changes</button> </div>
     <br class="clear"/>
     </form>
   </div>

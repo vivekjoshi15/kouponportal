@@ -39,18 +39,18 @@
             <div class="UsrAdd">
               <div class="UsrEmail">
                 <p>Email Address</p>
-                <input type="email" class="focus" ng-model="Invite.UserEmail" />
+                <input type="email" class="focus" ng-model="model.UserEmail" />
               </div>
               <div class="UsrRole">
                 <p>Select Role</p>
                 <div class="selection2">
-                  <ui-select multiple ng-model="userManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="model.userManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
                     <ui-select-choices repeat="List in userManagementList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
                 </div>
               </div>
-              <div class="UsrOption"> <a ng-click="NewUsr=false">Cancel</a> <a class="invite">Invite</a> </div>
+              <div class="UsrOption"> <a ng-click="NewUsr=false;">Cancel</a> <a ng-click="addUser()" class="invite">Invite</a> </div>
             </div>
           </form>
         </div>
