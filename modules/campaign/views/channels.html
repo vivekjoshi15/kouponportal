@@ -18,7 +18,17 @@
           <header>
             <h1>select channels</h1>
             <span class="question-icon"></span> </header>
-          <div class="wrapContainer">
+          <div class="float rchannels" ng-repeat="item in channelsList">
+               <div class="wrapContainer">
+                <div class="sets">
+                  <div class="select-channels">
+                    <h1 class="android-icon">{{item.channel_name}}</h1>
+                    </div>
+                   <div class="android-channels"><a class="border-links" href="#">SELECT</a> </div>
+                </div>
+              </div>  
+          </div>
+<!--          <div class="wrapContainer">
             <div class="sets">
               <div class="select-channels">
                 <h1 class="android-icon">VS Android App</h1>
@@ -56,7 +66,7 @@
                 </div>
             </div>
           </div>
-          <div class="divider"></div>
+          <div class="divider"></div>-->
         </div>
         <div class="offer-right-panel preview">
           <header>
@@ -66,17 +76,17 @@
           <div class="wrapPreviewOffer">
             <div class="previewOffer">
               <div class="previewOfferTemplate"> <img src="kmApp/images/offer-image.png" alt=""/>
-                <h1>Buy One Get One Free</h1>
-                <h2>Buy one of our new paint seats. get another free</h2>
-                <h6>Valid throught jul 20</h6>
-                <p>Offer good at participating U.S. Daury Queen stores.</p>
-                <p>Offer good at participating U.S. Daury Queen stores. Limited one coupon or discount. no cash value.  Limited one coupon or discount. no cash value.</p>
+                <h1>{{model.campaign_name}}</h1>
+                <h2>{{model.campaign_title}}</h2>
+                <h6>{{model.valid_date_description}}</h6>
+                <p>{{model.Disclaimer}}</p>
+                <p>{{model.coupon_instructions}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <br class="clear"/>
-      <footer> <a >Save Change</a> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
+      <footer><button ng-disabled="redemption.$invalid" ng-click="campaignSave()">Save Changes</button> <a  href="#" class="border-links">Save As Draft</a> <a href="#" class="cancel">cancel</a> <br class="clear">
       </footer>
     </main>

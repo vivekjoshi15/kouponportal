@@ -31,7 +31,7 @@
         <div class="sets">
           <p>Offer Categories</p>
            <div class="selection2">
-                  <ui-select multiple ng-model="categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="model.categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
                     <ui-select-choices repeat="List in categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>

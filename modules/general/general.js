@@ -13,39 +13,89 @@ generalModule.controller('kmApp.modules.general.offer', function ($scope, $locat
 
 });
 
-generalModule.controller('kmApp.modules.general.codepools', function ($scope) {
+generalModule.controller('kmApp.modules.general.codepools',
+ 						['$scope',
+						 'kmApp.libraries.pool.poolService',
+						 'kmApp.libraries.notification.screenNotifyService',
+                         function ($scope,poolService,userNotificationLibrary) {
     $scope.disabled = undefined;
     $scope.disable = function () {
         $scope.disabled = true;
     };
 
-    $scope.poolList = [
-                 { name: "Victoria's Secret PLU Codes", id: 1, selectCodeType: "Select Code Type", file: 'filename.cvs' }
-    ];
-    $scope.edit = function (item) {
-        $scope.editIndex = $scope.poolList.indexOf(item);
-        $scope.model = item;
-        $scope.newpool = true;
-        $scope.IsEdit = true;
-    };
-    $scope.remove = function (item) {
-        $scope.poolList.splice($scope.poolList.indexOf(item), 1);
-    }
-    $scope.uploadPool = function () {
-        $scope.poolList.push($scope.model);
-        $scope.model = "";
-        $scope.newpool = false;
-    }
-    $scope.UpdatePool = function () {
-        //$scope.poolList[editIndex]=$scope.model;
-        $scope.model = "";
-        $scope.newpool = false;
-        $scope.IsEdit = false;
-    }
+    $scope.poolList= poolService.getPools();
+	$scope.fileInfo;
+	
+		   
+    $scope.csvJSON=function (csv){	 
+		  var lines=csv.split("\n");	 
+		  var result = [];	 
+		  var headers=lines[0].split(",");		 
+		  for(var i=1;i<lines.length-1;i++){		 
+			  var obj = {};
+			  var currentline=lines[i].split(","); 
+			  for(var j=0;j<headers.length;j++){
+				  obj[headers[j]] = currentline[j];
+			  }
+			  result.push(obj); 
+			  console.log(obj);
+		  }
+		  return result;
+	}
+	$scope.upload=function(file) {	
+				//if(file.type.match(/text\/csv/)){
 
-    $scope.codeList = ['Code type', 'Code type1', 'Code type 2', 'Code type 3'];
-    $scope.selectedCodeList = ['Code type', 'Code type1'];
-});
+			    if(file.name.match(/csv/)){
+					$scope.model.fileInfo=file;	
+					oFReader = new FileReader();
+					oFReader.onloadend = function() {	
+						$scope.poolUploadFile = $scope.csvJSON(this.result);		
+						console.log($scope.poolListUpload);
+					
+					};
+					oFReader.readAsText(file);
+				} else {
+					userNotificationLibrary.addError("This file does not seem to be a CSV.");			
+				}
+				$scope.$apply();
+			}
+	$scope.uploadPool =function(){
+		
+		if($scope.IsEdit){
+			poolService.editPool($scope.model.poolid,$scope.model);
+		}
+		else{
+		  $scope.model.poolid=Math.floor((Math.random() * 1000) + 1);
+		  $scope.model.file_name=$scope.fileInfo;
+		  $scope.model.fileData=$scope.poolUploadFile;
+		  poolService.addPool($scope.model);      
+		  userNotificationLibrary.addSuccess('Upload list Successfully');
+		  
+		  $scope.model='';  //clear model
+		  $scope.fileInfo=''; //clear fileinfo	
+				
+		  $scope.$apply();
+		}
+		$scope.newpool = false;
+	}
+	
+	$scope.edit = function (item) {
+		$scope.editIndex = $scope.poolList.indexOf(item);
+		$scope.model = item;
+		$scope.newpool = true;
+		$scope.IsEdit = true;
+	};
+	$scope.remove = function (item) {
+		poolService.removePool(item);
+	   // $scope.poolList.splice($scope.poolList.indexOf(item), 1);
+	 }
+	$scope.removefileInfo=function(){
+	  $scope.model.fileInfo='';
+	 }
+
+	$scope.codeList = ['Code type', 'Code type1', 'Code type 2', 'Code type 3'];
+	$scope.selectedCodeList = ['Code type', 'Code type1'];
+}]);
 
 generalModule.controller('kmApp.modules.general.connected', function ($scope, $http, $timeout) {
 	$scope.disabled = undefined;

@@ -53,17 +53,16 @@
                             <span>Upload File</span>
                             <div class="mfile">
                                 <ul>
-                                    <li>{{model.file}}<a href="#"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
+                                    <li ng-show="(model.fileInfo.name != null)">{{model.fileInfo.name}}<a ng-click="removefileInfo()"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
                                 </ul>
                                 <div class="btnFile">
                                     <span>Browse</span>
-                                    <input type="file" class="custom-file-input">
+                                    <input type="file" class="custom-file-input" onchange="angular.element(this).scope().upload(this.files[0])">
                                 </div>
                             </div>
                         </div>
                         <p>Code Pools must be uploaded in CSV. format and match the selected Code Type. Learn more about uploading Code Pools <a href="#">here</a>.</p>
-                        <div class="fileUpload" ng-hide="IsEdit"> <a ng-click="uploadPool()">Upload Pool</a> </div>
-                        <div class="fileUpload" ng-show="IsEdit"> <a ng-click="UpdatePool()">UpDate Pool</a> </div>
+                        <div class="fileUpload"> <a ng-click="uploadPool()">Upload Pool</a> </div>
                     </div>
                 </div>
             </div>

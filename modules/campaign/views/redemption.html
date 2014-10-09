@@ -2,7 +2,7 @@
 <form name="redemption">
   <div class="subHeader">
     <h1>New Offer</h1>
-    <div class="draft">Draft</div>
+    <div class="draft" ng-show="(draftCampaign!=null)">Draft</div>
   </div>
   
   <div class="step arrow">
@@ -25,7 +25,7 @@
           <div class="from">
             <p>Dates Available for Redemption</p>
             <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{start_date_date| date:'MMM dd yyyy'}}</p>
+              <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -33,7 +33,7 @@
           <div class="to">
             <p>&nbsp;</p>
             <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="end_date_date" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true">{{end_date_date| date:'MMM dd yyyy'}}</p>
+              <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="end_date_date" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{end_date_date| date:'MMM dd yyyy'}}</p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -45,7 +45,7 @@
               </label>
            </div>
           <div class="timeDetails calender-icon">
-            <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  ng-required="true">{{publish_date_date| date:'MMM dd yyyy'}}</p>
+            <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{publish_date_date| date:'MMM dd yyyy'}}</p>
             <time>12:35 PM</time>
           </div>
         </div>
@@ -135,23 +135,26 @@
             <span>MIN</span> </div>
         </div>
         <div class="sets advancedCap">
-          <div class="advancedCap">
-            <p>Advanced Cap</p>
-            <div class="offerDesc">
-              <p>500</p>
-              <span>offers</span> </div>
+         <div class="float addAdvancedCap" ng-repeat="item in advancedCaps" ng-class="{last:$last}">
+              <div class="advancedCap">
+                <p>Advanced Cap</p>
+                <div class="offerDesc">
+                  <p>{{item.total}}</p>
+                  <span>offers</span> </div>
+              </div>
+              <div class="advanceSelectOffer">
+                <div class="selection2">
+                      <ui-select multiple ng-model="advancedCap" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                        <ui-select-match placeholder="">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="List in advancedCapList| filter:$select.search"> {{List}} </ui-select-choices>
+                      </ui-select>
+                    </div>
+              </div>
+              <div class="advanceOfferRemove"><a class="close-green-icon" ng-click="advancedCap=''">Remove</a></div>
           </div>
-          <div class="advanceSelectOffer">
-            <div class="selection2">
-                  <ui-select multiple ng-model="advancedCap" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                    <ui-select-match placeholder="">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in advancedCapList| filter:$select.search"> {{List}} </ui-select-choices>
-                  </ui-select>
-                </div>
-          </div>
-          <div class="advanceOfferRemove"><a class="close-green-icon" ng-click="advancedCap=''">Remove</a></div>
-          <div class="advanceOfferAdd"><a href="#">+ Add Cap</a></div>
+          <div class="advanceOfferAdd"><a ng-click="addAdvancedCap()">+ Add Cap</a></div>
         </div>
+        
         <div class="sets">
           <div class="divider"></div>
         </div>
@@ -175,11 +178,11 @@
       <div class="wrapPreviewOffer">
         <div class="previewOffer">
           <div class="previewOfferTemplate"> <img src="kmApp/images/offer-image.png" alt=""/>
-            <h1>Buy One Get One Free</h1>
-            <h2>Buy one of our new paint seats. get another free</h2>
-            <h6>Valid throught jul 20</h6>
-            <p>Offer good at participating U.S. Daury Queen stores.</p>
-            <p>Offer good at participating U.S. Daury Queen stores. Limited one coupon or discount. no cash value.  Limited one coupon or discount. no cash value.</p>
+            <h1>{{model.campaign_name}}</h1>
+            <h2>{{model.campaign_title}}</h2>
+            <h6>{{model.valid_date_description}}</h6>
+            <p>{{model.Disclaimer}}</p>
+            <p>{{model.coupon_instructions}}</p>
           </div>
         </div>
       </div>

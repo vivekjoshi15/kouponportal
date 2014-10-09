@@ -3,9 +3,9 @@ var campaignLibrary = angular.module('kmApp.libraries.campaign', []);
 campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', function ($filter) {
     var campaignList = [
 							{  campaign_id: 1,
-							   start_date_date:'jul 6 2014',
+							   start_date_date:'Thu Jul 10 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   start_date_time:'04:00 AM',
-							   end_date_date:'jul 16 2014',
+							   end_date_date:'Thu Jul 17 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   end_date_time:'03:99 AM',
 							   campaign_name: 'Scratcher 60+10% (1 in 5)',
 							   campaign_title: '$10 Off Sale Price Classic',
@@ -21,9 +21,9 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   DoneMsg: 'THANKS! Looking for more Michaels?' ,
 							   isActive:'DeActivated' },
 							{  campaign_id: 2,
-							   start_date_date:'jul 6 2014',
+							   start_date_date:'Thu Jul 03 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   start_date_time:'04:00 AM',
-							   end_date_date:'jul 16 2014',
+							   end_date_date:'Thu Jul 10 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   end_date_time:'03:99 AM',
 							   campaign_name: 'Offer 60+10% (1 in 5)',
 							   campaign_title: 'Sale Price Classic Collections',
@@ -39,9 +39,9 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   DoneMsg: 'THANKS! Looking for more Michaels?',
 							   isActive:'DeActivated'  },
 							{  campaign_id: 3,
-							   start_date_date:'jul 6 2014',
+							   start_date_date:'Thu Jul 03 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   start_date_time:'04:00 AM',
-							   end_date_date:'jul 16 2014',
+							   end_date_date:'Thu Jul 10 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   end_date_time:'03:99 AM',
 							   campaign_name: 'Campaign 60+10% (1 in 5)',
 							   campaign_title: '60% Off + 10% Off Sale Price Classic Collections',
@@ -57,9 +57,9 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 							   DoneMsg: 'THANKS! Looking for more Michaels?',
 							   isActive:'DeActivated'  },
 							{  campaign_id: 4,
-							   start_date_date:'jul 6 2014',
+							   start_date_date:'Thu Jul 10 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   start_date_time:'04:00 AM',
-							   end_date_date:'jul 16 2014',
+							   end_date_date:'Thu Jul 17 2014 13:34:18 GMT+0530 (India Standard Time)',
 							   end_date_time:'03:99 AM',
 							   campaign_name: 'Item 60+10% (1 in 5)',
 							   campaign_title: '40% Off + 10% Off Sale Price Classic Collections',
@@ -78,13 +78,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
     ];
 
     //console.log(storeList[0]);
-	var draftCampaign;
-	var draftCampaign=function(){
-		 return draftCampaign;
-	 }
-    var addDraftCampaign=function(item){
-		  draftCampaign=item;
-	 }
+
     var addCampaign = function (item) {
         campaignList.push(item);
     }
@@ -125,9 +119,7 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
         copyCampaign: copyCampaign,
         getCampaign: getCampaign,
         editCampaign: editCampaign,
-		searchCampaign:searchCampaign,
-		draftCampaign:draftCampaign,
-		addDraftCampaign:addDraftCampaign
+		searchCampaign:searchCampaign
     };
 
 }

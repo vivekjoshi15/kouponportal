@@ -2955,6 +2955,12 @@ div.sets .timeDetails time {
 .layout .check-row.timer{
 	width:50% !important;
 }
+.sets.advancedCap .addAdvancedCap {
+	 margin-bottom: 10px;
+}
+.sets.advancedCap .addAdvancedCap.last{
+      margin-bottom: 0px;
+}
 .sets .advancedCap {
     width: 37%;
     float: left;

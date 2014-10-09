@@ -1,4 +1,4 @@
-var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter', 'kmApp.libraries.notification','ui.bootstrap','ui.select']);
+var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter','kmApp.libraries.notification','ui.bootstrap','ui.select']);
 
 offerModule.controller('kmApp.modules.campaign.offer', 
 						 ['$scope',
@@ -15,7 +15,7 @@ offerModule.controller('kmApp.modules.campaign.offer',
 
     $scope.tabledata = {};
     $scope.selectedtagid = 0;
-    $scope.pagesize = 10;
+    $scope.pagesize = 3;
     $scope.searchtext = '';
     $scope.currentpage = 1;
     $scope.skipsize = 0;
@@ -27,16 +27,6 @@ offerModule.controller('kmApp.modules.campaign.offer',
         }
 	  var data=campaignService.searchCampaign(stext);
 	  console.log(data);
-	  var rowval=[];
-	  for (var i = 0; i < data.length; i++) {
-		    var rowdata=[];
-				rowdata.push(data[i].campaign_name);
-				rowdata.push(data[i].campaign_title);
-				rowdata.push(data[i].start_date_date);
-				rowdata.push(data[i].end_date_date);
-				rowdata.push(data[i].isActive);
-				rowval.push(rowdata);
-		 } 
 	 //$scope.tabledata.rowval=rowval
         //    $scope.$prepareForReady();
         //
@@ -130,10 +120,11 @@ offerModule.controller('kmApp.modules.campaign.offer',
 			    rowdata.push(data[i].campaign_id);
 				rowdata.push(data[i].campaign_name);
 				rowdata.push(data[i].campaign_title);
-				rowdata.push(data[i].start_date_date);
-				rowdata.push(data[i].end_date_date);
+				rowdata.push($filter('date')(new Date(data[i].start_date_date),'MMM dd yyyy' , 'utc'));
+				rowdata.push($filter('date')(new Date(data[i].end_date_date),'MMM dd yyyy' , 'utc'));
 				rowdata.push(data[i].isActive);
 				rowval.push(rowdata);
+				
 		 } 
     $scope.tabledata = {
         "header": [
@@ -148,9 +139,10 @@ offerModule.controller('kmApp.modules.campaign.offer',
     };
 	$scope.tabledata.rowval=rowval;
 	
-    $scope.tabledata.totalcount = $scope.tabledata.rowval.length;
+    $scope.totalcount = $scope.tabledata.rowval.length;
+	
     $scope.tabledata.totalcounttext = 'Total Offers';
-
+	$scope.getPageNumbers($scope.currentpage);
     $scope.deleteTemplate = function (I, K) {
 		 var data=campaignService.removeCampaign(K);
 		 var rowval=[];
@@ -159,10 +151,10 @@ offerModule.controller('kmApp.modules.campaign.offer',
 						rowdata.push(data[i].campaign_id);
 						rowdata.push(data[i].campaign_name);
 						rowdata.push(data[i].campaign_title);
-						rowdata.push(data[i].start_date_date);
-						rowdata.push(data[i].end_date_date);
+						rowdata.push($filter('date')(new Date(data[i].start_date_date),'MMM dd yyyy' , 'utc'));
+						rowdata.push($filter('date')(new Date(data[i].end_date_date),'MMM dd yyyy' , 'utc'));
 						rowdata.push(data[i].isActive);
-						rowval.push(rowdata);
+						rowval.push(rowdata);						
 				 } 	
 		 $scope.tabledata.rowval=rowval;
         //alert($scope.tabledata.rowval.indexOf(K));	
@@ -192,11 +184,15 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
                         function ($scope,$rootScope,$routeParams,$filter,$location,campaignService,storeService) {
 	  $scope.iscopy = $routeParams.copy;
       $scope.campaign_id = $routeParams.id;
+	  $rootScope.draftCampaign=''; //clear draft
+	  
        if ($scope.iscopy == null)
             $scope.iscopy = 'false';
 	  if($scope.campaign_id != 0){
 		  $scope.model=campaignService.getCampaign($scope.campaign_id);
 	  }
+	  $rootScope.draftCampaign={};
+	  //draft campaign
 								
 	  $scope.disabled = undefined;
 	  $scope.disable = function () {
@@ -226,7 +222,7 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
             else{
 				$scope.model.isActive="DeActivated";
 				$scope.model.campaign_id=Math.floor((Math.random() * 1000) + 1);
-				campaignService.addDraftCampaign($scope.model);
+				$rootScope.draftCampaign=$scope.model;
 				$location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/0');
 			} 
 	  }
@@ -236,10 +232,12 @@ offerModule.controller('kmApp.modules.campaign.redemption',
 						 '$rootScope',
 						 '$filter',
 						 '$location',
+						 '$routeParams',
 						 'datepickerConfig',
 						 'kmApp.libraries.campaign.campaignService',
-						 'kmApp.libraries.store.storeService', 
-						 function ($scope,$rootScope,$filter,$location,datepickerConfig,campaignService,storeService) {
+						 'kmApp.libraries.store.storeService',
+						 'kmApp.libraries.pool.poolService', 
+						 function ($scope,$rootScope,$filter,$location,$routeParams ,datepickerConfig,campaignService,storeService,poolService) {
 	  datepickerConfig.showWeeks = false;
 	  $scope.showButtonBar=false;
 	  $scope.today = function() {
@@ -249,9 +247,20 @@ offerModule.controller('kmApp.modules.campaign.redemption',
 	  };
 	  $scope.today();	
 	  $scope.toggleMin = function() {
-		$scope.minDate = $scope.minDate ? null : new Date();
+		$scope.minDate = $scope.minDate ? null : new Date('Thu Jul 03 2014 13:34:18 GMT+0530 (India Standard Time)');
 	  };
 	  $scope.toggleMin();
+	  $scope.campaign_id = $routeParams.id;
+      if ($scope.iscopy == null)
+            $scope.iscopy = 'false';
+	  if($scope.campaign_id != 0){
+		  $scope.model=campaignService.getCampaign($scope.campaign_id);
+		  $scope.start_date_date=new Date($scope.model.start_date_date);
+		  $scope.end_date_date= new Date($scope.model.end_date_date);
+	  }else{
+		  $scope.model=$rootScope.draftCampaign;
+		  console.log($scope.model);
+	  }
 	
 	  $scope.open = function($event,opens) {
 		$event.preventDefault();
@@ -283,38 +292,62 @@ offerModule.controller('kmApp.modules.campaign.redemption',
 	  $scope.codetypeList=['CODE 128 A','CODE 128 B','CODE 128 C'];
 	  $scope.codetype;
 	  $scope.format = $scope.formats[0];
-      $scope.advancedCapList=['cap','cap 2','cap 3'];
-	  $scope.advancedCap;
 	  $scope.availableStoreList=storeService.getStoreName();
 
 	  console.log($scope.availableStoreList);
       $scope.availableStore;
-	  $scope.poolList=['pool','pool 2','pool 3'];
+	  $scope.poolList=poolService.getPoolName();;
+	  
 	  $scope.pool;
 	  
 	  $scope.saveRedemption=function(){
 		  $scope.model.start_date_date=$filter('date')($scope.start_date_date,'MMM dd yyyy' , 'utc');
-		  $scope.model.end_date_date=$scope.end_date_date;
-		  $scope.model.publish_date_date=$scope.publish_date_date;
+		  $scope.model.end_date_date=$filter('date')($scope.end_date_date,'MMM dd yyyy' , 'utc');
+		  $scope.model.publish_date_date=$filter('date')($scope.publish_date_date,'MMM dd yyyy' , 'utc');
 		  
-		  var obj=campaignService.draftCampaign();
-		 if(obj.campaign_name!=null){ 
-		    var addNew= angular.extend( $scope.model, angular.copy(obj));
-		    campaignService.addCampaign(addNew);
+		  var draft=$rootScope.draftCampaign;
+		 if(draft!=null){ 
+		       $rootScope.draftCampaign=$scope.model;
 		 }
-		 
-		  //clear draft
-		  $location.path('/'+$rootScope.UserData.clientName+'/campaign/channels/0');
-		  
-		  
+		 else{
+			 campaignService.editCampaign($scope.campaign_id,$scope.model);
+		 }	 
+		  $location.path('/'+$rootScope.UserData.clientName+'/campaign/channels/'+$scope.campaign_id);	  
 	  }
+	 $scope.advancedCapList=['cap','cap 2','cap 3'];
+	 $scope.advancedCap;
+	  
+	 $scope.advancedCaps=[{total:500}] ;
+	 
+	 $scope.addAdvancedCap=function(){
+		   $scope.advancedCaps.push({total:400});
+	 }
 	  
 }]);
 offerModule.controller('kmApp.modules.campaign.channels', 
                        ['$scope',
+					    '$rootScope',
+						'$routeParams',
+						'$location',
+						'kmApp.libraries.campaign.campaignService',
 					    'kmApp.libraries.channel.channelService',
-					   function ($scope,channelService) {
+					   function ($scope,$rootScope,$routeParams,$location,campaignService,channelService) {
 
 		$scope.channelsList=channelService.getChannels();
-
+		$scope.campaign_id = $routeParams.id;
+		if($scope.campaign_id != 0){
+			 $scope.model=campaignService.getCampaign($scope.campaign_id);
+		  }else{
+			  $scope.model=$rootScope.draftCampaign;
+			  console.log($scope.model);
+		  }
+		$scope.campaignSave=function(){
+		   if($scope.campaign_id != 0){
+			 campaignService.getCampaign($scope.campaign_id,$scope.model);
+		   }
+		   else{
+			  campaignService.addCampaign($scope.model);
+		   }	
+		   $location.path('/'+$rootScope.UserData.clientName+'/campaign');	   	
+		}			
 }]);

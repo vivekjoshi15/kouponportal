@@ -624,7 +624,7 @@ kmApp.directive('ngSearchenter', function () {
 //});
 //clienttable does client site paging, no need to retrieve new page from server site.
 //it is used in smaller tables, has better performance than generaltable directive
-kmApp.directive('clienttable', function () {
+kmApp.directive('clienttable',['$sce', function ($sce) {
     return {
         restrict: 'A',
         replace: false,
@@ -647,7 +647,7 @@ kmApp.directive('clienttable', function () {
             groupeditmode: '=',
             totalcount: '='
         },
-        templateUrl: '/directives/templates/clienttable.html',
+        templateUrl: 'directives/templates/clienttable.html',
         link: function ($scope, $element, $attrs) {
             $scope.sortcolumn = 0;
             $scope.reverse = 1;
@@ -657,7 +657,6 @@ kmApp.directive('clienttable', function () {
             $scope.hasedit = 1;
             $scope.groupeditmode = false;
             $scope.sorttype = 's';
-
             $scope.$watch('overrideedit', function (newValue, oldValue) {
                 if (newValue == '1') {
                     $scope.hasedit = 0;
@@ -686,10 +685,10 @@ kmApp.directive('clienttable', function () {
             $scope.getCell = function (item, type) {
                 if (type == "img") {
                     var img = "https://c815555.ssl.cf2.rackcdn.com/" + item;
-                    return "<a href='" + img + "' rel='lightbox'> <img  src='" + img + "' height='80' rel='lightbox' /> </a>";
+                    return $sce.trustAsHtml("<a href='" + img + "' rel='lightbox'> <img  src='" + img + "' height='80' rel='lightbox' /> </a>");
                 }
                 //console.log(item, ' ', type);
-                return "<span>" + item + "</span>";
+                return $sce.trustAsHtml("<span>" + item + "</span>");
             };
             $scope.selectHeaderIndex = function (ind) {
                 $scope.sortcolumn = ind;
@@ -768,6 +767,9 @@ kmApp.directive('clienttable', function () {
 
                 return Math.ceil($scope.totalcount / $scope.pagesize);
             }
+			$scope.tableInfo=function(){
+			   return 	$scope.currentpage +' of '+ $scope.numberOfPages() ;
+			}
             $scope.isFirstPage = function () {
                 if (($scope.currentpage % $scope.pagesize) == 1) {
                     return true;
@@ -818,7 +820,7 @@ kmApp.directive('clienttable', function () {
 
         }
     }
-});
+}]);
 //
 //
 //kmApp.directive('infiniteScroll', [

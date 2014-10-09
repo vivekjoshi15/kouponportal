@@ -96,19 +96,33 @@
 		            background:#fff;              
 		}
 		.timeDetails  .dropdown-menu table tbody td {
-			background: none repeat scroll 0 0 ;
 			border-radius: 26px;
 			height: 30px;
-			padding:0 5px;
-			border:1px solid #efeff0;
+
          }
 		.timeDetails  .dropdown-menu td button {
 				background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+				border: 1px solid #e6e6e6;
+				border-radius: 26px;
+				font-size: 12px !important;
+				height: 100%;
+				padding: 0 5px;
 				text-align: center;
 			}
+		.timeDetails  .dropdown-menu td button span{
+		  color: #595959;
+          font-size: 12px;	
+		}
 	    .timeDetails  .dropdown-menu button:disabled span{
 				color:#ccc !important;
 			}
+		.timeDetails  .dropdown-menu table tbody td button.active{
+		   background:#39B54A;	
+		   border: 1px solid #39B54A;
+		}
+		.timeDetails  .dropdown-menu table tbody td button.active span{
+			 color:#fff !important;
+		}
 		ul.dropdown-menu li:last-child{
 			display:none;
 		}
