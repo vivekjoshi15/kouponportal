@@ -1,8 +1,8 @@
 <div class="subHeader">
-    <h1>General Settings</h1>
+    <h1>{{links[0]}}</h1>
 </div>
 <div class="step">
     <ul>
-        <li ng-class="{active:(item.title==title)}" ng-repeat='item in links'><a href="{{item.url |links}}">{{item.title}}</a></li>
+        <li ng-class="{active:(item.title==title)}" ng-repeat='item in links[1]'><a href="{{item.url |links}}">{{item.title}}</a></li>
     </ul>
 </div>

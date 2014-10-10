@@ -2,8 +2,8 @@ var accountLibrary = angular.module('kmApp.libraries.account', []);
 
 accountLibrary.service('kmApp.libraries.account.accountService', ['$filter', function ($filter) {
     var accountList = [
-					    { UserID: 1, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management' },
-                       { UserID: 2, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management' }
+					    { UserID: 1, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management',plan:'Pro'  },
+                       { UserID: 2, UserName: 'Samantha Longname', UserEmail: 'samanthalongname@gmail.com', UserManagement: 'Offer Management',plan:'Pro' }
     ];
 
     //console.log(storeList[0]);

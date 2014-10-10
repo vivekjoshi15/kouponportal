@@ -39,17 +39,19 @@
             <div class="cell dropdown">
                 <!--<div class="options">
                     <a ng-show="hasdelete==1" class="fs1 remove" aria-hidden="true" data-icon="&#57388;"
-                        title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a><a ng-show="hasedit==1"
+                        title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a>
+                     <a ng-show="hasedit==1"
                             class="fs1 edit" aria-hidden="true" data-icon="&#57391;" title="Edit" ng-click="edittargetlist({I:$parent.$index, K:k})">
-                        </a><a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
+                        </a>
+                        <a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
                             title="Copy" ng-click="copytargetlist({I:$parent.$index, K:k})"></a>
                 </div>-->
 				<div class="options">
-                        <li><a class="remove-icon"  ng-click="edittargetlist({I:$parent.$index, K:k})">Edit</a></li>
-                        <li><a class="copy-icon"  ng-click="copytargetlist({I:$parent.$index, K:k})" >Copy</a></li>
-                        <li><a class="remove-icon"   ng-click="deletetargetlist({I:$parent.$index, K:k})" >Remove</a></li>
-                        <li><a class="de-active-icon" >De-Active</a></li>
-                        <li><a class="save-as-temp-icon" >Save As Template</a></li>
+                        <li ng-show="hasedit==1"><a class="remove-icon" ng-click="edittargetlist({I:$parent.$index, K:k})">Edit</a></li>
+                        <li ng-show="hascopy==1" ><a class="copy-icon" ng-click="copytargetlist({I:$parent.$index, K:k})" >Copy</a></li>
+                        <li ng-show="hasdelete==1"><a class="remove-icon"   ng-click="deletetargetlist({I:$parent.$index, K:k})" >Remove</a></li>
+                        <li ng-show="hasdeactive==1"><a class="de-active-icon" ng-click="deactivetargetlist({I:$parent.$index, K:k})">De-Active</a></li>
+                        <li ng-show="hastemplate==1"><a class="save-as-temp-icon"   ng-click="templatetargetlist({I:$parent.$index, K:k})">Save As Template</a></li>
                     </div>
             </div>
             <!-- row -->

@@ -1,7 +1,8 @@
 var generalModule = angular.module('kmApp.modules.general', ['angular.filter', 'kmApp.libraries.notification', 'ui.select']);
 
 generalModule.value('links', [
-    {
+   'General Settings',
+    [{
         "url": "general",
         "title": "Offers"
     },
@@ -16,7 +17,7 @@ generalModule.value('links', [
     {
         "url": "general/store",
         "title": "Stores"
-    }
+    }]
 ]);
 
 generalModule.controller('kmApp.modules.general.offer', [

@@ -184,11 +184,12 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
                         function ($scope,$rootScope,$routeParams,$filter,$location,campaignService,storeService) {
 	  $scope.iscopy = $routeParams.copy;
       $scope.campaign_id = $routeParams.id;
-	  $rootScope.draftCampaign=''; //clear draft
 	  
+	  $scope.model={};
        if ($scope.iscopy == null)
             $scope.iscopy = 'false';
 	  if($scope.campaign_id != 0){
+		  $rootScope.draftCampaign=''; //clear draft
 		  $scope.model=campaignService.getCampaign($scope.campaign_id);
 	  }
 	  $rootScope.draftCampaign={};
@@ -201,7 +202,7 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 	  $scope.ddTypeList=['AORPI','AORPI 2','AORPI 3'];
 	  $scope.ddType;
 	  $scope.categoriesList=['categories','categories 2','categories 3'];
-	  $scope.categories;
+	  $scope.model.categories=['categories'];
 	  $scope.mob_categoriesList=['Mob categories','Mob categories 2','Mob categories 3']
 	  $scope.mob_categories;
       

@@ -216,9 +216,9 @@
                     </div>
                 </header>
                 <!--   menu  -->
-                <aside ng:include="'kmApp/views/menu.html'"></aside>
+                <aside ng:include="'kmApp/views/menu.html'" ng-show="isMenu"></aside>
                 <!--  End menu  -->
-                <div class="mainWrap" ng-view loader>
+                <div class="mainWrap" ng-view loader ng-class="{not:!isMenu}">
                 </div>
             </div>
         </div>

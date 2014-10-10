@@ -633,6 +633,8 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             deletetargetlist: '&',
             edittargetlist: '&',
             copytargetlist: '&',
+			deactivetargetlist:'&',
+			templatetargetlist:'&',
             inserttargetlist: '&',
             selecttargetlist: '&',
             getnextpage: '&',
@@ -655,6 +657,8 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             $scope.hasdelete = 1;
             $scope.hasinsert = 1;
             $scope.hasedit = 1;
+			$scope.hasdeactive = 1;
+			$scope.hastemplate = 1;
             $scope.groupeditmode = false;
             $scope.sorttype = 's';
             $scope.$watch('overrideedit', function (newValue, oldValue) {
@@ -813,6 +817,12 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             }
             if ($attrs['inserttargetlist'] == undefined) {
                 $scope.hasinsert = 0;
+            }
+			 if ($attrs['deactivetargetlist'] == undefined) {
+                $scope.hasdeactive  = 0;
+            }
+			 if ($attrs['templatetargetlist'] == undefined) {
+                $scope.hastemplate = 0;
             }
             if ($scope.overrideedit == '1') {
                 $scope.hasedit = 0;

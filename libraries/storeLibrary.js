@@ -61,3 +61,22 @@ storeLibrary.service('kmApp.libraries.store.storeService', ['$filter', function 
 
 }
 ]);
+
+$(document).ready(function () {
+    function dropcheckbox(obj) {
+        var column = obj.attr('data-column');
+        if (obj.is(":checked")) {
+            obj.siblings('.checked').show();
+            obj.siblings('.unchecked').hide();
+            $("." + column).show();
+        }
+        else {
+            obj.siblings('.checked').hide();
+            obj.siblings('.unchecked').show();
+            $("." + column).hide();
+        }
+    }
+    $(".dd_options").on('click','input', function () {
+        dropcheckbox($(this));
+    });
+});

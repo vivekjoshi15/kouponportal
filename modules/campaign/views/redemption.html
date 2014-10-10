@@ -126,12 +126,13 @@
         </div>
         <div class="sets layout">
         <div class="check-row check-box gBox timer">
-                <input type="checkbox" id="OfferTimer">
+                <input type="checkbox" id="OfferTimer" ng-model="model.timer">
                 <label for="OfferTimer">Use an Offer Timer
               </label>
            </div>
           <div class="timeDetails timer">
-            <p ng-model="model.limitPertimeType">15 </p>
+             <input  type="text" ng-model="model.limitPertimeType"/>
+            
             <span>MIN</span> </div>
         </div>
         <div class="sets advancedCap">

@@ -63,10 +63,6 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			    templateUrl: 'modules/channels/views/design.html',
 			    controller: 'kmApp.modules.channels.design'
 			}).
-			when('/:clientName/channels/design/custom', {
-			    templateUrl: 'modules/channels/views/design.custom.html',
-			    controller: 'kmApp.modules.channels.design.custom'
-			}).
 			when('/:clientName/channels/details', {
 			    templateUrl: 'modules/channels/views/details.html',
 			    controller: 'kmApp.modules.channels.details'
@@ -95,6 +91,14 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
             when('/:clientName/account/plan', {
                 templateUrl: 'modules/account/views/plan.html',
                 controller: 'kmApp.modules.account.plan'
+            }).
+			when('/:clientName/account/search', {
+                templateUrl: 'modules/account/views/accounts.html',
+                controller: 'kmApp.modules.account.search'
+            }).
+			when('/:clientName/account/account', {
+                templateUrl: 'modules/account/views/new-account.html',
+                controller: 'kmApp.modules.account.account'
             }).
             when('/:clientName/general/store', {
                 templateUrl: 'modules/general/views/store.html',
@@ -268,6 +272,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
+	$rootScope.isMenu=true;
 
     $rootScope.expSecondsInMs = (30 * 60 * 1000); //30 mins
 
@@ -476,6 +481,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
     //@AWTODO - refactor to service/library
     // router listener
     $rootScope.$on('$routeChangeStart', function (event, next) {
+		$rootScope.isMenu=true;
 
         //  if user is submitting login info, process...
         var credentials = $scope.getCredentials();
