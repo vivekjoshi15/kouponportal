@@ -879,3 +879,13 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
 //      };
 //  }
 //]);
+
+
+kmApp.directive('subheader', ['$routeParams',function ($routeParams) {
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/templates/subheader.html',
+        scope: false,
+        replace: false
+    }
+} ]);

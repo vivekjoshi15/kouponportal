@@ -1,64 +1,58 @@
 <main ng-app="kmApp.modules.general">
-  <div class="subHeader">
-    <h1>General Settings</h1>
-  </div>
-  <div class="step">
-    <ul>
-      <li><a href="{{'general'|links}}">Offers</a></li>
-      <li class="active"><a href="{{'general/codepools'|links}}">Code Pools</a></li>
-      <li><a href="{{'general/connected'|links}}">Connected Apps</a></li>
-      <li><a href="{{'general/store'|links}}">Stores</a></li>
-    </ul>
-  </div>
-  <div class="data">
-    <header>
-      <h1>CODE POOLS</h1>
-      <div class="addNew"><a href="newpool.html">+ New Pool</a></div>
-    </header>
-    <div class="wrapContain pools">
-      <div class="subWrapContain">
+    <subheader></subheader>
+    <div class="data">
         <header>
-          <h2>Victoria's Secret PLU Codes</h2>
-          <a href="#" >Edit</a> <a href="#" class="remove">Remove</a> </header>
-        <input type="text" class="focus"/>
-        <span>3,450 Codes Left</span> <a href="#" class="addMore">+ Add More Codes</a> </div>
-    </div>
-    <div class="divider no-btm"></div>
-    <div class="wrapContain pools bg">
-      <div class="subWrapContain newpols">
-        <header>
-          <h2>NEW CODE POOL</h2>
+            <h1>CODE POOLS</h1>
+            <div class="addNew"><a href="newpool.html">+ New Pool</a></div>
         </header>
-        <div class="newpolsWrap">
-          <div class="newpolcod">
-            <p>Code Pool Name</p>
-            <input type="text" class="focus"/>
-          </div>
-          <div class="newpolcod mrnone" >
-            <p>Code Type</p>
-            <div class="selection">
-              <input type="text" />
-              <ul>
-                <li>option</li>
-                <li>option</li>
-              </ul>
+        <div class="wrapContain pools">
+            <div class="subWrapContain">
+                <header>
+                    <h2>Victoria's Secret PLU Codes</h2>
+                    <a href="#">Edit</a> <a href="#" class="remove">Remove</a>
+                </header>
+                <input type="text" class="focus" />
+                <span>3,450 Codes Left</span> <a href="#" class="addMore">+ Add More Codes</a>
             </div>
-          </div>
-          <div class="UploadFile"> <span>Upload File</span>
-            <div class="mfile">
-              <ul>
-                <li>filename.cvs <a href="#"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
-              </ul>
-              <div class="btnFile"> <span>Browse</span>
-                <input type="file" class="custom-file-input">
-              </div>
-            </div>
-          </div>
-          <p>Code Pools must be uploaded in CSV. format and match the selected Code Type. Learn more about uploading Code Pools <a href="#">here</a>.</p>
-          <div class="fileUpload"> <a href="#/general/connected">Upload Pool</a> </div>
         </div>
-      </div>
+        <div class="divider no-btm"></div>
+        <div class="wrapContain pools bg">
+            <div class="subWrapContain newpols">
+                <header>
+                    <h2>NEW CODE POOL</h2>
+                </header>
+                <div class="newpolsWrap">
+                    <div class="newpolcod">
+                        <p>Code Pool Name</p>
+                        <input type="text" class="focus" />
+                    </div>
+                    <div class="newpolcod mrnone">
+                        <p>Code Type</p>
+                        <div class="selection">
+                            <input type="text" />
+                            <ul>
+                                <li>option</li>
+                                <li>option</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="UploadFile">
+                        <span>Upload File</span>
+                        <div class="mfile">
+                            <ul>
+                                <li>filename.cvs <a href="#"><span class="close-green-icon">&nbsp;&nbsp;&nbsp;</span></a></li>
+                            </ul>
+                            <div class="btnFile">
+                                <span>Browse</span>
+                                <input type="file" class="custom-file-input">
+                            </div>
+                        </div>
+                    </div>
+                    <p>Code Pools must be uploaded in CSV. format and match the selected Code Type. Learn more about uploading Code Pools <a href="#">here</a>.</p>
+                    <div class="fileUpload"> <a href="#/general/connected">Upload Pool</a> </div>
+                </div>
+            </div>
+        </div>
+        <br class="clear" />
     </div>
-    <br class="clear"/>
-  </div>
 </main>
