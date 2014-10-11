@@ -124,3 +124,29 @@ campaignLibrary.service('kmApp.libraries.campaign.campaignService', ['$filter', 
 
 }
 ]);
+
+$(document).ready(function () {
+	
+		$(document).on("click", ".dd_options", function (e) {
+		   $(this).addClass('on');
+	   }).on("mouseleave", ".dd_options", function (e) {
+		    $(this).removeClass('on');
+		});
+	
+    function dropcheckbox(obj) {
+        var column = obj.attr('data-column');
+        if (obj.is(":checked")) {
+            obj.siblings('.checked').show();
+            obj.siblings('.unchecked').hide();
+            $("." + column).show();
+        }
+        else {
+            obj.siblings('.checked').hide();
+            obj.siblings('.unchecked').show();
+            $("." + column).hide();
+        }
+    }
+    $("body").on('change','.dd_options input', function () {	
+        dropcheckbox($(this));
+    });
+});
