@@ -1,7 +1,7 @@
-
-    
-    <div class="table data gridList">
-        <div class="header head">
+<div class="content_area">
+    <!--<div class="table messaging">-->
+    <div class="table">
+        <div class="header">
             <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
                 ng-click='selectHeaderIndex($index)'>
                 <span>{{m.desc}}</span><span class="sortindicator"></span>
@@ -13,7 +13,7 @@
                             &#9660;</span>
                     </div>
                     <ul>
-                        <li ng-repeat="m in tabledata.header | filter:noIDFilter">
+                        <li ng-repeat="m in tabledata.header | filter: noIDFilter ">
                             <label>
                                 <input type="checkbox" checked="checked" name="{{m.name}}" data-column="{{m.name}}" />
                                 <span class="fs1 unchecked icon-unchecked" style="display: none;"></span><span class="fs1 checked icon-checked"
@@ -28,7 +28,6 @@
             <!-- header end -->
         </div>
         <!--<div class="row hoverrow" ng-repeat="k in filtered = tabledata.rowval | tableColumnSort: reverse * (sortcolumn+1):sorttype ">-->
-		<div class="body">
         <div class="row hoverrow" ng-repeat="k in filtered = (tabledata.rowval | filter:searchtext ) | tableColumnSort: reverse * (sortcolumn+1) | tableStartFrom:(currentpage-1)*pagesize | limitTo:pagesize " >
             <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
                 ng-click="selecttargetlist({I:$parent.$index, K:k})">
@@ -36,17 +35,15 @@
             </div>
 
 
-            <div class="cell dropdown">
+            <div class="cell-action cell dropdown">
                 <!--<div class="options">
                     <a ng-show="hasdelete==1" class="fs1 remove" aria-hidden="true" data-icon="&#57388;"
-                        title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a>
-                     <a ng-show="hasedit==1"
+                        title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a><a ng-show="hasedit==1"
                             class="fs1 edit" aria-hidden="true" data-icon="&#57391;" title="Edit" ng-click="edittargetlist({I:$parent.$index, K:k})">
-                        </a>
-                        <a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
+                        </a><a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
                             title="Copy" ng-click="copytargetlist({I:$parent.$index, K:k})"></a>
                 </div>-->
-				<div class="options">
+                <div class="options">
                         <li ng-show="hasedit==1"><a class="remove-icon" ng-click="edittargetlist({I:$parent.$index, K:k})">Edit</a></li>
                         <li ng-show="hascopy==1" ><a class="copy-icon" ng-click="copytargetlist({I:$parent.$index, K:k})" >Copy</a></li>
                         <li ng-show="hasdelete==1"><a class="remove-icon"   ng-click="deletetargetlist({I:$parent.$index, K:k})" >Remove</a></li>
@@ -56,10 +53,9 @@
             </div>
             <!-- row -->
         </div>
-		</div>
         <!-- table -->
     </div>
-	</div>
+</div>
     <div class="pagination">
        <div class="total">{{filtered.length}} {{tabledata.totalcounttext}}</div>
     <div class="paging">
@@ -73,3 +69,5 @@
         <a ng-hide="isLastPageSegment()" ng-click="getnextpageNums()">....</a> --><a ng-hide="isLastPage()"
             ng-click="currentpage=currentpage+1;getnextpage()">Next</a>
     </div>
+    </div>
+

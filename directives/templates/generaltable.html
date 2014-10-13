@@ -1,6 +1,6 @@
 <!--<div class="table messaging">-->
-<div class="data gridList">
-    <div class="head">
+<div class="table">
+    <div class="header">
         <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
             ng-click='selectHeaderIndex($index)'>
             <span>{{m.desc}}</span><span class="sortindicator"></span>
@@ -27,56 +27,40 @@
                         </label>
                     </li>
                 </ul>
-               <!--  dd_options -->
+                <!-- dd_options -->
             </div>
-            <!--cell-action -->
+            <!-- cell-action -->
         </div>
         <!-- header end -->
     </div>
-   <div class="body">
-    <div class="row hoverrow" ng-repeat="k in filtered = tabledata.rowval | tableColumnSort: (reverse * (sortcolumn+1)):sorttype ">
+    <div class="row hoverrow" ng-repeat="k in filtered = tabledata.rowval | tableColumnSort: reverse * (sortcolumn+1):sorttype ">
         <div ng-repeat="m in tabledata.header" class="cell {{m.name}}" ng-class="setIDnodisplay($index)"
             ng-click="selecttargetlist({I:$parent.$index, K:k})">
-            <div ng-bind-html="getCell(k[$index],m.type)"></div>
+            <span ng-bind-html-unsafe="getCell(k[$index],m.type)"></span>
 
 
 
         </div>
-        <div class="cell dropdown">
-<!--            <div class="options">
-                <a ng-show="hasdelete==1" class="fs1 remove" aria-hidden="true" data-icon="&#57388;"
-                    title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a>
-                <a ng-show="hasedit==1"
-                        class="fs1 edit" aria-hidden="true" data-icon="&#57391;" title="Edit" ng-click="edittargetlist({I:$parent.$index, K:k})">
-                    </a>
-                <a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
-                        title="Copy" ng-click="copytargetlist({I:$parent.$index, K:k})"></a>
-            </div>-->
-            
+        <div class="cell-action cell">
             <div class="options">
-                        <li><a class="remove-icon" ng-show="hasedit==1" ng-click="edittargetlist({I:$parent.$index, K:k})">Edit</a></li>
-                        <li><a class="copy-icon" ng-show="hascopy==1" ng-click="copytargetlist({I:$parent.$index, K:k})" >Copy</a></li>
-                        <li><a class="remove-icon" ng-show="hasdelete==1"  ng-click="deletetargetlist({I:$parent.$index, K:k})" >Remove</a></li>
-                        <li><a class="de-active-icon" >De-Active</a></li>
-                        <li><a class="save-as-temp-icon" >Save As Template</a></li>
-                    </div>
+                <a ng-show="hasdelete==1" class="fs1 remove" aria-hidden="true" data-icon="&#57388;"
+                    title="Remove" ng-click="deletetargetlist({I:$parent.$index, K:k})"></a><a ng-show="hasedit==1"
+                        class="fs1 edit" aria-hidden="true" data-icon="&#57391;" title="Edit" ng-click="edittargetlist({I:$parent.$index, K:k})">
+                    </a><a ng-show="hascopy==1" class="icon-document-alt-fill copy" aria-hidden="true"
+                        title="Copy" ng-click="copytargetlist({I:$parent.$index, K:k})"></a>
+            </div>
         </div>
         <!-- row -->
-    </div>
     </div>
     <!-- table -->
 </div>
 <div class="pagination">
-    <div class="total">{{tabledata.rowval.length}} {{tabledata.totalcounttext}}</div>
-    <div class="paging">
-    <a ng-hide="isFirstPage()" ng-click="getprevpage()">Previous</a>
-    <span>{{tableInfo()}}</span>
-    <!--<a ng-hide="isFirstPageSegment()" ng-click="getprevpageNums()">....</a>-->
-<!--    <div ng-repeat="pagenum in pagenumbers">
+    <a ng-hide="isFirstPage()" ng-click="getprevpage()">Prev</a>
+    <a ng-hide="isFirstPageSegment()" ng-click="getprevpageNums()">....</a>
+    <div ng-repeat="pagenum in pagenumbers">
         <a ng-class="{active:pagenum==currentpage}" ng-click="getselectpage({num:pagenum})">
             {{pagenum}}</a>
-    </div>-->
-    <!--<a ng-hide="isLastPageSegment()" ng-click="getnextpageNums()">....</a>--> <a ng-hide="isLastPage()"
-        ng-click="getnextpage()">Next</a>
     </div>
+    <a ng-hide="isLastPageSegment()" ng-click="getnextpageNums()">....</a> <a ng-hide="isLastPage()"
+        ng-click="getnextpage()">Next</a>
 </div>

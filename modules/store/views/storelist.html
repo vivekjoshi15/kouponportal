@@ -6,7 +6,8 @@
     </div>
     <div class="filter">
         <div class="search">
-            <input type="text" class="focus search search-icon" placeholder="Search Offer" ng-model="search.$" />
+            <input type="text" class="focus search search-icon" ng-model="searchtext"  ng-searchenter="currentpage=1;skipsize=0;getPassTableDetail()" placeholder="Search Stores"/>
+    </div>
         </div>
         <div class="groups">
             <div class="selection" dropdown-select="storeLists"
@@ -14,38 +15,23 @@
             </div>
         </div>
     </div>
-    <div class="wrapGridList">
-        <div class="data gridList">
-            <div class="head">
-                <div class="row1"><span ng-click="sortField = 'merchantid'; reverse = !reverse; sel='MerchId';" ng-class="(sel == 'MerchId')?'sel':''">Merch Id</span></div>
-                <div class="row2"><span ng-click="sortField = 'name'; reverse = !reverse; sel='StoreName'" ng-class="(sel == 'StoreName')?'selR':''">Store Name</span></div>
-                <div class="row3"><span ng-click="sortField = 'groupname'; reverse = !reverse; sel='Groups'" ng-class="(sel == 'Groups')?'sel':''">Groups</span></div>
-                <div class="row4"><span ng-click="sortField = 'address'; reverse = !reverse; sel='Address'" ng-class="(sel == 'Address')?'sel':''">Address</span></div>
-                <div class="row5"><span ng-click="sortField = 'city'; reverse = !reverse; sel='City'" ng-class="(sel == 'City')?'sel':''">City</span></div>
-                <div class="row6"><span ng-click="sortField = 'state'; reverse = !reverse; sel='State'" ng-class="(sel == 'State')?'sel':''">State</span></div>
-            </div>
-            <div class="body">
-                <div class="sets" ng-repeat='item in storeLists | filter:search | orderBy:sortField:reverse track by $index'>
-                    <div class="options">
-                        <li><a href="#/{{UserData.clientName}}/store/id/{{item.storeid}} " class="remove-icon">Edit</a></li>
-                        <li><a href="#/{{UserData.clientName}}/store/id/{{item.storeid}}/copy/true" class="copy-icon">Copy</a></li>
-                        <li><a ng-click="removeStore(item)" class="remove-icon">Remove</a></li>
-                        <li><a ng-click="deActiveStore(item)" class="de-active-icon">De-Active</a></li>
-                        <li><a ng-click="saveAsTempStore(item)" class="save-as-temp-icon">Save As Template</a></li>
-                    </div>
-                    <div class="row1"><span>{{item.merchantid}}</span></div>
-                    <div class="row2"><span>{{item.name}}</span></div>
-                    <div class="row3"><span>{{item.groupname}}</span></div>
-                    <div class="row4"><span>{{item.address}}</span></div>
-                    <div class="row5"><span>{{item.city}}</span></div>
-                    <div class="row6"><span>{{item.state}}</span></div>
-                </div>
-            </div>
-            <br class="clear" />
-        </div>
-    </div>
-    <div class="gridDetials">
-        <div class="total">{{(storeLists|filter:search).length}} Total Offers</div>
-        <div class="paging"> <a href="#">Previous</a> <span>1 of 5</span> <a href="#">Next</a></div>
-    </div>
+     <div class="wrapGridList" clienttable 
+ 						   tabledata='tabledata'
+                           groupeditmode='groupeditmode'
+           				   totalcount='totalcount' 
+                           deletetargetlist='removeStore(I, K)'
+                           edittargetlist='editStore(I, K)'
+                           copytargetlist='copyStore(I, K)'
+                           templatetargetlist='saveAsTempStore(I,K)'
+                           deactivetargetlist='deActiveStore(I,K)' 
+                           selecttargetlist='selectedTemplate(I, K)'
+                           getnextpage='getnextpage()'
+                           getprevpage='getprevpage()'
+                           getselectpage='getselectpage(num)' 
+                           overridecopy="hidecopy" overrideedit="hideedit"
+                           pagesize='pagesize'
+                           currentpage='currentpage' 
+                           pagenumbers='pagenumbers'
+                           searchtext='searchtext'>
+                </div>  
 </main>

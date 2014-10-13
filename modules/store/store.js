@@ -1,23 +1,122 @@
 var storeModule = angular.module('kmApp.modules.store', ['angular.filter', 'kmApp.libraries.notification', 'kmApp.libraries.store']);
 
 /* Controllers */
-storeModule.controller('kmApp.modules.store.storelistAction', ['$scope',
-     '$rootScope',
-   '$routeParams',
-    'kmApp.libraries.store.storeService',
-	function ($scope, $rootScope, $routeParams, storeService) {
+storeModule.controller('kmApp.modules.store.storelistAction',
+					   ['$scope',
+						'$rootScope',
+						'$routeParams',
+						'$location',
+						'$filter',
+						'kmApp.libraries.store.storeService',
+						function ($scope, $rootScope, $routeParams,$location,$filter,storeService) {
+							
+		$scope.tabledata = {};
+		$scope.selectedtagid = 0;
+		$scope.pagesize = 3;
+		$scope.searchtext = '';
+		$scope.currentpage = 1;
+		$scope.skipsize = 0;
+		$scope.pagenumbers = [1];
+		
+		$rootScope.getPassTableDetail = function () {
+        var stext = $scope.searchtext;
+			if (stext == '') {
+				stext = '-';
+			}
+	   // var data=campaignService.searchCampaign(stext);
+		
+		}
+		$scope.getnextpage = function () {
+			$rootScope.skipsize = $scope.currentpage;
+			$scope.currentpage = $scope.currentpage + 1;
+			$rootScope.getPassTableDetail();
+		}
+		$scope.getprevpage = function () {
+			$scope.currentpage = $scope.currentpage - 1;
+			$rootScope.skipsize = $scope.currentpage - 1;
+			$rootScope.getPassTableDetail();
+		}
+		$scope.getselectpage = function (num) {
+			$scope.currentpage = num;
+			$rootScope.skipsize = $scope.currentpage - 1;
+			$rootScope.getPassTableDetail();
+		}
+		$scope.getPageNumbers = function (pageNum) {
+			var totalPages = $scope.numberOfPages();
+			$scope.pagenumbers = [];
+			var endPage = $scope.pagesize;
+			if (totalPages < $scope.pagesize + pageNum) {
+				endPage = totalPages;
+			}
+			else {
+				endPage = $scope.pagesize + pageNum;
+			}
+			if (pageNum == 0) { pageNum++; }
+			for (var i = pageNum; i <= endPage; i++) {
+				$scope.pagenumbers.push(i);
+			}
+		};
+	
+		$scope.numberOfPages = function () {
+			if ($scope.tabledata === undefined)
+				return 0;
+			if ($scope.tabledata.rowval === undefined)
+				return 0;
+			return Math.ceil($scope.tabledata.totalcount / $scope.pagesize);
+		}
+		
+	    $scope.tableRowVal=function(data){
+		     var rowval=[];
+		     for (var i = 0; i < data.length; i++) {
+		 		var rowdata=[];
+					rowdata.push(data[i].merchantid);
+					rowdata.push(data[i].name);
+					rowdata.push(data[i].groupname);
+					rowdata.push(data[i].address);
+					rowdata.push(data[i].city);
+					rowdata.push(data[i].state);
+					rowval.push(rowdata);				
+			 } 
+			 return rowval;
+	    }
+		
+		$scope.data = storeService.getStores();	
+		$scope.tabledata = {
+			"header": [
+					{ "name": "MerchId", "desc": "Merch Id", "type": "ID" },
+					{ "name": "storeName", "desc": "Store Name", "type": "n" },
+					{ "name": "groups", "desc": "groups", "type": "s" },
+					{ "name": "address", "desc": "Address", "type": "s" },
+					{ "name": "city", "desc": "City ", "type": "s" },
+					{ "name": "state", "desc": "State ", "type": "s" }
+			],
+			"rowval": []
+		};
+		$scope.tabledata.rowval= $scope.tableRowVal($scope.data);
+		
+		$scope.totalcount = $scope.tabledata.rowval.length;
+		
+		$scope.tabledata.totalcounttext = 'Total Stores';
+			
+		
+		$scope.editStore=function(I,K){
+			 var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
+			 $location.path('/'+$rootScope.UserData.clientName+'/store/id/'+found[0].storeid);
+		}
+		
+        $scope.copyStore=function(I,K){
+			var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
+			$location.path('/'+$rootScope.UserData.clientName+'/store/id/'+found[0].storeid+'/copy/true');
+		}
 
-	    $scope.sel = 'MerchId';
-	    $scope.sortField = 'merchantid';
-	    $scope.reverse = true;
 
-	    $scope.storeLists = storeService.getStores();
-	    $scope.storeVal = {};
-
-	    $scope.removeStore = function (item) {
-	        var r = confirm("Are you sure you want to delete " + item.name + "?");
+	   $scope.removeStore = function (I,K) {
+		   var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
+		   console.log($scope.tableRowVal);
+	        var r = confirm("Are you sure you want to delete " + found[0].name + "?");
 	        if (r == true) {
-	            storeService.removeStore(item);
+	           $scope.data = storeService.removeStore(found[0]);
+			   $scope.tabledata.rowval=$scope.tableRowVal($scope.data);
 	        }
 	    }
 

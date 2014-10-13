@@ -46,7 +46,7 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			}).
 			when('/:clientName/campaign/redemption/:id', {
 			    templateUrl: 'modules/campaign/views/redemption.html',
-			    controller: 'kmApp.modules.campaign.redemption'
+			    controller: 'kmApp.modules.campaign.redemptionEditAction'
 			}).
 			when('/:clientName/campaign/channels/:id', {
 			    templateUrl: 'modules/campaign/views/channels.html',

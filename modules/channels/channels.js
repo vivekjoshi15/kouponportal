@@ -1,21 +1,23 @@
 var channelModule = angular.module('kmApp.modules.channel', ['angular.filter', 'kmApp.libraries.notification','ui.select']);
 
-channelModule.value('clinks', [
-    'Channels',
-    [{
-        "url": "channels/summary",
-        "title": "Summary"
-    },
-    {
-        "url": "channels/design",
-        "title": "Design"
-    },
-    {
-        "url": "channels/details",
-        "title": "Details"
-    }]
-]);
-
+channelModule.value('clinks',
+	{
+	  "module":'Channels',
+	  "items":
+			  [{
+				  "url": "channels/summary",
+				  "title": "Summary"
+			  },
+			  {
+				  "url": "channels/design",
+				  "title": "Design"
+			  },
+			  {
+				  "url": "channels/details",
+				  "title": "Details"
+			  }]
+	}
+);
 channelModule.controller('kmApp.modules.channels.channels',
 						 ['$scope',
 						  'kmApp.libraries.channel.channelService',
@@ -38,9 +40,10 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
 	
 	$scope.arrow=true;
 	$scope.links=clinks;
-	$scope.links[0]='Channels';
-	$scope.title=clinks[1][0].title;
-								   
+	$scope.title='Summary';
+	$scope.links.module='Channels';
+		
+		console.log($scope.links);						   
    $scope.channelid = $routeParams.id;
     if($scope.channelid != 0){
 		  $scope.model=channelService.getChannel($scope.channelid);
@@ -71,8 +74,8 @@ channelModule.controller('kmApp.modules.channels.design',
 						  function ($scope,$rootScope,$routeParams,$location,clinks) {
     $scope.arrow=true;     
     $scope.links=clinks;
-	$scope.links[0]='New Channel';
-	$scope.title=$scope.links[1][1].title;
+	$scope.title='Design';
+	$scope.links.module='New Channel';
 }]);
 
 
@@ -86,8 +89,8 @@ channelModule.controller('kmApp.modules.channels.details',
 		
 		$scope.arrow=true;
 		$scope.links=clinks;
-		$scope.links[0]='VS Web Channel';
-		$scope.title=clinks[1][2].title;
+		$scope.title='Details';
+		$scope.links.module='VS Web Channel';
 		
 
 }]);channelModule.controller('kmApp.modules.channels.details.done',
@@ -100,8 +103,8 @@ channelModule.controller('kmApp.modules.channels.details',
 		
 		$scope.arrow=true;
 		$scope.links=clinks;
-		$scope.links[0]='VS Web Channel';
-		$scope.title=clinks[1][2].title;
+		$scope.title='Details';
+		$scope.links.module='VS Web Channel';
 		
 
 

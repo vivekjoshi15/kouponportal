@@ -35,6 +35,7 @@ generalModule.controller('kmApp.modules.general.offer', [
         $scope.title = "Offers";
         $scope.links = links;
 
+			console.log($scope.links);	
         $scope.disabled = undefined;
         $scope.disable = function () {
             $scope.disabled = true;
@@ -68,6 +69,7 @@ generalModule.controller('kmApp.modules.general.offer', [
 
         //Updating General Offers Settings
         $scope.saveGeneralOffers = function () {
+			
             $scope.GeneralOffers.TextmessageLimitPeriod = $scope.TextMessagesOption.selected.value;
             $scope.GeneralOffers.PushmessageLimitPeriod = $scope.NotificationsOption.selected.value;
             $scope.GeneralOffers.EmailmessageLimitPeriod = $scope.EmailMessagesOption.selected.value;
