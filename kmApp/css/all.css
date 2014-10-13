@@ -987,7 +987,6 @@ div.table div.row div.cell {
 
 div.table div.row div.cell-action,
 div.table div.header div.cell-action {
-	float: right;
 	font-size: 12px;
 	margin-right: 10px;
 }
@@ -1000,19 +999,18 @@ div.table div.header div.cell-action {
   height:20px;	
 }
 div.table div.row div.cell-action div.options {
-	background: none repeat scroll 0 0 #fff;
+   background: none repeat scroll 0 0 #fff;
     border: 1px solid #e0e0e2;
-	min-width:100px;
-	max-width:150px;
     float: left;
+    max-width: 150px;
+    min-width: 100px;
+    opacity: 0;
     padding: 17px 27px;
     position: absolute;
-    right: 20px;
-	opacity: 0;
-	visibility:hidden;
-	transition: opacity .25s ease-in-out;
-	-moz-transition: opacity .25s ease-in-out;
-	-webkit-transition: opacity .25s ease-in-out;
+    right: 15px;
+    top: 27px;
+    transition: opacity 0.25s ease-in-out 0s;
+    visibility: hidden;
 }
 
 div.table div.row div.cell-action:hover div.options {
