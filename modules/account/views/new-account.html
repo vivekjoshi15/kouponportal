@@ -1,77 +1,73 @@
 <main>
-  <div class="subHeader">
-    <h1>New Account</h1>
-  </div>
-  <div class="accounts">
-    <form>
-      <div class="accountDesc">
-        <div class="accountName">
-          <p>Account Name</p>
-          <input type="text" class="focus" />
-        </div>
-        <div class="plan">
-          <p>Plan</p>
-          <div class="selection">
-            <input type="text" />
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="inviteHead">
-        <h6>Invite some users</h6>
-      </div>
-      <div class="accountDesc inviteBody">
-        <div class="accountName">
-          <p>Email Address</p>
-          <input type="text" class="focus" />
-        </div>
-        <div class="plan">
-          <p>Role</p>
-          <div class="selection">
-            <input type="text" placeholder="Select a Role" />
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
-        </div>
-        <div class="accountName">
-          <p>Email Address</p>
-          <input type="text" class="focus" />
-        </div>
-        <div class="plan">
-          <p>Role</p>
-          <div class="selection">
-            <input type="text" placeholder="Select a Role" />
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
-        </div>
-        <div class="accountName">
-          <p>Email Address</p>
-          <input type="text" class="focus" />
-        </div>
-        <div class="plan">
-          <p>Role</p>
-          <div class="selection">
-            <input type="text" placeholder="Select a Role" />
-            <ul>
-              <li>option</li>
-              <li>option</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="centerButtom"><a href="#">Create account</a></div>
-      <br class="clear" />
-    </form>
-    <div class="divider"></div>
-  </div>
-  <div class="center"><a href="#">Cancel</a></div>
+    <div class="subHeader">
+        <h1>New Account</h1>
+    </div>
+    <div class="accounts">
+        <form>
+            <div class="accountDesc">
+                <div class="accountName">
+                    <p>Account Name</p>
+                    <input type="text" class="focus" />
+                </div>
+                <div class="plan">
+                    <p>Plan</p>
+                    <div class="selection2">
+                        <ui-select ng-model="userPlan.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+                            <ui-select-match placeholder="Select Plan">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="userPlan in userPlans | filter:$select.search"> {{userPlan.name}} </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="inviteHead">
+                <h6>Invite some users</h6>
+            </div>
+            <div class="accountDesc inviteBody">
+                <div class="accountName">
+                    <p>Email Address</p>
+                    <input type="text" class="focus" />
+                </div>
+                <div class="plan">
+                    <p>Role</p>
+                    <div class="selection2">
+                        <ui-select ng-model="userRole.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+                            <ui-select-match placeholder="Select Role Type">{{$select.selected.title}}</ui-select-match>
+                            <ui-select-choices repeat="userRole in userRoles | filter:$select.search"> {{userRole.title}} </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="accountName">
+                    <p>Email Address</p>
+                    <input type="text" class="focus" />
+                </div>
+                <div class="plan">
+                    <p>Role</p>
+                    <div class="selection2">
+                        <ui-select ng-model="userRole.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+                            <ui-select-match placeholder="Select Role Type">{{$select.selected.title}}</ui-select-match>
+                            <ui-select-choices repeat="userRole in userRoles | filter:$select.search"> {{userRole.title}} </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="accountName">
+                    <p>Email Address</p>
+                    <input type="text" class="focus" />
+                </div>
+                <div class="plan">
+                    <p>Role</p>
+                    <div class="selection2">
+                        <ui-select ng-model="userRole.selected" theme="select2" ng-disabled="disabled" style="width: 200px;">
+                            <ui-select-match placeholder="Select Role Type">{{$select.selected.title}}</ui-select-match>
+                            <ui-select-choices repeat="userRole in userRoles | filter:$select.search"> {{userRole.title}} </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="centerButtom"><a ng-click="CreateUser()">Create account</a></div>
+            <br class="clear" />
+        </form>
+        <div class="divider"></div>
+    </div>
+    <div class="center"><a href="#">Cancel</a></div>
 </main>

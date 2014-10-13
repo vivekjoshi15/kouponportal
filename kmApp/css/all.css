@@ -2751,13 +2751,13 @@ main.stores {
 
 .sets .storeState {
     float: left;
-    width: 80px;
+    width: 120px;
     margin-right: 25px;
 }
 
 .sets .zipCode {
     float: left;
-    width: 141px;
+    width: 101px;
 }
 
 .sets .storeCountry {

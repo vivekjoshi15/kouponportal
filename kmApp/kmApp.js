@@ -1,6 +1,6 @@
 var kmApp = angular.module('kmApp', [
     'ngRoute',
-    'ngSanitize',    
+    'ngSanitize',
 	'Scope.onReady',
     'angular.filter',
     'ui.select',
@@ -94,13 +94,13 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
                 controller: 'kmApp.modules.account.plan'
             }).
 			when('/:clientName/account/search', {
-                templateUrl: 'modules/account/views/accounts.html',
-                controller: 'kmApp.modules.account.search'
-            }).
+			    templateUrl: 'modules/account/views/accounts.html',
+			    controller: 'kmApp.modules.account.search'
+			}).
 			when('/:clientName/account/account', {
-                templateUrl: 'modules/account/views/new-account.html',
-                controller: 'kmApp.modules.account.account'
-            }).
+			    templateUrl: 'modules/account/views/new-account.html',
+			    controller: 'kmApp.modules.account.account'
+			}).
             when('/:clientName/general/store', {
                 templateUrl: 'modules/general/views/store.html',
                 controller: 'kmApp.modules.general.store'
@@ -273,7 +273,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
-	$rootScope.isMenu=true;
+    $rootScope.isMenu = true;
 
     $rootScope.expSecondsInMs = (30 * 60 * 1000); //30 mins
 
@@ -482,7 +482,7 @@ function ($scope, $rootScope, $route, $routeParams, $location, $window,
     //@AWTODO - refactor to service/library
     // router listener
     $rootScope.$on('$routeChangeStart', function (event, next) {
-		$rootScope.isMenu=true;
+        $rootScope.isMenu = true;
 
         //  if user is submitting login info, process...
         var credentials = $scope.getCredentials();

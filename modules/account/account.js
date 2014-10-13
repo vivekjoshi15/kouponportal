@@ -14,173 +14,165 @@ accountModule.value('alinks',
         }]
     });
 
-accountModule.controller('kmApp.modules.account.user',
-						 ['$scope',
-						  '$rootScope',
-						  '$location',
-						  'alinks',
-						  'kmApp.libraries.account.accountService',
-						 function ($scope, $rootScope, $location, alinks, accountService) {
-						     $scope.links = alinks;
-						     $scope.title = 'User';
+accountModule.controller('kmApp.modules.account.user', [
+    '$scope',
+    '$rootScope',
+	'$location',
+	'alinks',
+	'kmApp.libraries.account.accountService',
+    function ($scope, $rootScope, $location, alinks, accountService) {
+        $scope.links = alinks;
+        $scope.title = 'User';
 
-						     $scope.disabled = undefined;
-						     $scope.disable = function () {
-						         $scope.disabled = true;
-						     };
-						     $scope.ActiveUser = accountService.getAccounts();
+        $scope.disabled = undefined;
+        $scope.disable = function () {
+            $scope.disabled = true;
+        };
 
-						     $scope.UsrRemove = function (item) {
-						         var r = confirm("Are you sure you want to delete '" + item.UserName + "'?");
-						         if (r == true) {
-						             accountService.removeAccount(item.UserID)
-						         }
-						     }
-						     $scope.model;
-						     $scope.Invite = function () {
+        //Fetching Json for Users
+        $scope.ActiveUser = accountService.getAccounts();
 
-						         //alert(console.log($scope.InviteUser));
-						     }
-						     $scope.addUser = function () {
-						         $scope.NewUsr = false;
-						         $scope.model.UserID = Math.floor((Math.random() * 1000) + 1);
-						         $scope.model.UserName = "Samantha Longname";
-						         accountService.addAccount($scope.model);
-						         console.log($scope.model);
-						     }
+        $scope.UsrRemove = function (item) {
+            var r = confirm("Are you sure you want to delete '" + item.clientName + "'?");
+            if (r == true) {
+                accountService.removeAccount(item.UserID)
+            }
+        }
 
-						     $scope.userManagementList = ['Offer Management', 'Offer Distribution', 'Location Targeting'];
-						     $scope.userManagementVal;
+        $scope.model;
+        $scope.Invite = function () {
+            //alert(console.log($scope.InviteUser));
+        }
 
-						     $scope.selectRoleList = [{
-						         text: 'Offer Management',
-						         someprop: 'Offer Management'
-						     }, {
-						         text: 'Offer Distribution',
-						         someprop: 'Offer Distribution'
-						     }, {
-						         text: 'Location Targeting',
-						         someprop: 'Location Targeting'
-						     }];
-						     $scope.selectRoleVal = $scope.selectRoleList[0];
-						     $scope.Invite.UserManagement = $scope.selectRoleVal;
+        $scope.addUser = function () {
+            $scope.NewUsr = false;
+            $scope.model.clientId = Math.floor((Math.random() * 1000) + 1);
+            $scope.model.clientName = "Samantha Longname";
+            accountService.addAccount($scope.model);
+            console.log($scope.model);
+        }
+
+        $scope.userRole = {};
+        $scope.userRoles = [{ 'title': 'Offer Management', 'id': 2 }, { 'title': 'Offer Distribution', 'id': 3 }, { 'title': 'Location Targeting', 'id': 4 }];
+        $scope.userRole.selected = undefined;
+
+        $scope.selectRoleList = [{
+            text: 'Offer Management',
+            someprop: 'Offer Management'
+        }, {
+            text: 'Offer Distribution',
+            someprop: 'Offer Distribution'
+        }, {
+            text: 'Location Targeting',
+            someprop: 'Location Targeting'
+        }];
+        $scope.selectRoleVal = $scope.selectRoleList[0];
+        $scope.Invite.UserManagement = $scope.selectRoleVal;
 
 
-						 }]);
+    }]);
 
-accountModule.controller('kmApp.modules.account.plan',
-						 ['$scope',
-						  '$rootScope',
-						  '$location',
-						  'alinks',
-						  function ($scope, $rootScope, $location, alinks) {
-						      $scope.links = alinks;
-						      $scope.title = 'Plan';
+accountModule.controller('kmApp.modules.account.plan', [
+    '$scope',
+	'$rootScope',
+	'$location',
+	'alinks',
+    '$filter',
+    'kmApp.libraries.account.accountService',
+	function ($scope, $rootScope, $location, alinks, $filter, accountService) {
+	    $scope.links = alinks;
+	    $scope.title = 'Plan';
 
-						      $scope.planList = [
-                                             {
-                                                 plan: 'pro',
-                                                 stores: 250,
-                                                 features: ['Offer Management', 'Offer Distribution', 'Location Targeting']
-                                             },
-                                             {
-                                                 plan: 'enterprise',
-                                                 stores: 250,
-                                                 features: ['Offer Management', 'Offer Distribution', 'Location Targeting']
-                                             },
-                                             {
-                                                 plan: 'core',
-                                                 stores: 250,
-                                                 features: ['Offer Management', 'Offer Distribution', 'Location Targeting']
-                                             }
-						      ];
-						      $scope.currentPlan = {
-						          plan: 'advanced',
-						          stores: 250,
-						          features: ['Offer Management', 'Offer Distribution', 'Location Targeting']
-						      }
-						  }]);
+	    //Fetching Json for Plans
+	    $scope.currentPlan = accountService.getPlan(4);
 
-accountModule.controller('kmApp.modules.account.search',
-						 ['$scope',
-						  '$rootScope',
-						  '$location',
-						  'kmApp.libraries.account.accountService',
-						 function ($scope, $rootScope, $location, accountService) {
-						     $rootScope.isMenu = false;
+	    //Fetching Json for User Current Plan
+	    $scope.planList = accountService.getPlans();
 
-						     $scope.tabledata = {};
-						     $scope.selectedtagid = 0;
-						     $scope.pagesize = 3;
-						     $scope.searchtext = '';
-						     $scope.currentpage = 1;
-						     $scope.skipsize = 0;
-						     $scope.pagenumbers = [1];
-						     $scope.getnextpage = function () {
-						         $rootScope.skipsize = $scope.currentpage;
-						         $scope.currentpage = $scope.currentpage + 1;
-						         $rootScope.getPassTableDetail();
-						     }
-						     $scope.getprevpage = function () {
-						         $scope.currentpage = $scope.currentpage - 1;
-						         $rootScope.skipsize = $scope.currentpage - 1;
-						         $rootScope.getPassTableDetail();
-						     }
-						     $scope.getselectpage = function (num) {
-						         $scope.currentpage = num;
-						         $rootScope.skipsize = $scope.currentpage - 1;
-						         $rootScope.getPassTableDetail();
-						     }
-						     $scope.getPageNumbers = function (pageNum) {
-						         var totalPages = $scope.numberOfPages();
-						         $scope.pagenumbers = [];
-						         var endPage = $scope.pagesize;
-						         if (totalPages < $scope.pagesize + pageNum) {
-						             endPage = totalPages;
-						         }
-						         else {
-						             endPage = $scope.pagesize + pageNum;
-						         }
-						         if (pageNum == 0) { pageNum++; }
-						         for (var i = pageNum; i <= endPage; i++) {
-						             $scope.pagenumbers.push(i);
-						         }
-						     };
+	    var found = $filter('filter')($scope.planList, { planId: $scope.currentPlan.planId }, true);
+	    $scope.planList.splice($scope.planList.indexOf(found), 1);	   
+	}]);
 
-						     $scope.numberOfPages = function () {
-						         if ($scope.tabledata === undefined)
-						             return 0;
-						         if ($scope.tabledata.rowval === undefined)
-						             return 0;
-						         return Math.ceil($scope.tabledata.totalcount / $scope.pagesize);
-						     }
+accountModule.controller('kmApp.modules.account.search', [
+    '$scope',
+	'$rootScope',
+	'$location',
+	'kmApp.libraries.account.accountService',
+	function ($scope, $rootScope, $location, accountService) {
+	    $rootScope.isMenu = false;
 
-						     var data = accountService.getAccounts();
-						     var rowval = [];
-						     for (var i = 0; i < data.length; i++) {
-						         var rowdata = [];
-						         rowdata.push(data[i].UserID);
-						         rowdata.push(data[i].UserName);
-						         rowdata.push(data[i].plan);
-						         rowval.push(rowdata);
+	    $scope.tabledata = {};
+	    $scope.selectedtagid = 0;
+	    $scope.pagesize = 3;
+	    $scope.searchtext = '';
+	    $scope.currentpage = 1;
+	    $scope.skipsize = 0;
+	    $scope.pagenumbers = [1];
+	    $scope.getnextpage = function () {
+	        $rootScope.skipsize = $scope.currentpage;
+	        $scope.currentpage = $scope.currentpage + 1;
+	        $rootScope.getPassTableDetail();
+	    }
+	    $scope.getprevpage = function () {
+	        $scope.currentpage = $scope.currentpage - 1;
+	        $rootScope.skipsize = $scope.currentpage - 1;
+	        $rootScope.getPassTableDetail();
+	    }
+	    $scope.getselectpage = function (num) {
+	        $scope.currentpage = num;
+	        $rootScope.skipsize = $scope.currentpage - 1;
+	        $rootScope.getPassTableDetail();
+	    }
+	    $scope.getPageNumbers = function (pageNum) {
+	        var totalPages = $scope.numberOfPages();
+	        $scope.pagenumbers = [];
+	        var endPage = $scope.pagesize;
+	        if (totalPages < $scope.pagesize + pageNum) {
+	            endPage = totalPages;
+	        }
+	        else {
+	            endPage = $scope.pagesize + pageNum;
+	        }
+	        if (pageNum == 0) { pageNum++; }
+	        for (var i = pageNum; i <= endPage; i++) {
+	            $scope.pagenumbers.push(i);
+	        }
+	    };
 
-						     }
-						     $scope.tabledata = {
-						         "header": [
-                                         { "name": "id", "desc": "ID", "type": "ID" },
-                                         { "name": "account", "desc": "Account Name", "type": "n" },
-                                         { "name": "plan", "desc": "Plan", "type": "s" },
+	    $scope.numberOfPages = function () {
+	        if ($scope.tabledata === undefined)
+	            return 0;
+	        if ($scope.tabledata.rowval === undefined)
+	            return 0;
+	        return Math.ceil($scope.tabledata.totalcount / $scope.pagesize);
+	    }
 
-						         ],
-						         "rowval": []
-						     };
-						     $scope.tabledata.rowval = rowval;
+	    var data = accountService.getAccounts();
+	    var rowval = [];
+	    for (var i = 0; i < data.length; i++) {
+	        var rowdata = [];
+	        rowdata.push(data[i].clientId);
+	        rowdata.push(data[i].clientName);
+	        rowdata.push(data[i].planId);
+	        rowval.push(rowdata);
 
-						     $scope.totalcount = $scope.tabledata.rowval.length;
+	    }
+	    $scope.tabledata = {
+	        "header": [
+                    { "name": "id", "desc": "ID", "type": "ID" },
+                    { "name": "account", "desc": "Account Name", "type": "n" },
+                    { "name": "plan", "desc": "Plan", "type": "s" },
 
-						     $scope.tabledata.totalcounttext = 'Total Accounts';
-						     $scope.getPageNumbers($scope.currentpage);
-						 }]);
+	        ],
+	        "rowval": []
+	    };
+	    $scope.tabledata.rowval = rowval;
+
+	    $scope.totalcount = $scope.tabledata.rowval.length;
+
+	    $scope.tabledata.totalcounttext = 'Total Accounts';
+	    $scope.getPageNumbers($scope.currentpage);
+	}]);
 
 accountModule.controller('kmApp.modules.account.account', [
     '$scope',
@@ -188,7 +180,24 @@ accountModule.controller('kmApp.modules.account.account', [
 	'$location',
 	'kmApp.libraries.account.accountService',
 	function ($scope, $rootScope, $location, accountService) {
+	    $scope.disabled = undefined;
+	    $scope.disable = function () {
+	        $scope.disabled = true;
+	    };
+
+	    $scope.userRole = {};
+	    $scope.userRoles = [{ 'title': 'Offer Management', 'id': 2 }, { 'title': 'Offer Distribution', 'id': 3 }, { 'title': 'Location Targeting', 'id': 4 }];
+	    $scope.userRole.selected = undefined;
+
+	    $scope.userPlan = {};
+	    $scope.userPlans = accountService.getPlans();  //Fetching Json for all Plans
+	    $scope.userPlans.selected = undefined;
 
 	    $rootScope.isMenu = false;
+
+	    $scope.CreateUser = function ()
+	    {
+
+	    }
 
 	}]);

@@ -1,32 +1,33 @@
 
 <main ng-app="kmApp.modules.account">
-   <subheader></subheader>
-  <div class="data plan">
-    <header>
-      <h1>YOUR CURRENT PLAN</h1>
-    </header>
-    <div class="wrapContain">
-      <div class="headPlan"><span>{{currentPlan.plan}}</span> Up to {{currentPlan.stores}} Stores</div>
-      <div class="planCat">
-        <li ng-repeat="item in currentPlan.features">{{item}}</li>
-      </div>
-    </div>
-    <br class="clear"/>
-  </div>
-  <div class="data plan p2">
-    <header>
-      <h1>Interested in upgrading</h1>
-      <span class="question-icon" style="margin-right:36px;"></span> </header>
-    <div class="wrapContain set">
-      <div class="sets add" ng-repeat="item in planList">
-        <div class="headPlan"><span>{{item.plan}} </span> Up to {{item.stores}} Stores</div>
-        <div class="planCat" >
-          <li ng-repeat="feature in item.features">{{feature}}</li>
+    <subheader></subheader>
+    <div class="data plan">
+        <header>
+            <h1>YOUR CURRENT PLAN</h1>
+        </header>
+        <div class="wrapContain">
+            <div class="headPlan"><span>{{currentPlan.name}}</span> Up to {{currentPlan.stores}} Stores</div>
+            <div class="planCat">
+                <li ng-repeat="item in currentPlan.features">{{item}}</li>
+            </div>
         </div>
-        <div class="learnMore"><a href="#">Learn More </a></div>
-      </div>
-      <div class="contacts"><a href="#">Contact Us</a></div>
+        <br class="clear" />
     </div>
-    <br class="clear"/>
-  </div>
+    <div class="data plan p2">
+        <header>
+            <h1>Interested in upgrading</h1>
+            <span class="question-icon" style="margin-right:36px;"></span>
+        </header>
+        <div class="wrapContain set">
+            <div class="sets add" ng-repeat="item in planList">
+                <div class="headPlan"><span>{{item.name}} </span> Up to {{item.stores}} Stores</div>
+                <div class="planCat">
+                    <li ng-repeat="feature in item.features">{{feature}}</li>
+                </div>
+                <div class="learnMore"><a href="#">Learn More </a></div>
+            </div>
+            <div class="contacts"><a href="#">Contact Us</a></div>
+        </div>
+        <br class="clear" />
+    </div>
 </main>

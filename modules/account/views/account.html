@@ -1,55 +1,55 @@
 <main ng-app="kmApp.modules.account">
-   <subheader></subheader>
-  <div class="wrapData">
-    <div class="data account">
-      <header>
-        <h1>Active users</h1>
-        <div class="addNew"><a ng-click="NewUsr=true">+ New Users</a></div>
-      </header>
-      <div class="wrapContain  no-padd">
-        <div class="accountUserDetails" ng-repeat="item in ActiveUser">
-          <div class="userName">{{item.UserName}}</div>
-          <div class="userEmail">{{item.UserEmail}}</div>
-          <div class="offerManage">
-           <div class="selection">
-           <input type="text" value="{{item.UserManagement}}" disabled="disabled" />
-                  <!--<ui-select multiple ng-model="UserManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                    <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in UserManagementList | filter:$select.search"> {{List}} </ui-select-choices>
-                  </ui-select>-->
+    <subheader></subheader>
+    <div class="wrapData">
+        <div class="data account">
+            <header>
+                <h1>Active users</h1>
+                <div class="addNew"><a ng-click="NewUsr=true">+ New Users</a></div>
+            </header>
+            <div class="wrapContain  no-padd">
+                <div class="accountUserDetails" ng-repeat="item in ActiveUser">
+                    <div class="userName">{{item.clientName}}</div>
+                    <div class="userEmail">{{item.email}}</div>
+                    <div class="offerManage">
+                        <div class="selection">
+                            <input type="text" value="{{item.roleId}}" disabled="disabled" />
+                            <!--<ui-select multiple ng-model="UserManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                              <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
+                              <ui-select-choices repeat="List in UserManagementList | filter:$select.search"> {{List}} </ui-select-choices>
+                            </ui-select>-->
+                        </div>
+                    </div>
+                    <div class="userOption"> <a ng-click="UsrRemove(item)" class="remove close-green-icon">Remove</a> <a href="#">Reset Password</a></div>
                 </div>
-          </div>
-          <div class="userOption"> <a ng-click="UsrRemove(item)" class="remove close-green-icon">Remove</a> <a href="#">Reset Password</a></div>
-        </div>
-      </div>
-      <div class="wrapContain" ng-init="NewUsr=false" ng-show="NewUsr">
-        <div class="subWrapContain accts ">
-          <header>
-            <h2>New user</h2>
-          </header>
-          <form name="invite">
-            <div class="UsrAdd">
-              <div class="UsrEmail">
-                <p>Email Address</p>
-                <input type="email" class="focus" ng-model="model.UserEmail" />
-              </div>
-              <div class="UsrRole">
-                <p>Select Role</p>
-                <div class="selection2">
-                  <ui-select multiple ng-model="model.userManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                    <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in userManagementList | filter:$select.search"> {{List}} </ui-select-choices>
-                  </ui-select>
-                </div>
-              </div>
-              <div class="UsrOption"> <a ng-click="NewUsr=false;">Cancel</a> <a ng-click="addUser()" class="invite">Invite</a> </div>
             </div>
-          </form>
+            <div class="wrapContain" ng-init="NewUsr=false" ng-show="NewUsr">
+                <div class="subWrapContain accts ">
+                    <header>
+                        <h2>New user</h2>
+                    </header>
+                    <form name="invite">
+                        <div class="UsrAdd">
+                            <div class="UsrEmail">
+                                <p>Email Address</p>
+                                <input type="email" class="focus" ng-model="model.UserEmail" />
+                            </div>
+                            <div class="UsrRole">
+                                <p>Select Role</p>
+                                <div class="selection2">
+                                    <ui-select ng-model="userRole.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                        <ui-select-match placeholder="Select Role Type">{{$select.selected.title}}</ui-select-match>
+                                        <ui-select-choices repeat="userRole in userRoles | filter:$select.search"> {{userRole.title}} </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="UsrOption"> <a ng-click="NewUsr=false;">Cancel</a> <a ng-click="addUser()" class="invite">Invite</a> </div>
+                        </div>
+                    </form>
+                </div>
+                <br class="clear">
+            </div>
+            <br class="clear">
         </div>
-        <br class="clear">
-      </div>
-      <br class="clear">
     </div>
-  </div>
-  <br class="clear">
+    <br class="clear">
 </main>

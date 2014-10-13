@@ -140,13 +140,70 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
     function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader, $filter) {
 		
 		$scope.country={};
-        $scope.countryList = ['USA','Canada'];
+		$scope.countryList = [{ code: "USA", name: 'USA' }, { code: "Canada", name: 'Canada' }];
 
         $scope.county = {};
-	    $scope.countyList = ['Option1','Option2'];
+        $scope.countyList = [{ code: "Option1", name: 'Option1' }, { name: 'Option2', code: "Option2" }];
 
         $scope.storeLists = storeService.getStoreName();
         $scope.groupname = {};
+
+        $scope.state = {};
+        $scope.states = [ 
+            { code: "AL", name: "Alabama" },
+            { code: "AK", name: "Alaska" },
+            { code: "AZ", name: "Arizona" },
+            { code: "AR", name: "Arkansas" },
+            { code: "CA", name: "California" },
+            { code: "CO", name: "Colorado" },
+            { code: "CT", name: "Connecticut" },
+            { code: "DE", name: "Delaware" },
+            { code: "DC", name: "District Of Columbia" },
+            { code: "FL", name: "Florida" },
+            { code: "GA", name: "Georgia" },
+            { code: "HI", name: "Hawaii" },
+            { code: "ID", name: "Idaho" },
+            { code: "IL", name: "Illinois" },
+            { code: "IN", name: "Indiana" },
+            { code: "IA", name: "Iowa" },
+            { code: "KS", name: "Kansas" },
+            { code: "KY", name: "Kentucky" },
+            { code: "LA", name: "Louisiana" },
+            { code: "ME", name: "Maine" },
+            { code: "MD", name: "Maryland" },
+            { code: "MA", name: "Massachusetts" },
+            { code: "MI", name: "Michigan" },
+            { code: "MN", name: "Minnesota" },
+            { code: "MS", name: "Mississippi" },
+            { code: "MO", name: "Missouri" },
+            { code: "MT", name: "Montana" },
+            { code: "NE", name: "Nebraska" },
+            { code: "NV", name: "Nevada" },
+            { code: "NH", name: "New Hampshire" },
+            { code: "NJ", name: "New Jersey" },
+            { code: "NM", name: "New Mexico" },
+            { code: "NY", name: "New York" },
+            { code: "NC", name: "North Carolina" },
+            { code: "ND", name: "North Dakota" },
+            { code: "OH", name: "Ohio" },
+            { code: "OK", name: "Oklahoma" },
+            { code: "OR", name: "Oregon" },
+            { code: "PA", name: "Pennsylvania" },
+            { code: "RI", name: "Rhode Island" },
+            { code: "SC", name: "South Carolina" },
+            { code: "SD", name: "South Dakota" },
+            { code: "TN", name: "Tennessee" },
+            { code: "TX", name: "Texas" },
+            { code: "UT", name: "Utah" },
+            { code: "VT", name: "Vermont" },
+            { code: "VA", name: "Virginia" },
+            { code: "WA", name: "Washington" },
+            { code: "WV", name: "West Virginia" },
+            { code: "WI", name: "Wisconsin" },
+            { code: "WY", name: "Wyoming" }
+        ];
+
+        $scope.state.selected = undefined;
 
         $scope.iscopy = $routeParams.copy;
         $scope.merchantid = 0;
@@ -158,14 +215,17 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
             //finding element from json
             $scope.model = storeService.getStore($scope.storeid);
 
-            var found = $filter('filter')($scope.countryList, { text: $scope.model.country }, true);
+            var found = $filter('filter')($scope.countryList, { code: $scope.model.country }, true);
             $scope.countryVal = found[0];
 
-            var found = $filter('filter')($scope.countyList, { text: $scope.model.county }, true);
+            var found = $filter('filter')($scope.countyList, { code: $scope.model.county }, true);
             $scope.countyVal = found[0];
 
             var found = $filter('filter')($scope.storeLists, { groupname: $scope.model.groupname }, true);
-            $scope.storeVal = found[0];
+            $scope.groupname = found[0];
+
+            var found = $filter('filter')($scope.states, { code: $scope.model.state }, true);
+            $scope.state.selected = found[0];
 
             if ($scope.iscopy == 'true') {
                 $scope.model.name = $scope.model.name + ' copy';
@@ -175,6 +235,12 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
         }
 
         $scope.saveStore = function () {
+            $scope.model.state = $scope.state.selected.code;
+            $scope.model.country = $scope.countryVal.code;
+            $scope.model.county = $scope.countyVal.code;
+            //$scope.model.groupname = $scope.groupname.code;
+            console.log($scope.model.state);
+            console.log($scope.model.country);
 
             if ($scope.storeid != 0 && $scope.iscopy == 'false')
                 storeService.editStore($scope.storeid, $scope.model);
