@@ -85,7 +85,7 @@ storeModule.controller('kmApp.modules.store.storelistAction',
 			"header": [
 					{ "name": "MerchId", "desc": "Merch Id", "type": "ID" },
 					{ "name": "storeName", "desc": "Store Name", "type": "n" },
-					{ "name": "groups", "desc": "groups", "type": "s" },
+					{ "name": "groups", "desc": "Groups", "type": "s" },
 					{ "name": "address", "desc": "Address", "type": "s" },
 					{ "name": "city", "desc": "City ", "type": "s" },
 					{ "name": "state", "desc": "State ", "type": "s" }
@@ -138,14 +138,15 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
     'kmApp.libraries.notification.screenNotifyService',
     'kmApp.libraries.waitLoader','$filter',
     function ($scope, $rootScope, $routeParams, $location, storeService, userNotificationLibrary, waitLoader, $filter) {
+		
+		$scope.country={};
         $scope.countryList = ['USA','Canada'];
-        $scope.countryVal;
 
-        $scope.countyList = ['Option1','Option2'];
-        $scope.countyVal = {};
+        $scope.county = {};
+	    $scope.countyList = ['Option1','Option2'];
 
         $scope.storeLists = storeService.getStoreName();
-        $scope.storeVal = {};
+        $scope.groupname = {};
 
         $scope.iscopy = $routeParams.copy;
         $scope.merchantid = 0;
@@ -174,9 +175,6 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
         }
 
         $scope.saveStore = function () {
-            $scope.model.country = $scope.countryVal.text;
-            $scope.model.county = $scope.countyVal.text;
-            //$scope.model.groupname = $scope.storeVal.groupname;
 
             if ($scope.storeid != 0 && $scope.iscopy == 'false')
                 storeService.editStore($scope.storeid, $scope.model);
@@ -185,7 +183,7 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
 
             userNotificationLibrary.addSuccess('store saved successfully!!!' + '<a href="#/store/id/' + $scope.storeid + '">' + $scope.model.name + '</a>');
 
-            $location.path('/store/view');
+            $location.path('/'+$rootScope.clientName+'/store/view');
         }
     }
 ]);

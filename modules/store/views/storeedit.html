@@ -97,17 +97,18 @@
                     <div class="storeCountry">
                         <p>Country</p>
                             <div class="selection2">
-                              <ui-select  ng-model="countryVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
+                              <ui-select  ng-model="model.country" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Role Type">{{$select.selected}}</ui-select-match>
                                 <ui-select-choices repeat="List in countryList | filter:$select.search"> {{List}} </ui-select-choices>
                               </ui-select>
+                              
                         </div>
                     </div>
                     <div class="storeCounty">
                         <p>County</p>
                         <div class="selection2">
-                              <ui-select  ng-model="countyVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
+                              <ui-select  ng-model="model.county" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Role Type">{{$select.selected}}</ui-select-match>
                                 <ui-select-choices repeat="List in countyList | filter:$select.search"> {{List}} </ui-select-choices>
                               </ui-select>
                           </div>
@@ -116,8 +117,8 @@
                 <div class="sets">
                     <p>Group</p>
                     <div class="selection2">
-                              <ui-select  ng-model="storeVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
+                              <ui-select  ng-model="model.groupname" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Role Type">{{$select.selected}}</ui-select-match>
                                 <ui-select-choices repeat="List in storeLists | filter:$select.search"> {{List}} </ui-select-choices>
                               </ui-select>
                           </div>

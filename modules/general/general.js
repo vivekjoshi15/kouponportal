@@ -35,7 +35,6 @@ generalModule.controller('kmApp.modules.general.offer', [
         $scope.title = "Offers";
         $scope.links = links;
 
-			console.log($scope.links);	
         $scope.disabled = undefined;
         $scope.disable = function () {
             $scope.disabled = true;
