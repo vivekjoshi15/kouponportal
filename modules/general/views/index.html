@@ -1,84 +1,75 @@
 <main ng-app="kmApp.modules.general">
     <subheader></subheader>
-    <div class="data">
-        <header>
-            <h1>Offer Categories</h1>
-            <div class="check-box ger">
-                <input type="checkbox" id="ownCategories" checked="checked" />
-                <label for="ownCategories">Allow users to create their own categories</label>
+    <form name="general">
+        <div class="data">
+
+            <header>
+                <h1>Offer Categories</h1>
+                <div class="check-box ger">
+                    <input type="checkbox" id="ownCategories" name="AllowUserCreateCategories" ng-model="GeneralOffers.AllowUserCreateCategories" ng-checked="GeneralOffers.AllowUserCreateCategories" />
+                    <label for="ownCategories">Allow users to create their own categories</label>
+                </div>
+            </header>
+            <tags items="GeneralOffers.OfferCategories" model="Name" labelfield="Name" title="Avaliable Offer Categories" addallowed="{{GeneralOffers.AllowUserCreateCategories}}" addtitle="+ Add Category" iconclass="categories-icon" mainclass="wrapContain mrg" on-select="onItemSelected()"></tags>
+            <div class="title">
+                <h1>Messaging limits</h1>
             </div>
-        </header>
-        <div class="wrapContain mrg">
-            <h2 class="categories-icon">Avaliable Offer Categories</h2>
-            <div class="crow">
-                <div class="category add"> + Add Category</div>
-                <div class="category">East Coast Stores <span>12</span></div>
-                <div class="category">North Stores <span>04</span></div>
+            <div class="wrapContain">
+                <div class="push">
+                    <h3>Push Notifications</h3>
+                    <span>Send no more than</span>
+                    <input type="text" class="inpt3 focus" name="PushMessageLimit" ng-model="GeneralOffers.PushMessageLimit" placeholder="0" />
+                    <span>to each customer</span>
+                    <div class="selper">
+                        <div class="selection2">
+                            <ui-select ng-model="NotificationsOption.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select">{{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="NotificationsOption in NotificationsOptions | filter: $select.search"> {{NotificationsOption.title}} </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">
+                    <h3>Text Messages</h3>
+                    <span>Send no more than</span>
+                    <input type="text" class="inpt3 focus" name="TextMessageLimit" ng-model="GeneralOffers.TextMessageLimit" placeholder="0" />
+                    <span>to each customer</span>
+                    <div class="selper">
+                        <div class="selection2">
+                            <ui-select ng-model="TextMessagesOption.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select">{{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="TextMessagesOption in TextMessagesOptions | filter: $select.search"> {{TextMessagesOption.title}} </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="email">
+                    <h3>Email Messages</h3>
+                    <span>Send no more than</span>
+                    <input type="text" class="inpt3 focus" name="EmailMessageLimit" ng-model="GeneralOffers.EmailMessageLimit" placeholder="0" />
+                    <span>to each customer</span>
+                    <div class="selper">
+                        <div class="selection2">
+                            <ui-select ng-model="EmailMessagesOption.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select">{{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="EmailMessagesOption in EmailMessagesOptions | filter: $select.search"> {{EmailMessagesOption.title}} </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="crow">
-                <div class="category">Southern Stores <span>07</span></div>
-                <div class="category">West Coast Stores <span>09</span></div>
+            <div class="title">
+                <h1>Location verification</h1>
+            </div>
+            <div class="wrapContain">
+                <h3>Customer Must Be</h3>
+                <input type="text" class="inpt3 focus" name="LocationRadius" ng-model="GeneralOffers.LocationRadius" placeholder="0.0" />
+                <span>miles from a store when using location verification</span>
             </div>
             <br class="clear" />
         </div>
-        <div class="title">
-            <h1>Messaging limits</h1>
-        </div>
-        <div class="wrapContain">
-            <div class="push">
-                <h3>Push Notifications</h3>
-                <span>Send no more than</span>
-                <input type="text" class="inpt3 focus" />
-                <span>to each customer</span>
-                <div class="selper">
-                    <div class="selection2">
-                        <ui-select multiple ng-model="NotificationsSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                            <ui-select-match placeholder="Per Week">{{$item}}</ui-select-match>
-                            <ui-select-choices repeat="List in NotificationsOption | filter:$select.search"> {{List}} </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </div>
-            </div>
-            <div class="text">
-                <h3>Text Messages</h3>
-                <span>Send no more than</span>
-                <input type="text" class="inpt3 focus" />
-                <span>to each customer</span>
-                <div class="selper">
-                    <div class="selection2">
-                        <ui-select multiple ng-model="TextMessagesSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                            <ui-select-match placeholder="Per Month">{{$item}}</ui-select-match>
-                            <ui-select-choices repeat="List in TextMessagesOption | filter:$select.search"> {{List}} </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </div>
-            </div>
-            <div class="email">
-                <h3>Email Messages</h3>
-                <span>Send no more than</span>
-                <input type="text" class="inpt3 focus" />
-                <span>to each customer</span>
-                <div class="selper">
-                    <div class="selection2">
-                        <ui-select multiple ng-model="emailMessagesSelectVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                            <ui-select-match placeholder="Per Week">{{$item}}</ui-select-match>
-                            <ui-select-choices repeat="List in emailMessagesOption | filter:$select.search"> {{List}} </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="title">
-            <h1>Location verification</h1>
-        </div>
-        <div class="wrapContain">
-            <h3>Customer Must Be</h3>
-            <input type="text" class="inpt3 focus" />
-            <span>miles from a store when using location verification</span>
-        </div>
-        <br class="clear" />
-    </div>
-    <footer>
-        <a href="#/general/codepools">Save Changes</a> <br class="clear" />
-    </footer>
+        <footer>
+            <button ng-disabled="general.$invalid" ng-click="saveGeneralOffers()">Save Changes</button> <br class="clear" />
+        </footer>
+    </form>
 </main>

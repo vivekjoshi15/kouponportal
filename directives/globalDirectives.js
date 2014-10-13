@@ -895,7 +895,54 @@ kmApp.directive('subheader', ['$routeParams',function ($routeParams) {
     return {
         restrict: 'E',
         templateUrl: 'directives/templates/subheader.html',
-        scope: false,
+        scope: true,
         replace: false
     }
-} ]);
+}]);
+
+kmApp.directive('tags', ['$routeParams', function ($timeout) {
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/templates/tags.html',
+        scope: {
+            items:'=',
+            model: '=',
+            labelfield: '@',
+            title: '@',
+            addtitle: '@',
+            addallowed: '@',
+            iconclass: '@',
+            mainclass: '@',
+            onSelect: '&'
+        },
+        replace: false,
+        link: function (scope, elem, attrs) {
+            scope.editItem = function (selectedItem) {
+                console.log(selectedItem);
+                scope.model = selectedItem;
+                scope.current = undefined;
+                scope.selected = true;
+                //$timeout(function () {
+                //    scope.onSelect();
+                //}, 200);
+            };
+            scope.delItem = function (selectedItem) {
+                console.log(selectedItem);
+                scope.model = selectedItem;
+                scope.current = undefined;
+                scope.selected = true;
+                //$timeout(function () {
+                //    scope.onSelect();
+                //}, 200);
+            };
+            scope.current = undefined;
+            scope.selected = true; // hides the list initially
+            scope.isCurrent = function (index) {
+                return scope.current == index;
+            };
+            scope.setCurrent = function (index) {
+                scope.current = index;
+            };
+        }
+    }
+}]);

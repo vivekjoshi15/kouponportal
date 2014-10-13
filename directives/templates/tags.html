@@ -1,0 +1,15 @@
+<div class="{{mainclass}}">
+    <h2 class="{{iconclass}}">{{title}}</h2>
+
+    <div class="category add" ng-show="{{addallowed}}">{{addtitle}}</div>
+    <br class="clear" />
+    <div class="category" ng-repeat="item in items | filter:model  track by $index" ng-click="setCurrent($index)" ng-class="{selected:isCurrent($index)}">
+        <div>{{item[labelfield]}} </div>
+        <span></span>
+        <ul>
+            <li><a ng-click="editItem(item[labelfield]);">Edit</a></li>
+            <li><a ng-click="delItem(item[labelfield])">Remove</a></li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

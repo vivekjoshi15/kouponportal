@@ -1,24 +1,24 @@
 var poolLibrary = angular.module('kmApp.libraries.pool', []);
 
 poolLibrary.service('kmApp.libraries.pool.poolService', ['$filter', function ($filter) {
-    var poolList = [{ name: "Victoria's Secret PLU Codes", poolid: 1, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData:'' },
-					{ name: "Secret PLU Codes", poolid: 2, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData:'' },
-					{ name: "Victoria's Secret PLU ", poolid: 3, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData:'' },
-					{ name: "PLU Codes", poolid: 5, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData:'' },
-					];
+    var poolList = [{ name: "Victoria's Secret PLU Codes", poolid: 1, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData: '' },
+					{ name: "Secret PLU Codes", poolid: 2, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData: '' },
+					{ name: "Victoria's Secret PLU ", poolid: 3, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData: '' },
+					{ name: "PLU Codes", poolid: 5, selectCodeType: "Select Code Type", fileInfo: 'filename.cvs', fileData: '' },
+    ];
 
     //console.log(poolList[0]);
 
     var addPool = function (item) {
         poolList.push(item);
     }
-    var getPoolName=function(){
-		var poolName=[];
-	        for(var i=0;i<poolList.length;i++){
-			 poolName.push(poolList[i].name);
-	       }
-		 return poolName;	
-	}
+    var getPoolName = function () {
+        var poolName = [];
+        for (var i = 0; i < poolList.length; i++) {
+            poolName.push(poolList[i].name);
+        }
+        return poolName;
+    }
     var getPools = function () {
         return poolList;
     }
@@ -51,8 +51,6 @@ poolLibrary.service('kmApp.libraries.pool.poolService', ['$filter', function ($f
         copyPool: copyPool,
         getPool: getPool,
         editPool: editPool,
-		getPoolName:getPoolName
+        getPoolName: getPoolName
     };
-
-}
-]);
+}]);

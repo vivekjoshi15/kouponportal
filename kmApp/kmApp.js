@@ -11,6 +11,7 @@ var kmApp = angular.module('kmApp', [
 	'kmApp.libraries.campaign',
 	'kmApp.libraries.channel',
 	'kmApp.libraries.account',
+    'kmApp.libraries.general',
 	'kmApp.libraries.pool',
 	'kmApp.modules.campaign',
 	'kmApp.modules.channel',

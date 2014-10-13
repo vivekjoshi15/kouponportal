@@ -1,50 +1,103 @@
-var generalModule = angular.module('kmApp.modules.general', ['angular.filter', 'kmApp.libraries.notification', 'ui.select']);
+var generalModule = angular.module('kmApp.modules.general', ['angular.filter', 'kmApp.libraries.notification', 'ngSanitize', 'ui.select']);
 
-generalModule.value('links', [
-   'General Settings',
-    [{
-        "url": "general",
-        "title": "Offers"
-    },
+generalModule.value('links',
     {
-        "url": "general/codepools",
-        "title": "Code Pools"
-    },
-    {
-        "url": "general/connected",
-        "title": "Connected Services"
-    },
-    {
-        "url": "general/store",
-        "title": "Stores"
-    }]
-]);
+        "module": "General Settings",
+        "items":
+        [{
+            "url": "general",
+            "title": "Offers"
+        },
+        {
+            "url": "general/codepools",
+            "title": "Code Pools"
+        },
+        {
+            "url": "general/connected",
+            "title": "Connected Services"
+        },
+        {
+            "url": "general/store",
+            "title": "Stores"
+        }]
+    });
 
 generalModule.controller('kmApp.modules.general.offer', [
     '$scope',
+    '$routeParams',
+    '$location',
     'links',
-    function ($scope, links) {
+    'kmApp.libraries.general.generalService',
+    '$filter',
+     'kmApp.libraries.notification.screenNotifyService',
+     'kmApp.libraries.waitLoader',
+    function ($scope, $routeParams, $location, links, generalService, $filter, userNotificationLibrary, waitLoader) {
         $scope.title = "Offers";
         $scope.links = links;
 
+        $scope.disabled = undefined;
+        $scope.disable = function () {
+            $scope.disabled = true;
+        };
 
-        $scope.TextMessagesOption = ['Per Week', 'Per Month', 'Per Day'];
-        $scope.TextMessagesSelectVal;
+        //Fetching Json for General Offer Settings
+        $scope.GeneralOffers = generalService.getGeneralOffersResponse();
 
-        $scope.NotificationsOption = ['Per Week', 'Per Month', 'Per Day'];
-        $scope.NotificationsSelectVal;
+        $scope.clear = function () {
+            $scope.TextMessagesOption.selected = $scope.TextMessagesOptions[$scope.TextMessagesOptions.indexOf($filter('filter')($scope.TextMessagesOptions, { value: parseInt($scope.GeneralOffers.TextmessageLimitPeriod) }, true)[0])];
+            $scope.NotificationsOption.selected = $scope.NotificationsOptions[$scope.NotificationsOptions.indexOf($filter('filter')($scope.NotificationsOptions, { value: parseInt($scope.GeneralOffers.PushmessageLimitPeriod) }, true)[0])];
+            $scope.EmailMessagesOption.selected = $scope.EmailMessagesOptions[$scope.EmailMessagesOptions.indexOf($filter('filter')($scope.EmailMessagesOptions, { value: parseInt($scope.GeneralOffers.EmailmessageLimitPeriod) }, true)[0])];
+        };
 
-        $scope.emailMessagesOption = ['Per Week', 'Per Month', 'Per Day'];
-        $scope.emailSelectVal;
+        $scope.TextMessagesOption = {};
+        $scope.TextMessagesOptions = [{ 'title': 'Per Day', 'value': 0 }, { 'title': 'Per Week', 'value': 1 }, { 'title': 'Per month', 'value': 2 }];
+        $scope.TextMessagesOption.selected = $scope.TextMessagesOptions[$scope.TextMessagesOptions.indexOf($filter('filter')($scope.TextMessagesOptions, { value: parseInt($scope.GeneralOffers.TextmessageLimitPeriod) }, true)[0])];
 
+        $scope.NotificationsOption = {};
+        $scope.NotificationsOptions = [{ 'title': 'Per Day', 'value': 0 }, { 'title': 'Per Week', 'value': 1 }, { 'title': 'Per month', 'value': 2 }];
+        $scope.NotificationsOption.selected = $scope.NotificationsOptions[$scope.NotificationsOptions.indexOf($filter('filter')($scope.NotificationsOptions, { value: parseInt($scope.GeneralOffers.PushmessageLimitPeriod) }, true)[0])];
+
+        $scope.EmailMessagesOption = {};
+        $scope.EmailMessagesOptions = [{ 'title': 'Per Day', 'value': 0 }, { 'title': 'Per Week', 'value': 1 }, { 'title': 'Per month', 'value': 2 }];
+        $scope.EmailMessagesOption.selected = $scope.EmailMessagesOptions[$scope.EmailMessagesOptions.indexOf($filter('filter')($scope.EmailMessagesOptions, { value: parseInt($scope.GeneralOffers.EmailmessageLimitPeriod) }, true)[0])];
+
+        $scope.Name = ''; // This will hold the selected item
+        $scope.onItemSelected = function () { // this gets executed when an item is selected
+            console.log('selected=' + $scope.Name);
+        };
+
+        //Updating General Offers Settings
+        $scope.saveGeneralOffers = function () {
+            $scope.GeneralOffers.TextmessageLimitPeriod = $scope.TextMessagesOption.selected.value;
+            $scope.GeneralOffers.PushmessageLimitPeriod = $scope.NotificationsOption.selected.value;
+            $scope.GeneralOffers.EmailmessageLimitPeriod = $scope.EmailMessagesOption.selected.value;
+
+            console.log($scope.TextMessagesOption.selected.value);
+
+            $scope.GeneralOffers.PushMessageLimit = parseInt($scope.GeneralOffers.PushMessageLimit);
+            $scope.GeneralOffers.TextMessageLimit = parseInt($scope.GeneralOffers.TextMessageLimit);
+            $scope.GeneralOffers.EmailMessageLimit = parseInt($scope.GeneralOffers.EmailMessageLimit);
+            $scope.GeneralOffers.LocationRadius = parseFloat($scope.GeneralOffers.LocationRadius);
+            $scope.GeneralOffers.AllowUserCreateCategories = Boolean.valueOf($scope.GeneralOffers.AllowUserCreateCategories);
+
+            generalService.updateGeneralOffersResponse($scope.GeneralOffers);
+
+            userNotificationLibrary.addSuccess('general offer settings saved successfully!!!');
+            $location.path($routeParams.clientName + '/general');
+        }
     }]);
 
 generalModule.controller('kmApp.modules.general.codepools', [
     '$scope',
+    '$routeParams',
+    '$location',
     'links',
-    'kmApp.libraries.pool.poolService',
-	'kmApp.libraries.notification.screenNotifyService',
-    function ($scope, links, poolService, userNotificationLibrary) {
+    'kmApp.libraries.general.generalService',
+     'kmApp.libraries.pool.poolService',
+    '$filter',
+     'kmApp.libraries.notification.screenNotifyService',
+     'kmApp.libraries.waitLoader',
+    function ($scope, $routeParams, $location, links, generalService, poolService, $filter, userNotificationLibrary, waitLoader) {
 
         $scope.title = "Code Pools";
         $scope.links = links;
@@ -130,10 +183,14 @@ generalModule.controller('kmApp.modules.general.codepools', [
 
 generalModule.controller('kmApp.modules.general.connected', [
     '$scope',
+    '$routeParams',
+    '$location',
     'links',
-    '$http',
-    '$timeout',
-    function ($scope, links, $http, $timeout) {
+    'kmApp.libraries.general.generalService',
+    '$filter',
+     'kmApp.libraries.notification.screenNotifyService',
+     'kmApp.libraries.waitLoader',
+    function ($scope, $routeParams, $location, links, generalService, $filter, userNotificationLibrary, waitLoader) {
         $scope.title = "Connected Services";
         $scope.links = links;
 
@@ -141,51 +198,68 @@ generalModule.controller('kmApp.modules.general.connected', [
         $scope.disable = function () {
             $scope.disabled = true;
         };
-        $scope.model = {
-            'provider': [{
-                text: 'Twillio',
-                someprop: 'Twillio'
-            },
-                        {
-                            text: 'Twillio 2',
-                            someprop: 'Twillio 2'
-                        },
-                        {
-                            text: 'Twillio 3',
-                            someprop: 'Twillio 3'
-                        },
-            ],
-            'accesstoken': '324234asdff',
-            'shortcode': '32443',
-            'keyword': '234234'
-        };
-        $scope.provider = [{ text: 'Twillio', someprop: 'Twillio' },
-                         { text: 'Twillio 2', someprop: 'Twillio 2' },
-                         { text: 'Twillio 3', someprop: 'Twillio 3' },
-        ];
 
-        $scope.selectprovider = ['Twillio', 'asdas']; // init selected item
-        $scope.selectProviderList = ['Twillio', 'Twillio 2', 'Twillio 3'];
+        //Fetching Json for Connected Services Settings
+        $scope.ConnectedServices = generalService.getConnectedServicesResponse().ConnectedServices[0];
 
+        //Fetching Json for Providers 
+        $scope.providers = generalService.getProvidersResponse().Providers;
+
+        $scope.provider = {};
+        $scope.provider.selected = $scope.providers[$scope.providers.indexOf($filter('filter')($scope.providers, { id: parseInt($scope.ConnectedServices.provider_id) }, true)[0])];
+
+        //Updating Connected Services Settings
+        $scope.saveConnectedServices = function () {
+            $scope.ConnectedServices.provider_id = parseInt($scope.provider.selected.id);
+
+            generalService.updateConnectedServicesResponse($scope.ConnectedServices);
+
+            userNotificationLibrary.addSuccess('general connected services settings saved successfully!!!');
+            $location.path($routeParams.clientName + '/general/connected');
+        }
     }]);
 
 generalModule.controller('kmApp.modules.general.store', [
     '$scope',
+    '$routeParams',
+    '$location',
     'links',
-    function ($scope, links) {
+    'kmApp.libraries.general.generalService',
+    '$filter',
+     'kmApp.libraries.notification.screenNotifyService',
+     'kmApp.libraries.waitLoader',
+    function ($scope, $routeParams, $location, links, generalService, $filter, userNotificationLibrary, waitLoader) {
         $scope.title = "Stores";
         $scope.links = links;
 
-        $scope.storeGroup = [{ name: 'Albany Stores East', value: 12 },
-                            { name: 'Coast Stores North', value: 06 },
-                            { name: 'tores Southern Stores', value: 07 }];
+        //Fetching Json for Store Groups
+        $scope.storeGroup = generalService.getStoreGroupResponse().Stores;
+        //Fetching Json for Geofence Groups
+        $scope.GeofenceGroup = generalService.getGeofenceGroupResponse().Geofences;
+        //Fetching Json for Beacon Groups
+        $scope.BeaconGroup = generalService.geBeaconGroupResponse().Beacons;
 
-        $scope.GeofenceGroup = [{ name: 'Albany Stores East', value: 12 },
-                              { name: 'Coast Stores North', value: 06 },
-                              { name: 'tores Southern Stores', value: 07 }];
+        $scope.name1 = ''; // This will hold the selected item
+        $scope.onItemSelected1 = function () { // this gets executed when an item is selected
+            console.log('selected=' + $scope.name1);
+        };
 
-        $scope.BeaconGroup = [{ name: 'Albany Stores East', value: 12 },
-                            { name: 'Coast Stores North', value: 06 },
-                            { name: 'tores Southern Stores', value: 07 }];
+        $scope.name2 = ''; // This will hold the selected item
+        $scope.onItemSelected2 = function () { // this gets executed when an item is selected
+            console.log('selected=' + $scope.name2);
+        };
+
+        $scope.name3 = ''; // This will hold the selected item
+        $scope.onItemSelected3 = function () { // this gets executed when an item is selected
+            console.log('selected=' + $scope.name3);
+        };
+
+        //Updating Stores Settings
+        $scope.saveStores = function () {
+            // generalService.updateConnectedServicesResponse($scope.ConnectedServices);
+
+            userNotificationLibrary.addSuccess('general store settings saved successfully!!!');
+            $location.path($routeParams.clientName + '/general/store');
+        }
 
     }]);

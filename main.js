@@ -52,7 +52,8 @@ require.config({
 	    rLIBRARIES_STORE: 'libraries/storeLibrary',
 		rLIBRARIES_CAMPAIGN: 'libraries/campaignLibrary',
 		rLIBRARIES_CHANNEL: 'libraries/channelLibrary',
-		rLIBRARIES_ACCOUNT:'libraries/accountLibrary',
+		rLIBRARIES_ACCOUNT: 'libraries/accountLibrary',
+		rLIBRARIES_GENERAL: 'libraries/generalLibrary',
 		rLIBRARIES_POOL:'libraries/poolLibrary',
 		/* services */
 		rSERVICES_GLOBAL: 'services/globalServices',
@@ -123,7 +124,8 @@ require.config({
 		'rLIBRARIES_STORE': ['rKMAPP'],
 		'rLIBRARIES_CAMPAIGN':['rKMAPP'],
 		'rLIBRARIES_CHANNEL':['rKMAPP'],
-		'rLIBRARIES_ACCOUNT':['rKMAPP'],
+		'rLIBRARIES_ACCOUNT': ['rKMAPP'],
+		'rLIBRARIES_GENERAL': ['rKMAPP'],
 		'rLIBRARIES_POOL':['rKMAPP'],
 		'rSERVICES_GLOBAL': ['rKMAPP'],
 		//'rFACEBOOK_HELPER_LIBRARY': ['rKMAPP'],
@@ -199,6 +201,7 @@ require([
 	'rLIBRARIES_CAMPAIGN',
 	'rLIBRARIES_CHANNEL',
 	'rLIBRARIES_ACCOUNT',
+    'rLIBRARIES_GENERAL',
 	'rLIBRARIES_POOL',
     
 /* angular modules */
