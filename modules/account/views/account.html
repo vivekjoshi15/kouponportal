@@ -11,12 +11,12 @@
                     <div class="userName">{{item.clientName}}</div>
                     <div class="userEmail">{{item.email}}</div>
                     <div class="offerManage">
-                        <div class="selection">
-                            <input type="text" value="{{item.roleId}}" disabled="disabled" />
-                            <!--<ui-select multiple ng-model="UserManagementVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                              <ui-select-match placeholder="Select Role Type">{{$item}}</ui-select-match>
-                              <ui-select-choices repeat="List in UserManagementList | filter:$select.search"> {{List}} </ui-select-choices>
-                            </ui-select>-->
+                        <div class="selection2">
+                            <input type="text" ng-model="item.roleId" disabled="disabled" style="display:none;" />
+                            <ui-select ng-model="userRole.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Role Type">{{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="userRole in userRoles | filter:item.roleId"> {{userRole.title}} </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
                     <div class="userOption"> <a ng-click="UsrRemove(item)" class="remove close-green-icon">Remove</a> <a href="#">Reset Password</a></div>

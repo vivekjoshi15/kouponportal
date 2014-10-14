@@ -47,7 +47,7 @@
                     <div class="storeCountry">
                         <p>Country</p>
                             <div class="selection2">
-                                <ui-select ng-model="countryVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select ng-model="country.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
                                     <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices repeat="country in countryList | filter:$select.search"> {{country.name}} </ui-select-choices>
                                 </ui-select>                             
@@ -56,7 +56,7 @@
                     <div class="storeCounty">
                         <p>County</p>
                         <div class="selection2">
-                            <ui-select ng-model="countyVal" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                            <ui-select ng-model="county.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
                                 <ui-select-match placeholder="Select County">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="county in countyList | filter:$select.search"> {{county.name}} </ui-select-choices>
                             </ui-select>
@@ -66,9 +66,9 @@
                 <div class="sets">
                     <p>Group</p>
                     <div class="selection2">
-                        <ui-select ng-model="groupname" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                            <ui-select-match placeholder="Select Group">{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices repeat="group in storeLists | filter:$select.search"> {{group.name}} </ui-select-choices>
+                        <ui-select ng-model="group.selected" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                            <ui-select-match placeholder="Select Group">{{$select.selected.groupname}}</ui-select-match>
+                            <ui-select-choices repeat="group in groups | filter:$select.search"> {{group.groupname}} </ui-select-choices>
                         </ui-select>
                           </div>
                 </div>

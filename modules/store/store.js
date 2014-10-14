@@ -141,12 +141,15 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
 		
 		$scope.country={};
 		$scope.countryList = [{ code: "USA", name: 'USA' }, { code: "Canada", name: 'Canada' }];
+		$scope.country.selected = undefined;
 
         $scope.county = {};
         $scope.countyList = [{ code: "Option1", name: 'Option1' }, { name: 'Option2', code: "Option2" }];
+        $scope.county.selected = undefined;
 
-        $scope.storeLists = storeService.getStoreName();
-        $scope.groupname = {};
+        $scope.groups = storeService.getStoreName();
+        $scope.group = {};
+        $scope.group.selected = undefined;
 
         $scope.state = {};
         $scope.states = [ 
@@ -216,13 +219,14 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
             $scope.model = storeService.getStore($scope.storeid);
 
             var found = $filter('filter')($scope.countryList, { code: $scope.model.country }, true);
-            $scope.countryVal = found[0];
+            $scope.country.selected = found[0];
 
             var found = $filter('filter')($scope.countyList, { code: $scope.model.county }, true);
-            $scope.countyVal = found[0];
+            $scope.county.selected = found[0];
 
-            var found = $filter('filter')($scope.storeLists, { groupname: $scope.model.groupname }, true);
-            $scope.groupname = found[0];
+            console.log($scope.model.groupname);
+            var found = $filter('filter')($scope.groups, { groupname: $scope.model.groupname }, true);
+            $scope.group.selected = found[0];
 
             var found = $filter('filter')($scope.states, { code: $scope.model.state }, true);
             $scope.state.selected = found[0];
@@ -236,9 +240,9 @@ storeModule.controller('kmApp.modules.store.storeEditAction', ['$scope',
 
         $scope.saveStore = function () {
             $scope.model.state = $scope.state.selected.code;
-            $scope.model.country = $scope.countryVal.code;
-            $scope.model.county = $scope.countyVal.code;
-            //$scope.model.groupname = $scope.groupname.code;
+            $scope.model.country = $scope.country.selected.code;
+            $scope.model.county = $scope.county.selected.code;
+            $scope.model.groupname = $scope.group.selected.groupname;
             console.log($scope.model.state);
             console.log($scope.model.country);
 

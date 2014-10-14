@@ -73,7 +73,7 @@ generalModule.controller('kmApp.modules.general.offer', [
             $scope.GeneralOffers.PushmessageLimitPeriod = $scope.NotificationsOption.selected.value;
             $scope.GeneralOffers.EmailmessageLimitPeriod = $scope.EmailMessagesOption.selected.value;
 
-            console.log($scope.TextMessagesOption.selected.value);
+            console.log($scope.GeneralOffers.OfferCategories);
 
             $scope.GeneralOffers.PushMessageLimit = parseInt($scope.GeneralOffers.PushMessageLimit);
             $scope.GeneralOffers.TextMessageLimit = parseInt($scope.GeneralOffers.TextMessageLimit);

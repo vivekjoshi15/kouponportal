@@ -53,23 +53,8 @@ accountModule.controller('kmApp.modules.account.user', [
         }
 
         $scope.userRole = {};
-        $scope.userRoles = [{ 'title': 'Offer Management', 'id': 2 }, { 'title': 'Offer Distribution', 'id': 3 }, { 'title': 'Location Targeting', 'id': 4 }];
+        $scope.userRoles = [{ 'title': 'Offer Management', 'id': 2 }, { 'title': 'Offer Distribution', 'id': 3 }, { 'title': 'Location Targeting', 'id': 1 }];
         $scope.userRole.selected = undefined;
-
-        $scope.selectRoleList = [{
-            text: 'Offer Management',
-            someprop: 'Offer Management'
-        }, {
-            text: 'Offer Distribution',
-            someprop: 'Offer Distribution'
-        }, {
-            text: 'Location Targeting',
-            someprop: 'Location Targeting'
-        }];
-        $scope.selectRoleVal = $scope.selectRoleList[0];
-        $scope.Invite.UserManagement = $scope.selectRoleVal;
-
-
     }]);
 
 accountModule.controller('kmApp.modules.account.plan', [
@@ -90,7 +75,7 @@ accountModule.controller('kmApp.modules.account.plan', [
 	    $scope.planList = accountService.getPlans();
 
 	    var found = $filter('filter')($scope.planList, { planId: $scope.currentPlan.planId }, true);
-	    $scope.planList.splice($scope.planList.indexOf(found), 1);	   
+	    $scope.planList.splice($scope.planList.indexOf(found), 1);
 	}]);
 
 accountModule.controller('kmApp.modules.account.search', [
@@ -195,8 +180,7 @@ accountModule.controller('kmApp.modules.account.account', [
 
 	    $rootScope.isMenu = false;
 
-	    $scope.CreateUser = function ()
-	    {
+	    $scope.CreateUser = function () {
 
 	    }
 

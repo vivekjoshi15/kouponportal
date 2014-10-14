@@ -5,7 +5,7 @@ channelModule.value('clinks',
 	  "module":'Channels',
 	  "items":
 			  [{
-				  "url": "channels/summary",
+				  "url": "channels",
 				  "title": "Summary"
 			  },
 			  {

@@ -17,9 +17,13 @@ storeLibrary.service('kmApp.libraries.store.storeService', ['$filter', function 
         storeList.push(item);
     }
     var getStoreName=function(){
-		var storeName=[];
-	        for(var i=0;i<storeList.length;i++){
-			 storeName.push(storeList[i].name);
+        var storeName = [];
+		for (var i = 0; i < storeList.length; i++) {
+		    var group = { groupname: storeList[i].groupname, id: i }
+		    var found = $filter('filter')(storeName, { groupname: storeList[i].groupname }, true);
+		    if (found[0] == null) {
+		        storeName.push(group);
+		    }
 	       }
 		 return storeName;	
 	}

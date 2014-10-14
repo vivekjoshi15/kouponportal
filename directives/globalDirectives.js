@@ -236,7 +236,7 @@ kmApp.directive('loader', function () {
 //    };
 //});
 //generaltable directive is used for very large table, it allows calling module to do the server site paging and filtering.
-kmApp.directive('generaltable', ['$sce', function ($sce){
+kmApp.directive('generaltable', ['$sce', function ($sce) {
     return {
         restrict: 'A',
         replace: false,
@@ -294,25 +294,24 @@ kmApp.directive('generaltable', ['$sce', function ($sce){
                     $('.hoverrow').css('cursor', 'default');
                 }
             });
-            $scope.getCell = function(item,type){
-                if(type== "img")
-                {
+            $scope.getCell = function (item, type) {
+                if (type == "img") {
                     var img = "https://c815555.ssl.cf2.rackcdn.com/" + item;
-                    return $sce.trustAsHtml("<a href='" + img +"' rel='lightbox'> <img  src='"+ img+ "' height='80' rel='lightbox' /> </a>");
+                    return $sce.trustAsHtml("<a href='" + img + "' rel='lightbox'> <img  src='" + img + "' height='80' rel='lightbox' /> </a>");
                 }
-                return $sce.trustAsHtml("<span>"+ item +"</span>");
+                return $sce.trustAsHtml("<span>" + item + "</span>");
 
             };
-			 $scope.$watch("tabledata.rowval | tableColumnSort: (reverse * (sortcolumn+1)):sorttype", function(newVal) {
-				  $scope.filtered = newVal;
-				}, true);
-	
+            $scope.$watch("tabledata.rowval | tableColumnSort: (reverse * (sortcolumn+1)):sorttype", function (newVal) {
+                $scope.filtered = newVal;
+            }, true);
+
             $scope.selectHeaderIndex = function (ind) {
                 $scope.sortcolumn = ind;
                 $scope.sorttype = $scope.tabledata.header[ind].type;
                 $scope.reverse = (-1 * $scope.reverse);
                 var indx = 0;
-				
+
                 $('.sortindicator').each(function () {
                     $(this).removeClass('arrow-up').removeClass('arrow-down');
                     if (indx == ind) {
@@ -372,9 +371,9 @@ kmApp.directive('generaltable', ['$sce', function ($sce){
                 }
                 else { return false; }
             };
-			$scope.tableInfo=function(){
-			   return 	$scope.currentpage +' of '+ $scope.numberOfPages() ;
-			}
+            $scope.tableInfo = function () {
+                return $scope.currentpage + ' of ' + $scope.numberOfPages();
+            }
             $scope.isFirstPage = function () {
                 if (($scope.currentpage % $scope.pagesize) == 1) {
                     return true;
@@ -624,7 +623,7 @@ kmApp.directive('ngSearchenter', function () {
 //});
 //clienttable does client site paging, no need to retrieve new page from server site.
 //it is used in smaller tables, has better performance than generaltable directive
-kmApp.directive('clienttable',['$sce', function ($sce) {
+kmApp.directive('clienttable', ['$sce', function ($sce) {
     return {
         restrict: 'A',
         replace: false,
@@ -633,8 +632,8 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             deletetargetlist: '&',
             edittargetlist: '&',
             copytargetlist: '&',
-			deactivetargetlist:'&',
-			templatetargetlist:'&',
+            deactivetargetlist: '&',
+            templatetargetlist: '&',
             inserttargetlist: '&',
             selecttargetlist: '&',
             getnextpage: '&',
@@ -657,8 +656,8 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             $scope.hasdelete = 1;
             $scope.hasinsert = 1;
             $scope.hasedit = 1;
-			$scope.hasdeactive = 1;
-			$scope.hastemplate = 1;
+            $scope.hasdeactive = 1;
+            $scope.hastemplate = 1;
             $scope.groupeditmode = false;
             $scope.sorttype = 's';
             $scope.$watch('overrideedit', function (newValue, oldValue) {
@@ -771,9 +770,9 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
 
                 return Math.ceil($scope.totalcount / $scope.pagesize);
             }
-			$scope.tableInfo=function(){
-			   return 	$scope.currentpage +' of '+ $scope.numberOfPages() ;
-			}
+            $scope.tableInfo = function () {
+                return $scope.currentpage + ' of ' + $scope.numberOfPages();
+            }
             $scope.isFirstPage = function () {
                 if (($scope.currentpage % $scope.pagesize) == 1) {
                     return true;
@@ -818,10 +817,10 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
             if ($attrs['inserttargetlist'] == undefined) {
                 $scope.hasinsert = 0;
             }
-			 if ($attrs['deactivetargetlist'] == undefined) {
-                $scope.hasdeactive  = 0;
+            if ($attrs['deactivetargetlist'] == undefined) {
+                $scope.hasdeactive = 0;
             }
-			 if ($attrs['templatetargetlist'] == undefined) {
+            if ($attrs['templatetargetlist'] == undefined) {
                 $scope.hastemplate = 0;
             }
             if ($scope.overrideedit == '1') {
@@ -891,7 +890,7 @@ kmApp.directive('clienttable',['$sce', function ($sce) {
 //]);
 
 
-kmApp.directive('subheader', ['$routeParams',function ($routeParams) {
+kmApp.directive('subheader', ['$routeParams', function ($routeParams) {
     return {
         restrict: 'E',
         templateUrl: 'directives/templates/subheader.html',
@@ -900,12 +899,12 @@ kmApp.directive('subheader', ['$routeParams',function ($routeParams) {
     }
 }]);
 
-kmApp.directive('tags', ['$routeParams', function ($timeout) {
+kmApp.directive('tags', ['$routeParams', function ($timeout, $filter) {
     return {
         restrict: 'E',
         templateUrl: 'directives/templates/tags.html',
         scope: {
-            items:'=',
+            items: '=',
             model: '=',
             labelfield: '@',
             title: '@',
@@ -917,32 +916,62 @@ kmApp.directive('tags', ['$routeParams', function ($timeout) {
         },
         replace: false,
         link: function (scope, elem, attrs) {
-            scope.editItem = function (selectedItem) {
-                console.log(selectedItem);
-                scope.model = selectedItem;
-                scope.current = undefined;
-                scope.selected = true;
-                //$timeout(function () {
-                //    scope.onSelect();
-                //}, 200);
-            };
-            scope.delItem = function (selectedItem) {
-                console.log(selectedItem);
-                scope.model = selectedItem;
-                scope.current = undefined;
-                scope.selected = true;
-                //$timeout(function () {
-                //    scope.onSelect();
-                //}, 200);
-            };
+            scope.newItem = "";
+            scope.selItem = "";
             scope.current = undefined;
             scope.selected = true; // hides the list initially
+
+            scope.addItem = function () {
+                console.log("adding item");
+                scope.isNew = false;                
+                var fields = '{"' + scope.labelfield + '":"' + scope.newItem + '"}';
+                var item = angular.fromJson(fields);
+                scope.items.push(item);
+                scope.newItem = "";
+            };
+
+            scope.editItem = function (selectedItem, index) {
+                console.log(selectedItem);
+                scope.model = selectedItem;
+                scope.current = undefined;
+                scope.selected = true;
+                //$timeout(function () {
+                //    scope.onSelect();
+                //}, 200);
+            };
+
+            scope.delItem = function (selectedItem, index) {
+                console.log(selectedItem);
+                scope.items.splice(index, 1);
+                scope.current = undefined;
+                scope.selected = false;
+            };
+            
             scope.isCurrent = function (index) {
                 return scope.current == index;
             };
             scope.setCurrent = function (index) {
-                scope.current = index;
+                if (scope.current == index) {
+                    scope.current = undefined;
+                }
+                else {
+                    scope.current = index;
+                }
             };
         }
     }
 }]);
+
+kmApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
