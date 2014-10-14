@@ -214,9 +214,6 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 	  }
 	  
 	 $scope.saveCampaign=function(){
-		 
-		 
-		 alert($scope.model.ddType);
 		  if ($scope.campaign_id != 0 && $scope.iscopy == 'false'){
                 campaignService.editCampaign($scope.campaign_id, $scope.model);
 				$location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/'+$scope.campaign_id);

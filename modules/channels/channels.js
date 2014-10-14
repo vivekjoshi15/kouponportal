@@ -1,23 +1,5 @@
-var channelModule = angular.module('kmApp.modules.channel', ['angular.filter', 'kmApp.libraries.notification','ui.select']);
+var channelModule = angular.module('kmApp.modules.channel', ['angular.filter', 'kmApp.libraries.notification','ui.select','colorpicker.module']);
 
-channelModule.value('clinks',
-	{
-	  "module":'Channels',
-	  "items":
-			  [{
-				  "url": "channels",
-				  "title": "Summary"
-			  },
-			  {
-				  "url": "channels/design",
-				  "title": "Design"
-			  },
-			  {
-				  "url": "channels/details",
-				  "title": "Details"
-			  }]
-	}
-);
 channelModule.controller('kmApp.modules.channels.channels',
 						 ['$scope',
 						  'kmApp.libraries.channel.channelService',
@@ -33,26 +15,27 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
 							 '$rootScope',
 							 '$routeParams',
 							 '$location',
-							 'clinks',
 							 'kmApp.libraries.notification.screenNotifyService',
 							 'kmApp.libraries.channel.channelService',
-                               function ($scope,$rootScope,$routeParams,$location,clinks,notification,channelService) {
+                               function ($scope,$rootScope,$routeParams,$location,notification,channelService) {
+	$scope.model={};
+	$scope.channelid = $routeParams.id;
 	
-	$scope.arrow=true;
-	$scope.links=clinks;
-	$scope.title='Summary';
-	$scope.links.module='Channels';
-		
-		console.log($scope.links);						   
-   $scope.channelid = $routeParams.id;
-    if($scope.channelid != 0){
+    $scope.channelTypeList=[{type:'Type 1'},{type:'Type 2'},{type:'Type 3'}];
+    $scope.model.channel_type = undefined;
+						    
+   if($scope.channelid != 0){
 		  $scope.model=channelService.getChannel($scope.channelid);
 	  };
-	  
-   $scope.channelTypeList=['Type 1','Type 2','Type 3'];
-   $scope.channelType;
+
+	
+   $scope.county = {};
+   $scope.countyList = [{ code: "Option1", name: 'Option1' }, { name: 'Option2', code: "Option2" }];
+   $scope.county.selected = undefined;
+		
    $scope.model;
    $scope.saveChannel=function(){
+	   console.log($scope.model);
 	   	 if ($scope.channelid != 0){
                 channelService.editChannel($scope.channelid, $scope.model);
 		  }			
@@ -60,7 +43,7 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
 				channelService.addChannel($scope.model);
 			} 
 	 notification.addSuccess('Channel saved successfully!!!');
-	 $location.path('/'+$rootScope.UserData.clientName+'/channels');
+	 //$location.path('/'+$rootScope.UserData.clientName+'/channels');
    }
    
 }]);
@@ -70,12 +53,10 @@ channelModule.controller('kmApp.modules.channels.design',
 						  '$rootScope',
 						  '$routeParams',
 						  '$location',
-						  'clinks', 
-						  function ($scope,$rootScope,$routeParams,$location,clinks) {
-    $scope.arrow=true;     
-    $scope.links=clinks;
-	$scope.title='Design';
-	$scope.links.module='New Channel';
+						  function ($scope,$rootScope,$routeParams,$location) {
+	
+	$scope.channelid = $routeParams.id;
+
 }]);
 
 
@@ -83,30 +64,21 @@ channelModule.controller('kmApp.modules.channels.details',
 						 ['$scope',
 						  '$rootScope',
 						  '$routeParams',
-						  '$location',
-						  'clinks', 
-						  function ($scope,$rootScope,$routeParams,$location,clinks) {
+						  '$location', 
+						  function ($scope,$rootScope,$routeParams,$location) {
 		
-		$scope.arrow=true;
-		$scope.links=clinks;
-		$scope.title='Details';
-		$scope.links.module='VS Web Channel';
+	$scope.channelid = $routeParams.id;
 		
 
 }]);channelModule.controller('kmApp.modules.channels.details.done',
 							 ['$scope',
 							  '$rootScope',
 							  '$routeParams',
-							  '$location',
-							  'clinks', 
-							  function ($scope,$rootScope,$routeParams,$location,clinks) {
+							  '$location', 
+							  function ($scope,$rootScope,$routeParams,$location) {
 		
-		$scope.arrow=true;
-		$scope.links=clinks;
-		$scope.title='Details';
-		$scope.links.module='VS Web Channel';
-		
+	$scope.channelid = $routeParams.id;
 
-
+	
 }]);
 

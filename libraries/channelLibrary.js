@@ -2,9 +2,9 @@ var channelLibrary = angular.module('kmApp.libraries.channel', []);
 
 channelLibrary.service('kmApp.libraries.channel.channelService', ['$filter', function ($filter) {
     var channelList = [
-                       {channelid:1,channel_name:'VS Android App',icon:'android-icon',channel_desc:'description',channel_type:''},
-					   {channelid:2,channel_name:'VS Native iOS App',icon:'iphone-icon',channel_desc:'description',channel_type:''},
-					   {channelid:3,channel_name:'VS Web',icon:'web-icon',channel_desc:'description',channel_type:''}
+                       {channelid:1,channel_name:'VS Android App',icon:'android-icon',channel_desc:'description',channel_type:{type:'Type 1'}},
+					   {channelid:2,channel_name:'VS Native iOS App',icon:'iphone-icon',channel_desc:'description',channel_type:{type:'Type 2'}},
+					   {channelid:3,channel_name:'VS Web',icon:'web-icon',channel_desc:'description',channel_type:{type:'Type 3'}}
     ];
 
     //console.log(storeList[0]);

@@ -1,5 +1,14 @@
 <main class="white" ng-app="kmApp.modules.channel">
-<subHeader></subHeader>
+  <div class="subHeader">
+    <h1>VS Web Channel</h1>
+  </div>
+  <div class="step arrow">
+    <ul>
+      <li><a href="#/{{UserData.clientName}}/channels/summary/{{channelid}}">Summary</a></li>
+      <li><a href="#/{{UserData.clientName}}/channels/design/{{channelid}}">Design</a></li>
+      <li class="active"><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>
+    </ul>
+  </div>
   <div class="data details">
     <header>
       <h1>Your channel is ready</h1>
@@ -46,7 +55,7 @@
       </div>
     </div>
     <div class="divider no-btm"></div>
-    <div class="centerButtom mrg"><a href="#/channels/details/done">Done</a></div>
+    <div class="centerButtom mrg"><a href="#/{{UserData.clientName}}/channels/details/done/{{channelid}}">Done</a></div>
     <br class="clear"/>
   </div>
 </main>

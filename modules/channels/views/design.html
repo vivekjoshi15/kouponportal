@@ -1,87 +1,88 @@
 <main class="white design" ng-app="kmApp.modules.channel">
-    <subheader></subheader>
-    <div class="data">
-        <header>
-            <h1>template type</h1>
-            <span class="question-icon dg2"></span>
-        </header>
-        <div class="wrapContainer">
-            <div class="sets">
-                <div class="tempdetail">
-                    <h1>Offer Viewer</h1>
-                    <p>Koupon's Offer Viewer tool is the fastest and easiest way to display offers to customers. Style your experience below and we'll generate the page for you.</p>
-                </div>
-                <div class="designbox">
-                    <a ng-init="templateTypeCustom=false" ng-click="templateTypeCustom=false" ng-class="{'selected':!templateTypeCustom,'border-links':templateTypeCustom}">Selected</a>
-                </div>
-            </div>
-            <div class="divider"></div>
-            <div class="sets">
-                <div class="tempdetail no-mrg">
-                    <h1>Go Custom</h1>
-                    <p>If you'd prefer a more unique look, select custom.  We'll provide the code you need to display offers in your web experience, but it will require development.</p>
-                </div>
-                <div class="designbox"><a ng-click="templateTypeCustom=true" ng-class="{'selected':templateTypeCustom,'border-links':!templateTypeCustom}">Select</a> </div>
-            </div>
+  <div class="subHeader">
+    <h1>New Channel</h1>
+  </div>
+  <div class="step arrow">
+    <ul>
+      <li><a href="#/{{UserData.clientName}}/channels/summary/{{channelid}}">Summary</a></li>
+      <li class="active"><a href="#/{{UserData.clientName}}/channels/design/{{channelid}}">Design</a></li>
+      <li><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>
+    </ul>
+  </div>
+  <div class="data">
+    <header>
+      <h1>template type</h1>
+      <span class="question-icon dg2"></span> </header>
+    <div class="wrapContainer">
+      <div class="sets">
+        <div class="tempdetail">
+          <h1>Offer Viewer</h1>
+          <p>Koupon's Offer Viewer tool is the fastest and easiest way to display offers to customers. Style your experience below and we'll generate the page for you.</p>
         </div>
-        <div class="float" ng-hide="templateTypeCustom">
-            <div class="title">
-                <h1>styling and branding </h1>
-                <span class="question-icon"></span>
-            </div>
-            <div class="wrapContainer">
-                <div class="sets">
-                    <div class="setbackground">
-                        <header>
-                            <h1>Primary Image</h1>
-                            <a href="#" class="remove close-grey-icon">Remove</a>
-                        </header>
-                        <div class="setImage">
-                            <div class="imageBg"><img alt="" src="kmApp/images/temp-logo.png"></div>
-                        </div>
-                        <div class="divider no-btm"></div>
-                        <div class="logo-size-slider"><img alt="" src="kmApp/images/slider.png"></div>
-                    </div>
-                </div>
-                <div class="sets">
-                    <p><span>Select Brand Color</span> Dark and warm colors work best</p>
-                    <input type="text" class="focus slide-icon" />
-                </div>
-            </div>
-            <div class="title">
-                <h1> redemption offer </h1>
-                <span class="question-icon"></span>
-            </div>
-            <div class="wrapContainer">
-                <div class="sets">
-                    <p>Certain channel types offer more than one method of redemption. Select the methods that customers can redeem below. </p>
-                </div>
-                <div class="sets">
-                    <div class="check-row check-box gBox">
-                        <input type="checkbox" id="print" checked="checked" />
-                        <label for="print">Print</label>
-                    </div>
-                    <div class="check-row check-box gBox">
-                        <input type="checkbox" id="smsText" checked="checked" />
-                        <label for="smsText">SMS Text</label>
-                    </div>
-                </div>
-                <div class="setSubDesign">
-                    <header>
-                        <h1 class="check-box gBox">
-                            <input type="checkbox" id="barcodeText" checked="checked" />
-                            <label for="barcodeText">Include barcode in text message</label>
-                        </h1>
-                        <span>40 / 120</span>
-                    </header>
-                    <div class="wrapSetSubDesign"> <span>Here is your Victoria's Secret Offer!</span> <a href="#">Offer Link</a><a href="#">Barcode Number</a> </div>
-                    <div> </div>
-                </div>
-            </div>
+        <div class="designbox"> <a ng-init="templateTypeCustom=false" ng-click="templateTypeCustom=false" ng-class="{'selected':!templateTypeCustom,'border-links':templateTypeCustom}">Selected</a> </div>
+      </div>
+      <div class="divider"></div>
+      <div class="sets">
+        <div class="tempdetail no-mrg">
+          <h1>Go Custom</h1>
+          <p>If you'd prefer a more unique look, select custom.  We'll provide the code you need to display offers in your web experience, but it will require development.</p>
         </div>
-        <br class="clear" />
+        <div class="designbox"><a ng-click="templateTypeCustom=true" ng-class="{'selected':templateTypeCustom,'border-links':!templateTypeCustom}">Select</a> </div>
+      </div>
     </div>
-    <footer>
-        <a>Save & Continue</a> <a class="border-links" href="#">View Preview</a><a class="cancel" href="#">cancel</a> <br class="clear">
-    </footer>
+    <div class="float" ng-hide="templateTypeCustom">
+      <div class="title">
+        <h1>styling and branding </h1>
+        <span class="question-icon"></span> </div>
+      <div class="wrapContainer">
+        <div class="sets">
+          <div class="setbackground">
+            <header>
+              <h1>Primary Image</h1>
+              <a href="#" class="remove close-grey-icon">Remove</a> </header>
+            <div class="setImage">
+              <div class="imageBg"><img alt="" src="kmApp/images/temp-logo.png"></div>
+            </div>
+            <div class="divider no-btm"></div>
+            <div class="logo-size-slider"><img alt="" src="kmApp/images/slider.png"></div>
+          </div>
+        </div>
+        <div class="sets">
+          <p><span>Select Brand Color</span> Dark and warm colors work best</p>
+          <input type="text" colorpicker ng-model="model.color" class="focus slide-icon" placeholder="Enter Hex Value" />
+        </div>
+      </div>
+      <div class="title">
+        <h1> redemption offer </h1>
+        <span class="question-icon"></span> </div>
+      <div class="wrapContainer">
+        <div class="sets">
+          <p>Certain channel types offer more than one method of redemption. Select the methods that customers can redeem below. </p>
+        </div>
+        <div class="sets">
+          <div class="check-row check-box gBox">
+            <input type="checkbox" id="print" checked="checked" />
+            <label for="print">Print</label>
+          </div>
+          <div class="check-row check-box gBox">
+            <input type="checkbox" id="smsText" checked="checked" />
+            <label for="smsText">SMS Text</label>
+          </div>
+        </div>
+        <div class="setSubDesign">
+          <header>
+            <h1 class="check-box gBox">
+              <input type="checkbox" id="barcodeText" checked="checked" />
+              <label for="barcodeText">Include barcode in text message</label>
+            </h1>
+            <span>40 / 120</span> </header>
+          <div class="wrapSetSubDesign"> <span>Here is your Victoria's Secret Offer!</span> <a href="#">Offer Link</a><a href="#">Barcode Number</a> </div>
+          <div> </div>
+        </div>
+      </div>
+    </div>
+    <br class="clear" />
+  </div>
+  <footer> <a>Save & Continue</a> <a class="border-links" href="#">View Preview</a><a class="cancel" href="#">cancel</a> <br class="clear">
+  </footer>
 </main>

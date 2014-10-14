@@ -1,7 +1,7 @@
 <div class="subHeader">
     <h1>{{links.module}}</h1>
 </div>
-<div class="step" ng-class="{'arrow':arrow}">
+<div class="step">
     <ul>
         <li ng-class="{active:(item.title==title)}" ng-repeat='item in links.items'><a href="{{item.url |links}}">{{item.title}}</a></li>
     </ul>

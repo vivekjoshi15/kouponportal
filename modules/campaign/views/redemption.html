@@ -1,144 +1,143 @@
 <main class="offer" ng-app="kmApp.modules.offer">
-<form name="redemption">
-  <div class="subHeader">
-    <h1>New Offer</h1>
-    <div class="draft" ng-show="(draftCampaign!=null)">Draft</div>
-  </div>
-  
-  <div class="step arrow">
-    <ul>
-<!--      <li><a href="#/{{UserData.clientName}}/campaign/details">Details</a></li>
-      <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption">Redemption</a></li>
-      <li><a href="#/{{UserData.clientName}}/campaign/channels">Channels</a></li>-->
-      <li><a >Details</a></li>
-      <li class="active"><a >Redemption</a></li>
-      <li><a >Channels</a></li>
-    </ul>
-  </div>
-  <div class="offerContainer">
-    <div class="offer-left-panel">
-      <header>
-        <h1>Scheduling</h1>
-        <span class="question-icon"></span> </header>
-      <div class="wrapContainer">
-        <div class="sets rdate">
-          <div class="from">
-            <p>Dates Available for Redemption</p>
-            <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>
-              <time>12:35 PM</time>
+  <form name="redemption">
+    <div class="subHeader">
+      <h1>{{title}}</h1>
+      <div class="draft" ng-show="(draftCampaign!=null)">Draft</div>
+    </div>
+    <div class="step arrow">
+      <ul>
+        <li><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}">Details</a></li>
+        <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}">Redemption</a></li>
+        <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}">Channels</a></li>
+      </ul>
+    </div>
+    <div class="offerContainer">
+      <div class="offer-left-panel">
+        <header>
+          <h1>Scheduling</h1>
+          <span class="question-icon"></span> </header>
+        <div class="wrapContainer">
+          <div class="sets rdate">
+            <div class="from">
+              <p>Dates Available for Redemption</p>
+              <div class="timeDetails calender-icon">
+                <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>
+                <time>12:35 PM</time>
+              </div>
+            </div>
+            <span>to</span>
+            <div class="to">
+              <p>&nbsp;</p>
+              <div class="timeDetails calender-icon">
+                <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="end_date_date" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{end_date_date| date:'MMM dd yyyy'}}</p>
+                <time>12:35 PM</time>
+              </div>
             </div>
           </div>
-          <span>to</span>
-          <div class="to">
-            <p>&nbsp;</p>
-            <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened2')" class="form-control" datepicker-popup="{{format}}" ng-model="end_date_date" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{end_date_date| date:'MMM dd yyyy'}}</p>
-              <time>12:35 PM</time>
-            </div>
-          </div>
-        </div>
-        <div class="sets layout">
+          <div class="sets layout">
             <div class="check-row check-box gBox">
-                <input type="checkbox" id="schedule">
-                <label for="schedule">Schedule preview for this offer
-              </label>
-           </div>
-          <div class="timeDetails calender-icon">
-            <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{publish_date_date| date:'MMM dd yyyy'}}</p>
-            <time>12:35 PM</time>
+              <input type="checkbox" id="schedule">
+              <label for="schedule">Schedule preview for this offer </label>
+            </div>
+            <div class="timeDetails calender-icon">
+              <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{publish_date_date| date:'MMM dd yyyy'}}</p>
+              <time>12:35 PM</time>
+            </div>
+          </div>
+          <div class="sets schedule">
+            <p>Scheduling copy </p>
+            <input  type="text" ng-model="model.scheduling_copy" required  class="focus" />
+            <span>Copy will replace auto-generate text driven by the dates </span> </div>
+        </div>
+        <div class="title">
+          <h1 >Code source</h1>
+          <span class="question-icon"></span> </div>
+        <div class="wrapContainer codepool">
+          <div class="sets codeSource">
+            <div class="check-box">
+              <input type="radio" ng-model="codeSource" ng-init="codeSource='codepool'" value="codepool" id="codepool">
+              <label for="codepool">Code Pool</label>
+            </div>
+            <div class="check-box">
+              <input type="radio" ng-model="codeSource" value="manual" id="manual">
+              <label for="manual">Manual Entry</label>
+            </div>
           </div>
         </div>
-        <div class="sets schedule">
-          <p>Scheduling copy </p>
-          <input  type="text" ng-model="model.scheduling_copy" required  class="focus" />
-          <span>Copy will replace auto-generate text driven by the dates </span> </div>
-      </div>
-      <div class="title">
-        <h1 >Code source</h1>
-        <span class="question-icon"></span> </div>
-      <div class="wrapContainer codepool">
-        <div class="sets codeSource"> 
-        <div class="check-box">
-           <input type="radio" ng-model="codeSource" ng-init="codeSource='codepool'" value="codepool" id="codepool">
-           <label for="codepool">Code Pool</label>
-         </div>
-         <div class="check-box">
-           <input type="radio" ng-model="codeSource" value="manual" id="manual">
-           <label for="manual">Manual Entry</label>
-         </div>
-        </div>
-      </div>
-      <div class="divider no-btm"></div>
-      <div class="wrapContainer">
-        <div class="sets" ng-show="(codeSource=='codepool')">
-         <div class="float moreSelect" ng-class="{'last':$last}" ng-repeat="item in model.pools">
-          <p>Select Pool</p>
-          <div class="selectpool">
-            <div class="selection2">
+        <div class="divider no-btm"></div>
+        <div class="wrapContainer">
+          <div class="sets" ng-show="(codeSource=='codepool')">
+            <div class="float moreSelect" ng-class="{'last':$last}" ng-repeat="item in model.pools">
+              <p>Select Pool</p>
+              <div class="selectpool">
+                <div class="selection2">
                   <ui-select  ng-model="model.pool" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="Select Pool">{{$item}}</ui-select-match>
                     <ui-select-choices repeat="List in poolList | filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
                 </div>
+              </div>
+              <div class="removepool"><a ng-click="pool=''" class="close-green-icon">Remove</a></div>
+            </div>
+            <div class="poolDetails"><a ng-click="addMorePools()">+ Add Code Pool</a> <span>{{poolList.length - model.pools.length}} Codes Left</span> </div>
           </div>
-          <div class="removepool"><a ng-click="pool=''" class="close-green-icon">Remove</a></div>       
-         </div>
-         <div class="poolDetails"><a ng-click="addMorePools()">+ Add Code Pool</a> <span>{{poolList.length - model.pools.length}} Codes Left</span> </div>
-        </div>
-        <div class="sets" ng-show="(codeSource=='manual')">
-          <p>Code Type </p>
-          <div class="codeType">
-            <div class="selection2">
-                  <ui-select multiple ng-model="codetype" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                    <ui-select-match placeholder="Select Pool">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in codetypeList | filter:$select.search"> {{List}} </ui-select-choices>
-                  </ui-select>
-                </div>
-          </div>
-          <div class="mcodeSelect">
-            <input type="text" value="17361823612836128"/>
-          </div>
-          <div class="removepool"><a class="close-green-icon">Remove</a></div>
-          <div class="poolDetails"> <a href="#">+ Add Code </a> </div>
-        </div>
-      </div>
-      <div class="title">
-        <h1>usage and availability </h1>
-        <span class="question-icon"></span> </div>
-      <div class="wrapContainer wrapRedemption">
-        <div class="sets redemptionLimit"> <span>Redemptions Per Customer</span>
-          <div class="limits check-box"> 
-           <div class="a"><input type="radio" ng-model="model.limits" id="limited" value="limited" ng-init="model.limits='limited'" /><label for="limited">Limited</a></label></div>
-           <div class="a"><input type="radio" ng-model="model.limits" id="unlimited" value="unlimited" /><label for="unlimited">Unlimited</a></label></div>
+          <div class="sets" ng-show="(codeSource=='manual')">
+            <p>Code Type </p>
+            <div class="codeType">
+              <div class="selection2">
+                <ui-select multiple ng-model="codetype" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select-match placeholder="Select Pool">{{$item}}</ui-select-match>
+                  <ui-select-choices repeat="List in codetypeList | filter:$select.search"> {{List}} </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            <div class="mcodeSelect">
+              <input type="text" value="17361823612836128"/>
+            </div>
+            <div class="removepool"><a class="close-green-icon">Remove</a></div>
+            <div class="poolDetails"> <a href="#">+ Add Code </a> </div>
           </div>
         </div>
-      </div>
-      <div class="divider no-btm"></div>
-      <div class="wrapContainer">
-        <div class="sets">
-          <div class="half" ng-show="(codeSource=='codepool')">
-            <p>Redemptions allowed per customer</p>
-            <input type="text" class="focus" ng-model="model.per_customer"/>
-          </div>
-          <div class="half">
-            <p>Maxiumum Redemptions</p>
-            <input type="text" class="focus"  ng-model="model.max_redemption"/>
+        <div class="title">
+          <h1>usage and availability </h1>
+          <span class="question-icon"></span> </div>
+        <div class="wrapContainer wrapRedemption">
+          <div class="sets redemptionLimit"> <span>Redemptions Per Customer</span>
+            <div class="limits check-box">
+              <div class="a">
+                <input type="radio" ng-model="model.limits" id="limited" value="limited" ng-init="model.limits='limited'" />
+                <label for="limited">Limited</a></label>
+              </div>
+              <div class="a">
+                <input type="radio" ng-model="model.limits" id="unlimited" value="unlimited" />
+                <label for="unlimited">Unlimited</a></label>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="sets layout">
-        <div class="check-row check-box gBox timer">
-                <input type="checkbox" id="OfferTimer" ng-model="model.timer">
-                <label for="OfferTimer">Use an Offer Timer
-              </label>
-           </div>
-          <div class="timeDetails timer">
-             <input  type="text" ng-model="model.limitPertimeType"/>
-            
-            <span>MIN</span> </div>
-        </div>
-        <div class="sets advancedCap">
-         <div class="float addAdvancedCap" ng-repeat="item in advancedCaps" ng-class="{last:$last}">
+        <div class="divider no-btm"></div>
+        <div class="wrapContainer">
+          <div class="sets">
+            <div class="half" ng-show="(codeSource=='codepool')">
+              <p>Redemptions allowed per customer</p>
+              <input type="text" class="focus" ng-model="model.per_customer"/>
+            </div>
+            <div class="half">
+              <p>Maxiumum Redemptions</p>
+              <input type="text" class="focus"  ng-model="model.max_redemption"/>
+            </div>
+          </div>
+          <div class="sets layout">
+            <div class="check-row check-box gBox timer">
+              <input type="checkbox" id="OfferTimer" ng-model="model.timer">
+              <label for="OfferTimer">Use an Offer Timer </label>
+            </div>
+            <div class="timeDetails timer">
+              <input  type="text" ng-model="model.limitPertimeType"/>
+              <span>MIN</span> </div>
+          </div>
+          <div class="sets advancedCap">
+            <div class="float addAdvancedCap" ng-repeat="item in advancedCaps" ng-class="{last:$last}">
               <div class="advancedCap">
                 <p>Advanced Cap</p>
                 <div class="offerDesc">
@@ -147,52 +146,57 @@
               </div>
               <div class="advanceSelectOffer">
                 <div class="selection2">
-                      <ui-select multiple ng-model="advancedCap" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                        <ui-select-match placeholder="">{{$item}}</ui-select-match>
-                        <ui-select-choices repeat="List in advancedCapList| filter:$select.search"> {{List}} </ui-select-choices>
-                      </ui-select>
-                    </div>
-              </div>
-              <div class="advanceOfferRemove"><a class="close-green-icon" ng-click="advancedCap=''">Remove</a></div>
-          </div>
-          <div class="advanceOfferAdd"><a ng-click="addAdvancedCap()">+ Add Cap</a></div>
-        </div>
-        
-        <div class="sets">
-          <div class="divider"></div>
-        </div>
-        <div class="sets">
-          <p>Available Stores</p>
-          <div class="selection2">
-                  <ui-select multiple ng-model="availableStore" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                  <ui-select multiple ng-model="advancedCap" theme="select2" ng-disabled="disabled" style="width: 100%;">
                     <ui-select-match placeholder="">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in availableStoreList | filter:$select.search"> {{List}} </ui-select-choices>
+                    <ui-select-choices repeat="List in advancedCapList| filter:$select.search"> {{List}} </ui-select-choices>
                   </ui-select>
                 </div>
+              </div>
+              <div class="advanceOfferRemove"><a class="close-green-icon" ng-click="advancedCap=''">Remove</a></div>
+            </div>
+            <div class="advanceOfferAdd"><a ng-click="addAdvancedCap()">+ Add Cap</a></div>
+          </div>
+          <div class="sets">
+            <div class="divider"></div>
+          </div>
+          <div class="sets">
+            <p>Available Stores</p>
+            <div class="selection2">
+              <ui-select multiple ng-model="availableStore" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                <ui-select-match placeholder="">{{$item}}</ui-select-match>
+                <ui-select-choices repeat="List in availableStoreList | filter:$select.search"> {{List}} </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="sets restrict check-box">
+            <input type="checkbox" id="restrict"/>
+            <label for="restrict">Restrict redemption to customers located at selected stores</label>
+          </div>
         </div>
-        <div class="sets restrict check-box"><input type="checkbox" id="restrict"/> <label for="restrict">Restrict redemption to customers located at selected stores</label> </div>
       </div>
-    </div>
-    <div class="offer-right-panel preview">
-      <header>
-        <h1>PREVIEW </h1>
-        <p class="set"> Offer styling might differ by channel</p>
-        <span class="question-icon"></span> </header>
-      <div class="wrapPreviewOffer">
-        <div class="previewOffer">
-          <div class="previewOfferTemplate"> <img src="kmApp/images/offer-image.png" alt=""/>
-            <h1>{{model.campaign_name}}</h1>
-            <h2>{{model.campaign_title}}</h2>
-            <h6>{{model.valid_date_description}}</h6>
-            <p>{{model.Disclaimer}}</p>
-            <p>{{model.coupon_instructions}}</p>
+      <div class="offer-right-panel preview">
+        <header>
+          <h1>PREVIEW </h1>
+          <p class="set"> Offer styling might differ by channel</p>
+          <span class="question-icon"></span> </header>
+        <div class="wrapPreviewOffer">
+          <div class="previewOffer">
+            <div class="previewOfferTemplate"> <img src="kmApp/images/offer-image.png" alt=""/>
+              <h1>{{model.campaign_name}}</h1>
+              <h2>{{model.campaign_title}}</h2>
+              <h6>{{model.valid_date_description}}</h6>
+              <p>{{model.Disclaimer}}</p>
+              <p>{{model.coupon_instructions}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <br class="clear"/>
-  <footer> <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled">Save Changes</button> <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled" class="border-links">Save As Draft</button> <a href="#/{{UserData.clientName}}/campaign" class="cancel">cancel</a> <br class="clear">
-  </footer>
+    <br class="clear"/>
+    <footer>
+      <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled">Save Changes</button>
+      <button ng-click="saveRedemption()" ng-disabled="redemption.$invalid" disabled="disabled" class="border-links">Save As Draft</button>
+      <a href="#/{{UserData.clientName}}/campaign" class="cancel">cancel</a> <br class="clear">
+    </footer>
   </form>
 </main>

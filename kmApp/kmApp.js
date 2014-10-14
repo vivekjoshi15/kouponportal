@@ -60,15 +60,15 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			    templateUrl: 'modules/channels/views/summary.html',
 			    controller: 'kmApp.modules.channels.summaryEditAction'
 			}).
-			when('/:clientName/channels/design', {
+			when('/:clientName/channels/design/:id', {
 			    templateUrl: 'modules/channels/views/design.html',
 			    controller: 'kmApp.modules.channels.design'
 			}).
-			when('/:clientName/channels/details', {
+			when('/:clientName/channels/details/:id', {
 			    templateUrl: 'modules/channels/views/details.html',
 			    controller: 'kmApp.modules.channels.details'
 			}).
-			when('/:clientName/channels/details/done', {
+			when('/:clientName/channels/details/done/:id', {
 			    templateUrl: 'modules/channels/views/details.done.html',
 			    controller: 'kmApp.modules.channels.details.done'
 			}).

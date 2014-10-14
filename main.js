@@ -36,7 +36,7 @@ require.config({
         //rANGULARUI_MAP_UTILS: 'libraries/3rdParty/angularUI/markerclusterer_packed',
 		//rDRAGDROP: 'libraries/3rdParty/dragdrop/lvl-drag-drop',
 		//rDRAGDROPUID: 'libraries/3rdParty/dragdrop/lvl-uuid',
-		//rCOLORPICKER: 'libraries/3rdParty/colorPicker/bootstrap-colorpicker-module',
+		rCOLORPICKER: 'libraries/3rdParty/colorPicker/bootstrap-colorpicker-module',
 		
 		/* modules */
 		rMODULES_OFFER: 'modules/campaign/campaign',
@@ -96,7 +96,7 @@ require.config({
 		
 		//'rDRAGDROP':['rANGULAR'],
 		//'rDRAGDROPUID':['rANGULAR'],
-		//'rCOLORPICKER':['rANGULAR'],
+		'rCOLORPICKER':['rANGULAR'],
 
 		/* phase 4 - kmapp */
 		'rKMAPP': ['rANGULARRESOURCE', 'rANGULAR', 'rANGULAR_SANITIZE', 'rANGULAR_ROUTE'],
@@ -179,7 +179,7 @@ require([
     //'rANGULARUI_MAP_UTILS',
 	//'rDRAGDROP',
 	//'rDRAGDROPUID',
-	//'rCOLORPICKER',	
+	'rCOLORPICKER',	
 	
 	/* global angular services */
 	'rSERVICES_GLOBAL',
