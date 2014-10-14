@@ -5,9 +5,9 @@
         </div>
         <div class="step arrow">
             <ul>
-                <li class="active"><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}">Details</a></li>
-                <li><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}">Redemption</a></li>
-                <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}">Channels</a></li>
+                <li class="active"><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}{{copy}}">Details</a></li>
+                <li><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}{{copy}}">Redemption</a></li>
+                <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}{{copy}}">Channels</a></li>
             </ul>
         </div>
         <div class="offerContainer">
@@ -32,9 +32,9 @@
                     <div class="sets">
                         <p>Offer Categories</p>
                         <div class="selection2">
-                            <ui-select multiple ng-model="model.categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Categories">{{$item}}</ui-select-match>
-                                <ui-select-choices repeat="List in categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
+                            <ui-select  ng-model="model.categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Categories">{{model.categories.offer_category}}</ui-select-match>
+                                <ui-select-choices repeat="item in categoriesList | filter:$select.search"> {{item.offer_category}} </ui-select-choices>
                             </ui-select>
                         </div>
                     </div>
@@ -42,9 +42,9 @@
                         <div class="percentage">
                             <p>Offer Type</p>
                             <div class="selection2">
-                                <ui-select multiple ng-model="model.ddType" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                    <ui-select-match placeholder="Select Offer Type">{{$item}}</ui-select-match>
-                                    <ui-select-choices repeat="List in ddTypeList | filter:$select.search"> {{List}} </ui-select-choices>
+                                <ui-select  ng-model="model.ddType" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                    <ui-select-match placeholder="Select Offer Type">{{model.ddType.offer_type}}</ui-select-match>
+                                    <ui-select-choices repeat="item in ddTypeList | filter:$select.search"> {{item.offer_type}} </ui-select-choices>
                                 </ui-select>
                             </div>
                         </div>
@@ -65,11 +65,11 @@
                 </div>
                 <div class="wrapContainer">
                     <div class="sets">
-                        <p>Offer Categories</p>
+                        <p>Select Passbook Template</p>
                         <div class="selection2">
-                            <ui-select multiple ng-model="model.mob_categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Offer Categories">{{$item}}</ui-select-match>
-                                <ui-select-choices repeat="List in mob_categoriesList | filter:$select.search"> {{List}} </ui-select-choices>
+                            <ui-select  ng-model="model.passbook_template" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                                <ui-select-match placeholder="Select Offer Categories">{{model.passbook_template.template_name}}</ui-select-match>
+                                <ui-select-choices repeat="item in passbookTemplateList | filter:$select.search"> {{item.template_name}} </ui-select-choices>
                             </ui-select>
                         </div>
                     </div>

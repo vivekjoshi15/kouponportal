@@ -15,7 +15,7 @@ poolLibrary.service('kmApp.libraries.pool.poolService', ['$filter', function ($f
     var getPoolName = function () {
         var poolName = [];
         for (var i = 0; i < poolList.length; i++) {
-            poolName.push(poolList[i].name);
+            poolName.push({'pool_name':poolList[i].name});
         }
         return poolName;
     }

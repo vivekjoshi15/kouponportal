@@ -6,9 +6,9 @@
     </div>
     <div class="step arrow">
       <ul>
-        <li><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}">Details</a></li>
-        <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}">Redemption</a></li>
-        <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}">Channels</a></li>
+        <li><a href="#/{{UserData.clientName}}/campaign/details/{{campaign_id}}{{copy}}">Details</a></li>
+        <li class="active"><a href="#/{{UserData.clientName}}/campaign/redemption/{{campaign_id}}{{copy}}">Redemption</a></li>
+        <li><a href="#/{{UserData.clientName}}/campaign/channels/{{campaign_id}}{{copy}}">Channels</a></li>
       </ul>
     </div>
     <div class="offerContainer">
@@ -23,6 +23,7 @@
               <div class="timeDetails calender-icon">
                 <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>
                 <time>12:35 PM</time>
+               <!-- <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>-->
               </div>
             </div>
             <span>to</span>
@@ -40,7 +41,7 @@
               <label for="schedule">Schedule preview for this offer </label>
             </div>
             <div class="timeDetails calender-icon">
-              <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{publish_date_date| date:'MMM dd yyyy'}}</p>
+              <p ng-click="open($event,'opened3')" class="form-control" datepicker-popup="{{format}}" ng-model="model.publish_date_date" is-open="opened3" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{publish_date_date| date:'MMM dd yyyy'}}</p>
               <time>12:35 PM</time>
             </div>
           </div>
@@ -71,9 +72,9 @@
               <p>Select Pool</p>
               <div class="selectpool">
                 <div class="selection2">
-                  <ui-select  ng-model="model.pool" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                    <ui-select-match placeholder="Select Pool">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="List in poolList | filter:$select.search"> {{List}} </ui-select-choices>
+                  <ui-select  ng-model="model.pool[$index]" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                    <ui-select-match placeholder="Select Pool">{{model.pool[$index].pool_name}}</ui-select-match>
+                    <ui-select-choices repeat="item in poolList | filter:$select.search"> {{item.pool_name}} </ui-select-choices>
                   </ui-select>
                 </div>
               </div>
@@ -162,9 +163,9 @@
           <div class="sets">
             <p>Available Stores</p>
             <div class="selection2">
-              <ui-select multiple ng-model="availableStore" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                <ui-select-match placeholder="">{{$item}}</ui-select-match>
-                <ui-select-choices repeat="List in availableStoreList | filter:$select.search"> {{List}} </ui-select-choices>
+              <ui-select  ng-model="model.availableStore" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                <ui-select-match placeholder="">{{model.availableStore.groupname}}</ui-select-match>
+                <ui-select-choices repeat="item in availableStoreList | filter:$select.search"> {{item.groupname}} </ui-select-choices>
               </ui-select>
             </div>
           </div>

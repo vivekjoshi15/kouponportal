@@ -48,7 +48,15 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 			    templateUrl: 'modules/campaign/views/redemption.html',
 			    controller: 'kmApp.modules.campaign.redemptionEditAction'
 			}).
+			when('/:clientName/campaign/redemption/:id/copy/:copy', {
+			    templateUrl: 'modules/campaign/views/redemption.html',
+			    controller: 'kmApp.modules.campaign.redemptionEditAction'
+			}).
 			when('/:clientName/campaign/channels/:id', {
+			    templateUrl: 'modules/campaign/views/channels.html',
+			    controller: 'kmApp.modules.campaign.channels'
+			}).
+			when('/:clientName/campaign/channels/:id/copy/:copy', {
 			    templateUrl: 'modules/campaign/views/channels.html',
 			    controller: 'kmApp.modules.campaign.channels'
 			}).
