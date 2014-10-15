@@ -6,7 +6,8 @@
     <ul>
       <li><a href="#/{{UserData.clientName}}/channels/summary/{{channelid}}">Summary</a></li>
       <li class="active"><a href="#/{{UserData.clientName}}/channels/design/{{channelid}}">Design</a></li>
-      <li><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>
+      <li><a>Details</a></li>
+      <!--<li><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>-->
     </ul>
   </div>
   <div class="data">
@@ -19,7 +20,7 @@
           <h1>Offer Viewer</h1>
           <p>Koupon's Offer Viewer tool is the fastest and easiest way to display offers to customers. Style your experience below and we'll generate the page for you.</p>
         </div>
-        <div class="designbox"> <a ng-init="templateTypeCustom=false" ng-click="templateTypeCustom=false" ng-class="{'selected':!templateTypeCustom,'border-links':templateTypeCustom}">Selected</a> </div>
+        <div class="designbox"> <a ng-init="templateTypeCustom=false; templateCustomTitle='Select'; templateViewTitle='Selected';" ng-click="templateTypeCustom=false;templateCustomTitle='Select'; templateViewTitle='Selected';" ng-class="{'selected':!templateTypeCustom,'border-links':templateTypeCustom}">{{templateViewTitle}}</a> </div>
       </div>
       <div class="divider"></div>
       <div class="sets">
@@ -27,7 +28,7 @@
           <h1>Go Custom</h1>
           <p>If you'd prefer a more unique look, select custom.  We'll provide the code you need to display offers in your web experience, but it will require development.</p>
         </div>
-        <div class="designbox"><a ng-click="templateTypeCustom=true" ng-class="{'selected':templateTypeCustom,'border-links':!templateTypeCustom}">Select</a> </div>
+        <div class="designbox"><a ng-click="templateTypeCustom=true;templateCustomTitle='Selected'; templateViewTitle='Select';" ng-class="{'selected':templateTypeCustom,'border-links':!templateTypeCustom}">{{templateCustomTitle}}</a> </div>
       </div>
     </div>
     <div class="float" ng-hide="templateTypeCustom">
@@ -83,6 +84,6 @@
     </div>
     <br class="clear" />
   </div>
-  <footer> <a>Save & Continue</a> <a class="border-links" href="#">View Preview</a><a class="cancel" href="#">cancel</a> <br class="clear">
+  <footer> <a ng-click="saveChannel()">Save & Continue</a> <a class="border-links" href="#">View Preview</a><a class="cancel" href="#">cancel</a> <br class="clear">
   </footer>
 </main>

@@ -24,7 +24,7 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
     $scope.channelTypeList=[{type:'Type 1'},{type:'Type 2'},{type:'Type 3'}];
     $scope.model.channel_type = undefined;
 						    
-   if($scope.channelid != 0){
+    if($scope.channelid != 0){
 		  $scope.model=channelService.getChannel($scope.channelid);
 	  };
 
@@ -35,7 +35,6 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
 		
    $scope.model;
    $scope.saveChannel=function(){
-	   console.log($scope.model);
 	   	 if ($scope.channelid != 0){
                 channelService.editChannel($scope.channelid, $scope.model);
 		  }			
@@ -43,7 +42,7 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction',
 				channelService.addChannel($scope.model);
 			} 
 	 notification.addSuccess('Channel saved successfully!!!');
-	 //$location.path('/'+$rootScope.UserData.clientName+'/channels');
+	 $location.path('/'+$rootScope.UserData.clientName+'/channels/design/'+$scope.channelid);
    }
    
 }]);
@@ -53,10 +52,22 @@ channelModule.controller('kmApp.modules.channels.design',
 						  '$rootScope',
 						  '$routeParams',
 						  '$location',
-						  function ($scope,$rootScope,$routeParams,$location) {
+						  'kmApp.libraries.channel.channelService',
+						  function ($scope,$rootScope,$routeParams,$location,channelService) {
 	
 	$scope.channelid = $routeParams.id;
-
+	if($scope.channelid != 0){
+		  $scope.model=channelService.getChannel($scope.channelid);
+	  };
+	$scope.saveChannel=function(){
+		 if ($scope.channelid != 0){
+                channelService.editChannel($scope.channelid, $scope.model);
+		  }			
+          else{
+				channelService.addChannel($scope.model);
+			} 
+	  $location.path('/'+$rootScope.UserData.clientName+'/channels/details/'+$scope.channelid);
+	}
 }]);
 
 

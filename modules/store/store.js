@@ -69,6 +69,7 @@ storeModule.controller('kmApp.modules.store.storelistAction',
 		     var rowval=[];
 		     for (var i = 0; i < data.length; i++) {
 		 		var rowdata=[];
+					rowdata.push(data[i].storeid);
 					rowdata.push(data[i].merchantid);
 					rowdata.push(data[i].name);
 					rowdata.push(data[i].groupname);
@@ -83,7 +84,8 @@ storeModule.controller('kmApp.modules.store.storelistAction',
 		$scope.data = storeService.getStores();	
 		$scope.tabledata = {
 			"header": [
-					{ "name": "MerchId", "desc": "Merch Id", "type": "ID" },
+					{ "name": "Id", "desc": "Id", "type": "Id" },
+					{ "name": "MerchId", "desc": "Merch Id", "type": "MerchId" },
 					{ "name": "storeName", "desc": "Store Name", "type": "n" },
 					{ "name": "groups", "desc": "Groups", "type": "s" },
 					{ "name": "address", "desc": "Address", "type": "s" },
@@ -100,22 +102,18 @@ storeModule.controller('kmApp.modules.store.storelistAction',
 			
 		
 		$scope.editStore=function(I,K){
-			 var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
-			 $location.path('/'+$rootScope.UserData.clientName+'/store/id/'+found[0].storeid);
+			 $location.path('/'+$rootScope.UserData.clientName+'/store/id/'+K[0]);
 		}
 		
         $scope.copyStore=function(I,K){
-			var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
-			$location.path('/'+$rootScope.UserData.clientName+'/store/id/'+found[0].storeid+'/copy/true');
+			$location.path('/'+$rootScope.UserData.clientName+'/store/id/'+K[0]+'/copy/true');
 		}
 
 
 	   $scope.removeStore = function (I,K) {
-		   var found = $filter('filter')($scope.data, { merchantid: parseInt(K[0]) }, true);
-		   console.log($scope.tableRowVal);
-	        var r = confirm("Are you sure you want to delete " + found[0].name + "?");
+	        var r = confirm("Are you sure you want to delete " + K[2].name + "?");
 	        if (r == true) {
-	           $scope.data = storeService.removeStore(found[0]);
+	           $scope.data = storeService.removeStore(K[0]);
 			   $scope.tabledata.rowval=$scope.tableRowVal($scope.data);
 	        }
 	    }

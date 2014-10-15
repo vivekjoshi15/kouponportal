@@ -3777,7 +3777,14 @@ div.tempdetail {
     font-size: 12px;
     background: #f9f9fb;
 }
-
+.sets div.grey-box > input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    font-family: "Monaco";
+    font-size: 12px;
+    height: 12px;
+	padding:0;
+}
 div.grey-box.mrg-btm {
     height: 36px;
     line-height: 36px;

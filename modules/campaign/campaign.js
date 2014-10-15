@@ -128,7 +128,7 @@ offerModule.controller('kmApp.modules.campaign.offer',
 		 } 
     $scope.tabledata = {
         "header": [
-		        { "name": "id", "desc": "ID", "type": "ID" },
+		        { "name": "Id", "desc": "Id", "type": "Id" },
                 { "name": "offer", "desc": "Offer", "type": "n" },
                 { "name": "headline", "desc": "Headline", "type": "s" },
                 { "name": "start", "desc": "Start", "type": "s" },
@@ -333,7 +333,9 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
 		  if($scope.poolList.length-$scope.model.pools.length!=0)
 		  $scope.model.pools.push({'pool':''});
 	  }
-	 
+	 $scope.removepools=function(index){
+		   $scope.model.pools.splice(index,1);
+	 }
 	  
 	  $scope.pool;
 	  
