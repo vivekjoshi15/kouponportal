@@ -200,6 +200,7 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
       if ($scope.iscopy == null)
             $scope.iscopy = 'false';
 	 
+	 $scope.copy="";
 	  if($scope.campaign_id != 0){
 		   if($scope.iscopy=='true'){
 		      $scope.title='Copy Offer';
@@ -231,16 +232,15 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 	 $scope.saveCampaign=function(){
 		  if ($scope.campaign_id != 0 && $scope.iscopy == 'false'){
                 campaignService.editCampaign($scope.campaign_id, $scope.model);
-				//$location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/'+$scope.campaign_id);
 				notification.addSuccess("Offer saved successfully!!!");
 		  }			
             else{
 				$scope.model.isActive="DeActivated";
 				$scope.model.campaign_id=Math.floor((Math.random() * 1000) + 1);
 				$rootScope.draftCampaign=$scope.model;
-				notification.addSuccess("Offer saved as draft!!!");
-				//$location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/0');
+				notification.addSuccess("Offer saved as draft!!!");			
 			} 
+	     $location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/'+$scope.campaign_id+$scope.copy);
 	  }
 }]);
 offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
@@ -274,6 +274,7 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
       if ($scope.iscopy == null)
             $scope.iscopy = 'false';
 			
+	  $scope.copy="";	
 	  if($scope.campaign_id != 0){
 		  if($scope.iscopy=='true'){
 		      $scope.title='Copy Offer';
@@ -351,8 +352,9 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
 		 else{
 			 campaignService.editCampaign($scope.campaign_id,$scope.model);
 		 }	
+		 
 		 notification.addSuccess("Offer saved successfully!!!");
-		 // $location.path('/'+$rootScope.UserData.clientName+'/campaign/channels/'+$scope.campaign_id);	  
+		  $location.path('/'+$rootScope.UserData.clientName+'/campaign/channels/'+$scope.campaign_id+$scope.copy);	  
 	  }
 	 $scope.advancedCapList=['cap','cap 2','cap 3'];
 	 $scope.advancedCap;
