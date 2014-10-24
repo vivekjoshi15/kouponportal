@@ -89,6 +89,10 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
                 templateUrl: 'modules/general/views/codepools.html',
                 controller: 'kmApp.modules.general.codepools'
             }).
+            when('/:clientName/general/apikeys', {
+                templateUrl: 'modules/general/views/apikeys.html',
+                controller: 'kmApp.modules.general.apikeys'
+            }).
             when('/:clientName/general/connected', {
                 templateUrl: 'modules/general/views/connected.html',
                 controller: 'kmApp.modules.general.connected'

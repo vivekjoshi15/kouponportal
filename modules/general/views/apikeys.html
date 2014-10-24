@@ -1,0 +1,43 @@
+<main ng-app="kmApp.modules.general" ng-controller="kmApp.modules.general.apikeys">
+    <subheader></subheader>
+    <div class="data apikeys">
+        <header>
+            <h1>Your API KEYS</h1>
+        </header>
+        <div class="wrapContain">
+            <div class="info">
+                <div class="left">
+                    <h2>ABOUT THE API</h2>
+                    <p>
+                        The Koupon Media API makes it easy for
+                        programmers to integrate Koupon Media's
+                        features into their website. Interested in
+                        learning more?
+                    </p>
+                    <a href="http://kouponmedia.com/api/" target="_blank">Read the API documentation</a>
+                </div>
+                <div class="right">
+                    <h2>DEVELOPING AN APP?</h2>
+                    <p>
+                        Writing your own iPhone or Android
+                        application? We have an SDL written in native
+                        languages for both platforms to speed up
+                        development time.
+                    </p>
+                    <a href="https://kouponmedia.s3.amazonaws.com/sdks/iOS/Koupon_SDK_v1.2.0.zi" target="_blank">Download iOS Koupon Media SDK</a>
+                    <a href="https://kouponmedia.s3.amazonaws.com/sdks/Android/And_kouponSDK_1.0.0.zip" target="_blank">Download Android Koupon Media SDK</a>
+                </div>
+            </div>
+            <br class="clear" />
+            <div class="panel-box">
+                <span>API IDENTIFIER</span>
+                <span ng-bind-html="to_trusted(APIKeys.identifier)"></span>
+            </div>
+            <div class="panel-box">
+                <span>API SECRET</span>
+                <span ng-bind-html="to_trusted(APIKeys.secret)"></span>
+            </div>
+        </div>
+        <br class="clear" />
+    </div>
+</main>

@@ -1,226 +1,252 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
+<head>
     <meta charset="utf-8">
     <title>Koupon Media</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="kmApp/css/all.css" rel="stylesheet" type="text/css" />
-    <!--<link href="kmApp/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
     <link href="kmApp/css/select.css" rel="stylesheet" type="text/css" />
     <link href="kmApp/css/colorpicker.css" rel="stylesheet" type="text/css" />
     <!-- Select2 theme -->
     <link rel="stylesheet" href="kmApp/css/select2.css">
-    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
 
     <style>
-	  ul.select2-choices {
-		  border:1px solid #e3e6e6 !important;
-		  background:#fff;
-		  background-image: none !important;
-	  }
-	  .select2-container-multi .select2-search-choice-close {
-		  margin-top: 5px;
-		  padding-left: 2px;
-		  position: static;
-	  }
-	  .select2-container-multi .select2-choices .select2-search-choice {
-		  background: none repeat scroll 0 0 #39b54a !important;
-		  border: 1px solid #33a142;
-		  border-radius: 1px;
-		  box-shadow: none !important;
-		  box-sizing: border-box;
-		  color: #fff !important;
-		  height: 32px;
-		  margin: 1px;
-		  padding-left: 5px;
-	  }
-	  .select2-container-multi .select2-choices .select2-search-choice span {
-		  color: #fff !important;
-		  float: left;
-		  margin-top: 2px;
-	  }
-	  .select2-results .select2-highlighted span {
-		  color:#fff;
-	  }
-	  .select2-drop-active {
-		  border:1px solid #d1d1d3;
-		  border-top:none;
-	  }
-	  .select2-results {
-		  padding:0;
-		  margin:0;
-	  }
-	  .select2-search-choice-close {
-		  background-position:right 3px !important;
-		  float:right;
-	  }
-	  .select2-search-field {
-		  box-sizing:border-box;
-		  height:34px;
-	  }
-	  .select2 > .select2-choice.ui-select-match {
-		  /* Because of the inclusion of Bootstrap */
-				  height: 36px;
-		  box-sizing: border-box;
-	  }
-	  .selectize-control > .selectize-dropdown {
-		  top: 36px;
-	  }
-	  .select2-container-multi.select2-container-active .select2-choices {
-		  box-shadow: none;
-	  }
-	  .select2-drop {
-		  box-shadow: none;
-	  }
-	  .timeDetails .dropdown-menu {
-		  position:absolute;
-		  background:#fff;
-		  padding-bottom:10px;
-		  border:1px solid #d1d1d3;
-		  padding:0 10px 10px 10px;
-		  z-index: 9999;
-	  }
-	  .timeDetails .dropdown-menu table thead tr small {
-		  font-size:12px;
-		  color:#000;
-	  }
-	  .timeDetails .dropdown-menu table thead tr:last-child th {
-		  height:20px;
-	  }
-	  .timeDetails .dropdown-menu table {
-		  border-spacing: 4px;
-	  }
-	  .timeDetails .dropdown-menu table thead th button {
-		  background:#fff;
-	  }
-	  .timeDetails .dropdown-menu table tbody td {
-		  border-radius: 26px;
-		  height: 30px;
-	  }
-	  .timeDetails .dropdown-menu td button {
-		  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-		  border: 1px solid #e6e6e6;
-		  border-radius: 26px;
-		  font-size: 12px !important;
-		  height: 100%;
-		  padding: 0 5px;
-		  text-align: center;
-	  }
-	  .timeDetails .dropdown-menu td button span {
-		  color: #595959;
-		  font-size: 12px;
-	  }
-	  .timeDetails .dropdown-menu button:disabled span {
-		  color:#ccc !important;
-	  }
-	  .timeDetails .dropdown-menu table tbody td button.active {
-		  background:#39B54A;
-		  border: 1px solid #39B54A;
-	  }
-	  .timeDetails .dropdown-menu table tbody td button.active span {
-		  color:#fff !important;
-	  }
-	  ul.dropdown-menu li:last-child {
-		  display:none;
-	  }
-	  /*   color picker    */
-			.colorpicker.dropdown {
-		  background: none repeat scroll 0 0 #fff;
-		  border: 1px solid #e0e0e2;
-	  }
-	  .colorpicker .dropdown-menu {
-		  min-width:120px;
-	  }
-	  .close-colorpicker {
-		  display:none;
-	  }
-	  </style>
-	 </head>
+        ul.select2-choices {
+            border: 1px solid #e3e6e6 !important;
+            background: #fff;
+            background-image: none !important;
+        }
+
+        .select2-container-multi .select2-search-choice-close {
+            margin-top: 5px;
+            padding-left: 2px;
+            position: static;
+        }
+
+        .select2-container-multi .select2-choices .select2-search-choice {
+            background: none repeat scroll 0 0 #39b54a !important;
+            border: 1px solid #33a142;
+            border-radius: 1px;
+            box-shadow: none !important;
+            box-sizing: border-box;
+            color: #fff !important;
+            height: 32px;
+            margin: 1px;
+            padding-left: 5px;
+        }
+
+            .select2-container-multi .select2-choices .select2-search-choice span {
+                color: #fff !important;
+                float: left;
+                margin-top: 2px;
+            }
+
+        .select2-results .select2-highlighted span {
+            color: #fff;
+        }
+
+        .select2-drop-active {
+            border: 1px solid #d1d1d3;
+            border-top: none;
+        }
+
+        .select2-results {
+            padding: 0;
+            margin: 0;
+        }
+
+        .select2-search-choice-close {
+            background-position: right 3px !important;
+            float: right;
+        }
+
+        .select2-search-field {
+            box-sizing: border-box;
+            height: 34px;
+        }
+
+        .select2 > .select2-choice.ui-select-match {
+            /* Because of the inclusion of Bootstrap */
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .selectize-control > .selectize-dropdown {
+            top: 36px;
+        }
+
+        .select2-container-multi.select2-container-active .select2-choices {
+            box-shadow: none;
+        }
+
+        .select2-drop {
+            box-shadow: none;
+        }
+
+        .timeDetails .dropdown-menu {
+            position: absolute;
+            background: #fff;
+            padding-bottom: 10px;
+            border: 1px solid #d1d1d3;
+            padding: 0 10px 10px 10px;
+            z-index: 9999;
+        }
+
+            .timeDetails .dropdown-menu table thead tr small {
+                font-size: 12px;
+                color: #000;
+            }
+
+            .timeDetails .dropdown-menu table thead tr:last-child th {
+                height: 20px;
+            }
+
+            .timeDetails .dropdown-menu table {
+                border-spacing: 4px;
+            }
+
+                .timeDetails .dropdown-menu table thead th button {
+                    background: #fff;
+                }
+
+                .timeDetails .dropdown-menu table tbody td {
+                    border-radius: 26px;
+                    height: 30px;
+                }
+
+            .timeDetails .dropdown-menu td button {
+                background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+                border: 1px solid #e6e6e6;
+                border-radius: 26px;
+                font-size: 12px !important;
+                height: 100%;
+                padding: 0 5px;
+                text-align: center;
+            }
+
+                .timeDetails .dropdown-menu td button span {
+                    color: #595959;
+                    font-size: 12px;
+                }
+
+            .timeDetails .dropdown-menu button:disabled span {
+                color: #ccc !important;
+            }
+
+            .timeDetails .dropdown-menu table tbody td button.active {
+                background: #39B54A;
+                border: 1px solid #39B54A;
+            }
+
+                .timeDetails .dropdown-menu table tbody td button.active span {
+                    color: #fff !important;
+                }
+
+        ul.dropdown-menu li:last-child {
+            display: none;
+        }
+        /*   color picker    */
+        .colorpicker.dropdown {
+            background: none repeat scroll 0 0 #fff;
+            border: 1px solid #e0e0e2;
+        }
+
+        .colorpicker .dropdown-menu {
+            min-width: 120px;
+        }
+
+        .close-colorpicker {
+            display: none;
+        }
+    </style>
+</head>
 <body>
-<div id="loadingPage" class="loadingPage ng-cloak"> 
-      <!--<div class="login_logo"></div>-->
-      <div id="spinner" class="progress-loader"><img src="kmApp/images/ajax-load.gif" /></div>
+    <div id="loadingPage" class="loadingPage ng-cloak">
+        <!--<div class="login_logo"></div>-->
+        <div id="spinner" class="progress-loader"><img src="kmApp/images/ajax-load.gif" /></div>
     </div>
-<div id="mainPage" ng-cloak class="float ng-cloak" ng-controller="kmApp.controller.rootLayout"> 
-      
-      <!-- NOTIFICATION -->
-      <div id="currentUserNotification" ng-show="notificationMessage">
-    <div class="alert {{notificationClass}}"> <span ng-bind-html="to_trusted(notificationMessage)"></span> <a class="alert-close" ng-click="clearNotification()">x</a> </div>
-  </div>
-      <!-- /NOTIFICATION --> 
-      <!-- LOGIN -->
-      <div class="float" ng-hide="isLoggedIn()" ng-controller="kmApp.controller.loginAction">
-    <div id="logo"></div>
-    <div class="login">
-          <div class="cLogin"> 
-        <!-- login  -->
-        <div id="login_box" class="float" ng-show="isLoginForm()" ng-hide="isLogging()">
-              <form name="login" data-ng-submit="setCredentials({reload:true})" action="" id="loginFrm" method="POST">
-            <h1>Sign In</h1>
-            <div class="email">
-                  <input type="email" data-ng-model="loginform.email1" required name="loginEmail" placeholder="Email" />
-                </div>
-            <div class="password">
-                  <input type="password" data-ng-model="loginform.pass1" required placeholder="Passsword" />
-                </div>
-            <div class="loginIssue">
-                  <div class="cloginIssue">
-                <div class="remeber check-box">
-                      <input type="checkbox" id="RememberMe" />
-                      <label for="RememberMe"> Remember Me</label>
+    <div id="mainPage" ng-cloak class="float ng-cloak" ng-controller="kmApp.controller.rootLayout">
+
+        <!-- NOTIFICATION -->
+        <div id="currentUserNotification" ng-show="notificationMessage">
+            <div class="alert {{notificationClass}}"> <span ng-bind-html="to_trusted(notificationMessage)"></span> <a class="alert-close" ng-click="clearNotification()">x</a> </div>
+        </div>
+        <!-- /NOTIFICATION -->
+        <!-- LOGIN -->
+        <div class="float" ng-hide="isLoggedIn()" ng-controller="kmApp.controller.loginAction">
+            <div id="logo"></div>
+            <div class="login">
+                <div class="cLogin">
+                    <!-- login  -->
+                    <div id="login_box" class="float" ng-show="isLoginForm()" ng-hide="isLogging()">
+                        <form name="login" data-ng-submit="setCredentials({reload:true})" action="" id="loginFrm" method="POST">
+                            <h1>Sign In</h1>
+                            <div class="email">
+                                <input type="email" data-ng-model="loginform.email1" required name="loginEmail" placeholder="Email" />
+                            </div>
+                            <div class="password">
+                                <input type="password" data-ng-model="loginform.pass1" required placeholder="Passsword" />
+                            </div>
+                            <div class="loginIssue">
+                                <div class="cloginIssue">
+                                    <div class="remeber check-box">
+                                        <input type="checkbox" id="RememberMe" />
+                                        <label for="RememberMe"> Remember Me</label>
+                                    </div>
+                                    <a class="forgot" href="#/requestReset"> Forgot Password</a>
+                                </div>
+                            </div>
+                            <div class="signin">
+                                <input class="" type="submit" value="Sign In" />
+                            </div>
+                            <div class="gline">
+                                <div class="line"></div>
+                            </div>
+                        </form>
                     </div>
-                <a class="forgot" href="#/requestReset"> Forgot Password</a> </div>
+                    <!--      forgot password           --->
+                    <div id="forgot_password_box" class="float" ng-show="isRequestResetPassword()">
+                        <form name="forgot">
+                            <h1> Forgot Password</h1>
+                            <div class="email">
+                                <input type="email" placeholder="Email" data-ng-form-enter="resetPassword({reload:true})" data-ng-submit="resetPassword()" name="resetPasswordForm" />
+                            </div>
+                            <p>We will email you a link to reset your password</p>
+                            <div class="signin">
+                                <input class="" type="submit" value="Reset Password" />
+                            </div>
+                            <div class="backSign"><a href="#/login">Back to Sign In</a></div>
+                            <div class="gline">
+                                <div class="line"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <footer> Get in Touch with the Koupon Team to Learn more by emailing us at <a href="mailto:info@kou.pn">info@kou.pn</a></footer>
+                    <div class="clear"></div>
                 </div>
-            <div class="signin">
-                  <input class="" type="submit" value="Sign In" />
-                </div>
-            <div class="gline">
-                  <div class="line"></div>
-                </div>
-          </form>
             </div>
-        <!--      forgot password           --->
-        <div id="forgot_password_box" class="float" ng-show="isRequestResetPassword()">
-              <form name="forgot">
-            <h1> Forgot Password</h1>
-            <div class="email">
-                  <input type="email" placeholder="Email" data-ng-form-enter="resetPassword({reload:true})" data-ng-submit="resetPassword()" name="resetPasswordForm" />
-                </div>
-            <p>We will email you a link to reset your password</p>
-            <div class="signin">
-                  <input class="" type="submit" value="Reset Password" />
-                </div>
-            <div class="backSign"><a href="#/login">Back to Sign In</a></div>
-            <div class="gline">
-                  <div class="line"></div>
-                </div>
-          </form>
+        </div>
+        <!-- /LOGIN -->
+        <!-- LOGGED IN USERS -->
+        <div class="float" ng-switch="isLoggedIn()">
+            <div id="main" ng-controller="kmApp.controller.rootLayout" ng-switch-when="true">
+                <header>
+                    <div id="logo"></div>
+                    <div class="userInfo" ng-controller="kmApp.controller.logout" ng-hide="isClientNull()">
+                        <div class="userDetails"> <img src="KmApp/images/user.jpg" alt="logo" /> <span>{{UserData.clientName}}</span> <a ng-click="LogOut()" href="">Log Out</a> </div>
+                        <a href="#">Documentation</a>
+                    </div>
+                </header>
+                <!--   menu  -->
+                <aside ng:include="'kmApp/views/menu.html'" ng-show="isMenu"></aside>
+                <!--  End menu  -->
+                <div class="mainWrap" ng-view loader ng-class="{not:!isMenu}"> </div>
             </div>
-        <footer> Get in Touch with the Koupon Team to Learn more by emailing us at <a href="mailto:info@kou.pn">info@kou.pn</a></footer>
-        <div class="clear"></div>
-      </div>
         </div>
-  </div>
-      <!-- /LOGIN --> 
-      <!-- LOGGED IN USERS -->
-      <div class="float" ng-switch="isLoggedIn()">
-    <div id="main" ng-controller="kmApp.controller.rootLayout" ng-switch-when="true">
-          <header>
-        <div id="logo"></div>
-        <div class="userInfo" ng-controller="kmApp.controller.logout" ng-hide="isClientNull()">
-              <div class="userDetails"> <img src="KmApp/images/user.jpg" alt="logo" /> <span>{{UserData.clientName}}</span> <a ng-click="LogOut()" href="">Log Out</a> </div>
-              <a href="#">Documentation</a> </div>
-      </header>
-          <!--   menu  -->
-          <aside ng:include="'kmApp/views/menu.html'" ng-show="isMenu"></aside>
-          <!--  End menu  -->
-          <div class="mainWrap" ng-view loader ng-class="{not:!isMenu}"> </div>
-        </div>
-  </div>
-      <!-- mainPage --> 
+        <!-- mainPage -->
     </div>
-<!-- require.js is a core dependency module loader --> 
-<script type="text/javascript" src="require.js" data-main="main"></script>
+    <!-- require.js is a core dependency module loader -->
+    <script type="text/javascript" src="require.js" data-main="main"></script>
 </body>
 </html>

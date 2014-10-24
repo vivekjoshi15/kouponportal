@@ -18,9 +18,11 @@ accountLibrary.service('kmApp.libraries.account.accountService', ['$filter', fun
                    , featureList: ''
                    , webOfferType: ''
                    , wireon: ''
+                   , identifier: 'asdasdffadfjasd'
+                   , secret: 'asdasdffadfjasd'
         },
         {
-            clientId: 01
+            clientId: 02
                    , clientName: 'james'
                    , authKey: 'fgdfhgtfgjhytgj6756456'
                    , roleId: 2
@@ -35,6 +37,8 @@ accountLibrary.service('kmApp.libraries.account.accountService', ['$filter', fun
                    , featureList: ''
                    , webOfferType: ''
                    , wireon: ''
+                   , identifier: 'asdasdffadfjasd'
+                   , secret: 'asdasdffadfjasd'
         }
     ];
 

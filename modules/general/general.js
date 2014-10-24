@@ -19,6 +19,10 @@ generalModule.value('links',
         {
             "url": "general/store",
             "title": "Stores"
+        },
+        {
+            "url": "general/apikeys",
+            "title": "API Keys"
         }]
     });
 
@@ -68,7 +72,7 @@ generalModule.controller('kmApp.modules.general.offer', [
 
         //Updating General Offers Settings
         $scope.saveGeneralOffers = function () {
-			
+
             $scope.GeneralOffers.TextmessageLimitPeriod = $scope.TextMessagesOption.selected.value;
             $scope.GeneralOffers.PushmessageLimitPeriod = $scope.NotificationsOption.selected.value;
             $scope.GeneralOffers.EmailmessageLimitPeriod = $scope.EmailMessagesOption.selected.value;
@@ -263,4 +267,22 @@ generalModule.controller('kmApp.modules.general.store', [
             $location.path($routeParams.clientName + '/general/store');
         }
 
+    }]);
+
+generalModule.controller('kmApp.modules.general.apikeys', [
+    '$scope',
+     '$rootScope',
+    '$routeParams',
+    '$location',
+    'links',
+    'kmApp.libraries.account.accountService',
+    '$filter',
+     'kmApp.libraries.notification.screenNotifyService',
+     'kmApp.libraries.waitLoader',
+    function ($scope, $rootScope, $routeParams, $location, links, accountService, $filter, userNotificationLibrary, waitLoader) {
+        $scope.title = "API Keys";
+        $scope.links = links;
+       
+        //Fetching Json for User Services
+        $scope.APIKeys = accountService.getAccount($rootScope.UserData.clientId);
     }]);
