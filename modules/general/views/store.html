@@ -6,9 +6,18 @@
                 <h1>Stores</h1>
             </header>
             <div class="wrapContain">
-                <tags items="storeGroup" model="name1" labelfield="name" title="Store Groups" addallowed="true" addtitle="Add Store Group" iconclass="store-icon" mainclass="storeCols" on-select="onItemSelected1()"></tags>
+                <tags items="storeGroup" itemdisp="name" badgedisp="merchantcnt" title="Store Groups" addtitle="+ Add Store Group"
+                      iconclass="store-icon" mainclass="storeCols mrg" empty-item="EmptyStore"
+                      unique="true" on-select="onItemSelected1()"></tags>
+                <tags items="GeofenceGroup" itemdisp="name" badgedisp="merchantcnt" title="Geofence Groups" addtitle="+ Add Geofence Group"
+                      iconclass="geofence-icon" mainclass="storeCols geofence" empty-item="EmptyGeofence"
+                      unique="true" on-select="onItemSelected2()"></tags>
+                <tags items="BeaconGroup" itemdisp="name" badgedisp="merchantcnt" title="Beacon Groups" addtitle="+ Add Beacon Group"
+                      iconclass="beacon-icon" mainclass="storeCols beacon" empty-item="EmptyBeacon"
+                      unique="true" on-select="onItemSelected3()"></tags>
+                <!--<tags items="storeGroup" model="name1" labelfield="name" title="Store Groups" addallowed="true" addtitle="Add Store Group" iconclass="store-icon" mainclass="storeCols" on-select="onItemSelected1()"></tags>
                 <tags items="GeofenceGroup" model="name2" labelfield="name" title="Geofence Groups" addallowed="true" addtitle="Add Geofence Group" iconclass="geofence-icon" mainclass="storeCols geofence" on-select="onItemSelected2()"></tags>
-                <tags items="BeaconGroup" model="name3" labelfield="name" title="Beacon Groups" addallowed="true" addtitle="Add Beacon Group" iconclass="beacon-icon" mainclass="storeCols beacon" on-select="onItemSelected3()"></tags>
+                <tags items="BeaconGroup" model="name3" labelfield="name" title="Beacon Groups" addallowed="true" addtitle="Add Beacon Group" iconclass="beacon-icon" mainclass="storeCols beacon" on-select="onItemSelected3()"></tags>-->
                 <br class="clear" />
             </div>
             <br class="clear" />

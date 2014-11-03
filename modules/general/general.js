@@ -28,6 +28,7 @@ generalModule.value('links',
 
 generalModule.controller('kmApp.modules.general.offer', [
     '$scope',
+    '$rootScope',
     '$routeParams',
     '$location',
     'links',
@@ -35,7 +36,7 @@ generalModule.controller('kmApp.modules.general.offer', [
     '$filter',
      'kmApp.libraries.notification.screenNotifyService',
      'kmApp.libraries.waitLoader',
-    function ($scope, $routeParams, $location, links, generalService, $filter, userNotificationLibrary, waitLoader) {
+    function ($scope, $rootScope, $routeParams, $location, links, generalService, $filter, userNotificationLibrary, waitLoader) {
         $scope.title = "Offers";
         $scope.links = links;
 
@@ -46,6 +47,11 @@ generalModule.controller('kmApp.modules.general.offer', [
 
         //Fetching Json for General Offer Settings
         $scope.GeneralOffers = generalService.getGeneralOffersResponse();
+        $scope.EmptyCategory = {
+            AccountId: $rootScope.UserData.clientId,
+            Name: "New Category",
+            Id: -1
+        }
 
         $scope.clear = function () {
             $scope.TextMessagesOption.selected = $scope.TextMessagesOptions[$scope.TextMessagesOptions.indexOf($filter('filter')($scope.TextMessagesOptions, { value: parseInt($scope.GeneralOffers.TextmessageLimitPeriod) }, true)[0])];
@@ -243,6 +249,21 @@ generalModule.controller('kmApp.modules.general.store', [
         $scope.GeofenceGroup = generalService.getGeofenceGroupResponse().Geofences;
         //Fetching Json for Beacon Groups
         $scope.BeaconGroup = generalService.geBeaconGroupResponse().Beacons;
+
+        $scope.EmptyStore = {
+            name: 'New Store Group',
+            value: -1
+        }
+
+        $scope.EmptyGeofence = {
+            name: "New Geofence Group",
+            value: -1
+        }
+
+        $scope.EmptyBeacon = {
+            name: "New Beacon Group",
+            value: -1
+        }
 
         $scope.name1 = ''; // This will hold the selected item
         $scope.onItemSelected1 = function () { // this gets executed when an item is selected

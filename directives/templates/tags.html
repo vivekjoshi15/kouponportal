@@ -1,21 +1,17 @@
 <div class="{{mainclass}}">
     <h2 class="{{iconclass}}">{{title}}</h2>
 
-    <div class="category add" ng-show="{{addallowed}}" ng-click="isNew=true">+ {{addtitle}}</div>
+    <div class="category add" ng-click="addItem()">{{addtitle}}</div>
     <br class="clear" />
-    <div class="category" ng-repeat="item in items | filter:model  track by $index" ng-click="setCurrent($index)" ng-class="{selected:isCurrent($index)}">
-        <div ng-show="!isEdit">{{item[labelfield]}}</div>
-        <input type="text" ng-model="item[labelfield]" placeholder="{{addtitle}} here" class="addText1 focus" ng-click="selected = false;current = undefined;" ng-show="isEdit" ng-enter="isEdit=false;" />
-        <span></span>
-        <ul>
-            <li><a ng-click="isEdit=true;selItem=item[labelfield];">Edit</a></li>
-            <li><a ng-click="delItem(item[labelfield], $index);selected = false;current = undefined;">Remove</a></li>
-        </ul>
-    </div>
-    <div ng-show="isNew" class="pnlNew">
-        <input type="text" ng-model="newItem" placeholder="{{addtitle}} here" class="addText focus" />
-        <input type="button" ng-click="addItem()" value="Add" />
-        <input type="button" ng-click="isNew=false;newItem=''" value="Cancel" />
+    <div class="category" ng-repeat="item in items" ng-click="setCurrent($index)" ng-class="{selected:isCurrent($index)}">
+        <div ng-show="!isEditing($index)">{{item[itemdisp]}} <span ng-show="badgedisp != null">{{item[badgedisp]}}</span></div>
+        <input id="category{{$index}}" type="text" ng-model="item[itemdisp]" ng-show="isEditing($index)" ng-enter="endEditing($index)" />
+        <div class="category-popup">
+            <ul ng-show="isPopupVisible($index)">
+                <li ng-click="beginEditing($index)">Edit</li>
+                <li ng-click="delItem($index)">Remove</li>
+            </ul>
+        </div>
     </div>
     <br class="clear" />
 </div>

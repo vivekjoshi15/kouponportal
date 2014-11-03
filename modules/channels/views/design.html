@@ -45,11 +45,11 @@
                 <span class="question-icon"></span>
             </div>
             <div class="wrapContainer">
-                <div class="sets">
+                <div class="sets" ng-hide="!isPrimaryImage">
                     <div class="setbackground">
                         <header>
                             <h1>Primary Image</h1>
-                            <a href="#" class="remove close-grey-icon">Remove</a>
+                            <a ng-click="isPrimaryImage=false;" class=" remove close-grey-icon">Remove</a>
                         </header>
                         <div class="setImage">
                             <div class="imageBg"><img alt="" src="kmApp/images/temp-logo.png"></div>

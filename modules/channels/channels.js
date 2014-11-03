@@ -78,6 +78,7 @@ channelModule.controller('kmApp.modules.channels.design', [
 	    $scope.model = {};
 	    $scope.id = $routeParams.id;
 	    $scope.isnew = true;
+	    $scope.isPrimaryImage = true;
 
 	    if ($scope.id == undefined || $scope.id == 0)
 	        $scope.isnew = false;
@@ -88,7 +89,7 @@ channelModule.controller('kmApp.modules.channels.design', [
 	    else {
 	        $scope.templateTypeCustom = false;
 	        $scope.templateCustomTitle = 'Select';
-	        $scope.templateViewTitle = 'Selected';	        
+	        $scope.templateViewTitle = 'Selected';	       
 	    }
 
 	    if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)

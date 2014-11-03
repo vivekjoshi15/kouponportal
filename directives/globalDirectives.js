@@ -899,68 +899,111 @@ kmApp.directive('subheader', ['$routeParams', function ($routeParams) {
     }
 }]);
 
-kmApp.directive('tags', ['$routeParams', function ($timeout, $filter) {
+kmApp.directive('tags', function ($document) {
     return {
         restrict: 'E',
         templateUrl: 'directives/templates/tags.html',
         scope: {
             items: '=',
-            model: '=',
-            labelfield: '@',
+            emptyItem: '=',
+            unique: '@',
+            itemdisp: '@',
+            badgedisp: '@',
             title: '@',
             addtitle: '@',
-            addallowed: '@',
             iconclass: '@',
             mainclass: '@',
             onSelect: '&'
         },
         replace: false,
         link: function (scope, elem, attrs) {
-            scope.newItem = "";
-            scope.selItem = "";
-            scope.current = undefined;
-            scope.selected = true; // hides the list initially
-
-            scope.addItem = function () {
-                console.log("adding item");
-                scope.isNew = false;                
-                var fields = '{"' + scope.labelfield + '":"' + scope.newItem + '"}';
-                var item = angular.fromJson(fields);
-                scope.items.push(item);
-                scope.newItem = "";
+            var popupShown = false;
+            var newIndex = 1;
+            scope.editing = false;
+            scope.selecting = false;
+            scope.error = false;
+            scope.beginEditing = function (index) {
+                scope.current = index;
+                scope.selecting = false;
+                scope.editing = true;
             };
-
-            scope.editItem = function (selectedItem, index) {
-                console.log(selectedItem);
-                scope.model = selectedItem;
+            scope.endEditing = function (index) {
+                if (attrs.unique == "true") {
+                    if (!scope.isItemUnique(index)) {
+                        $("#category" + index).parent().addClass("inputError").removeClass("selected");
+                        scope.error = true;
+                        return;
+                    }
+                }
+                scope.error = false;
+                $("#category" + index).parent().removeClass("inputError").removeClass("selected");
+                scope.editing = false;
+            }
+            scope.delItem = function (index) {
                 scope.current = undefined;
-                scope.selected = true;
-                //$timeout(function () {
-                //    scope.onSelect();
-                //}, 200);
-            };
-
-            scope.delItem = function (selectedItem, index) {
-                console.log(selectedItem);
+                scope.selecting = false;
+                scope.editing = false;
                 scope.items.splice(index, 1);
-                scope.current = undefined;
-                scope.selected = false;
             };
-            
+            scope.isItemUnique = function (index) {
+                for (var i = 0; i < scope.items.length; i++) {
+                    if (i == index) continue; //don't want to compare self
+                    if (scope.items[i][scope.itemdisp] == scope.items[index][scope.itemdisp]) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            scope.addItem = function () {
+                if (scope.error) return;
+
+                var emptyItem = angular.copy(scope.emptyItem);
+                scope.items.push(emptyItem);
+                if (attrs.unique == "true") {
+                    while (!scope.isItemUnique(scope.items.length - 1)) {
+                        emptyItem[attrs.itemdisp] = emptyItem[attrs.itemdisp] + " " + newIndex;
+                        newIndex += 1;
+                    }
+                }
+                scope.current = scope.items.length - 1;
+                scope.editing = true;
+                scope.selecting = false;
+
+                window.setTimeout(function () {
+                    $("#category" + scope.current).focus();
+                }, 200);
+            }
+            scope.current = undefined;
             scope.isCurrent = function (index) {
                 return scope.current == index;
             };
+            scope.isEditing = function (index) {
+                return scope.isCurrent(index) && scope.editing;
+            };
+            scope.isPopupVisible = function (index) {
+                return scope.isCurrent(index) && scope.selecting && !scope.isEditing(index);
+            }
             scope.setCurrent = function (index) {
-                if (scope.current == index) {
-                    scope.current = undefined;
-                }
-                else {
+                if (scope.error) return;
+                if (scope.editing == false || (scope.editing == true && scope.current != index)) {
                     scope.current = index;
+                    scope.selecting = true;
+                    scope.editing = false;
+                    popupShown = false;
                 }
             };
+
+            $document.bind('click', function () {
+                if (scope.selecting == true && popupShown) {
+                    scope.selecting = false;
+                    scope.$apply();
+                } else if (scope.selecting) {
+                    popupShown = true;
+                }
+            });
         }
     }
-}]);
+});
 
 kmApp.directive('ngEnter', function () {
     return function (scope, element, attrs) {
