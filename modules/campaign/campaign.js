@@ -157,7 +157,6 @@ offerModule.controller('kmApp.modules.campaign.offer',
 						rowval.push(rowdata);						
 				 } 	
 		 $scope.tabledata.rowval=rowval;
-        //alert($scope.tabledata.rowval.indexOf(K));	
     }
 	$scope.editTemplate=function(I,K){
 	     	$location.path('/'+$rootScope.UserData.clientName+'/campaign/details/'+K[0]);
@@ -166,10 +165,12 @@ offerModule.controller('kmApp.modules.campaign.offer',
 	     	$location.path('/'+$rootScope.UserData.clientName+'/campaign/details/'+K[0]+'/copy/true');
 	}
 
-}]);
+                           }]);
+
 offerModule.controller('kmApp.modules.campaign.template',
                           function ($scope) {
-});
+                          });
+
 offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 					   ['$scope',
 						'$rootScope',
@@ -242,7 +243,8 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 			} 
 	     $location.path('/'+$rootScope.UserData.clientName+'/campaign/redemption/'+$scope.campaign_id+$scope.copy);
 	  }
-}]);
+                        }]);
+
 offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
 					    ['$scope',
 						 '$rootScope',
@@ -365,7 +367,8 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction',
 		   $scope.advancedCaps.push({total:400});
 	 }
 	  
-}]);
+						 }]);
+
 offerModule.controller('kmApp.modules.campaign.channels', 
                        ['$scope',
 					    '$rootScope',

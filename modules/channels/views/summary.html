@@ -1,51 +1,57 @@
 
 <main class="white" ng-app="kmApp.modules.channel">
-  <div class="subHeader">
-    <h1>Channels</h1>
-  </div>
-  <div class="step arrow">
-    <ul>
-      <li class="active"><a href="#/{{UserData.clientName}}/channels/summary/{{channelid}}">Summary</a></li>
-      <li><a>Design</a></li>
-      <li><a>Details</a></li>
-<!--      <li><a href="#/{{UserData.clientName}}/channels/design/{{channelid}}">Design</a></li>
-      <li><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>-->
-    </ul>
-  </div>
-  <div class="data summary">
-    <form name="channel">
-      <header>
-        <h1>channel overview </h1>
-      </header>
-      <div class="wrapContainer">
-        <div class="sets">
-          <p>Channel Type</p>
-          <div class="selection2">
-            <ui-select ng-model="model.channel_type" theme="select2" ng-disabled="disabled" style="width: 100%;">
-              <ui-select-match placeholder="Channel type">{{model.channel_type.type}}</ui-select-match>
-              <ui-select-choices repeat="channel in channelTypeList | filter:$select.search">{{channel.type}}</ui-select-choices>
-            </ui-select>
-          </div>
+    <div class="subHeader">
+        <h1 ng-hide="isnew">New Channel</h1>
+        <h1 ng-show="isnew">{{model.channel_name}}</h1>
+        <div class="headOption dropdown" ng-show="isnew">
+            <span>Options</span>
+            <div class="options">
+                <li><a href="#" class="copy-icon">Copy</a></li>
+                <li><a href="#" class="remove-icon">Remove</a></li>
+            </div>
         </div>
-        <div class="sets">
-          <p>Name</p>
-          <input type="text" ng-model="model.channel_name" required class="focus"/>
-        </div>
-        <div class="sets">
-          <p>Channel ID</p>
-          <input type="text" ng-model="model.channelid" required class="focus"/>
-        </div>
-        <div class="sets">
-          <p>Description</p>
-          <textarea rows="5" ng-model="model.channel_desc" ></textarea>
-        </div>
-      </div>
-      <div class="divider no-btm"></div>
-      <div class="centerButtom">
-        <button ng-disabled="channel.$invalid" ng-click="saveChannel();">Save Changes</button>
-      </div>
-      <br class="clear"/>
-    </form>
-  </div>
-  <div class="center">Learn more about Channels <a href="#">here</a></div>
+    </div>
+    <div class="step arrow">
+        <ul>
+            <li class="active"><a href="#/{{UserData.clientName}}/channels/summary/{{id}}">Summary</a></li>
+            <li><a>Design</a></li>
+            <li><a>Details</a></li>
+        </ul>
+    </div>
+    <div class="data summary">
+        <form name="channel">
+            <header>
+                <h1>channel overview </h1>
+            </header>
+            <div class="wrapContainer">
+                <div class="sets">
+                    <p>Channel Type</p>
+                    <div class="selection2">
+                        <ui-select ng-model="model.channel_type" name="channel_type" theme="select2" ng-disabled="disabled" style="width: 100%;">
+                            <ui-select-match placeholder="Channel type">{{model.channel_type.type}}</ui-select-match>
+                            <ui-select-choices repeat="channel in channelTypeList | filter:$select.search">{{channel.type}}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="sets">
+                    <p>Name</p>
+                    <input type="text" ng-model="model.channel_name" name="channel_name" required class="focus" />
+                </div>
+                <div class="sets">
+                    <p>Channel ID</p>
+                    <input type="text" ng-model="model.channelid" name="channelid" required class="focus" />
+                </div>
+                <div class="sets">
+                    <p>Description</p>
+                    <textarea rows="5" ng-model="model.channel_desc" name="channel_desc"></textarea>
+                </div>
+            </div>
+            <div class="divider no-btm"></div>
+            <div class="centerButtom">
+                <button ng-disabled="channel.$invalid" ng-click="saveChannel();">Save Changes</button>
+            </div>
+            <br class="clear" />
+        </form>
+    </div>
+    <div class="center">Learn more about Channels <a href="#">here</a></div>
 </main>

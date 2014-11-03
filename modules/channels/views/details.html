@@ -1,36 +1,49 @@
 <main class="white" ng-app="kmApp.modules.channel">
-  <div class="subHeader">
-    <h1>VS Web Channel</h1>
-  </div>
-  <div class="step arrow">
-    <ul>
-      <li><a href="#/{{UserData.clientName}}/channels/summary/{{channelid}}">Summary</a></li>
-      <li><a href="#/{{UserData.clientName}}/channels/design/{{channelid}}">Design</a></li>
-      <li class="active"><a href="#/{{UserData.clientName}}/channels/details/{{channelid}}">Details</a></li>
-    </ul>
-  </div>
-  <div class="data details">
-    <header>
-      <h1>Your channel is ready</h1>
-      <span class="question-icon dg2"></span> </header>
-    <div class="wrapContainer ">
-      <div class="sets">
-        <p>Your channel is ready. Follow the instructions below to complete the setup process</p>
-      </div>
-      <div class="sets">
-        <div class="count"><span>1</span>
-          <p>Here is the link to your channel.</p>
+    <div class="subHeader">
+        <h1 ng-hide="isnew">New Channel</h1>
+        <h1 ng-show="isnew">{{model.channel_name}}</h1>
+        <div class="headOption dropdown" ng-show="isnew">
+            <span>Options</span>
+            <div class="options">
+                <li><a href="#" class="copy-icon">Copy</a></li>
+                <li><a href="#" class="remove-icon">Remove</a></li>
+            </div>
         </div>
-        <div class="grey-box"><input type="text" disabled="disabled" value="http://kou.pn/vs/vswebchannel"/></div>
-        
-      </div>
-      <div class="sets">
-        <div class="count"><span>2</span>
-          <p>To embed the Offer Viewer in an existing web.<br/>
-            page page, use the code below</p>
-        </div>
-        <div class="grey-box mrg">
-          <pre>$post_body = array {
+    </div>
+    <div class="step arrow">
+        <ul>
+            <li><a href="#/{{UserData.clientName}}/channels/summary/{{id}}">Summary</a></li>
+            <li><a href="#/{{UserData.clientName}}/channels/design/{{id}}">Design</a></li>
+            <li class="active"><a href="#/{{UserData.clientName}}/channels/details/{{id}}">Details</a></li>
+        </ul>
+    </div>
+    <div class="data details">
+        <header>
+            <h1>Your channel is ready</h1>
+            <span class="question-icon dg2"></span>
+        </header>
+        <div class="wrapContainer ">
+            <div class="sets">
+                <p>Your channel is ready. Follow the instructions below to complete the setup process</p>
+            </div>
+            <div class="sets">
+                <div class="count">
+                    <span>1</span>
+                    <p>Here is the link to your channel.</p>
+                </div>
+                <div class="grey-box"><input type="text" disabled="disabled" value="http://kou.pn/vs/vswebchannel" style="height:auto;" /></div>
+
+            </div>
+            <div class="sets">
+                <div class="count">
+                    <span>2</span>
+                    <p>
+                        To embed the Offer Viewer in an existing web.<br />
+                        page page, use the code below
+                    </p>
+                </div>
+                <div class="grey-box mrg">
+                    <pre>$post_body = array {
       //'ci' => '1001004154'
      'email' => 'testuser@kou.pn;'
      //'mobile' => '4972974048'
@@ -42,21 +55,23 @@
     curl_setopt ($request, CURLOFT_URL,
    $signed_consumer_url);
                </pre>
+                </div>
+            </div>
+            <div class="sets">
+                <div class="count">
+                    <span>3</span>
+                    <p>Create an offer in the Offers page and distribute the offer to the VS Secret Channel.</p>
+                </div>
+            </div>
+            <div class="sets">
+                <div class="count">
+                    <span>4</span>
+                    <p>Learn more about distruting offers to channels on our <a href="#">support page.</a></p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="sets">
-        <div class="count"><span>3</span>
-          <p>Create an offer in the Offers page and distribute the offer to the VS Secret Channel.</p>
-        </div>
-      </div>
-      <div class="sets">
-        <div class="count"><span>4</span>
-          <p>Learn more about distruting offers to channels on our <a href="#">support page.</a></p>
-        </div>
-      </div>
+        <div class="divider no-btm"></div>
+        <div class="centerButtom mrg"><a href="#/{{UserData.clientName}}/channels/details/done/{{id}}">Done</a></div>
+        <br class="clear" />
     </div>
-    <div class="divider no-btm"></div>
-    <div class="centerButtom mrg"><a href="#/{{UserData.clientName}}/channels/details/done/{{channelid}}">Done</a></div>
-    <br class="clear"/>
-  </div>
 </main>
