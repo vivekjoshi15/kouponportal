@@ -8,7 +8,7 @@
             <h1 ng-hide="nochannel">these are your current channels</h1>
             <h1 ng-show="nochannel">you have 0 channels</h1>
         </header>
-        <div class="float rchannels" ng-repeat="item in channels" ng-class="{no:$last}">
+        <div class="float rchannels" ng-repeat="item in channels track by $index" ng-class="{no:$last}">
             <div class="wrapContainer">
                 <div class="sets">
                     <div class="select-channels">

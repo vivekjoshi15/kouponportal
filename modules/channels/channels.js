@@ -2,8 +2,10 @@ var channelModule = angular.module('kmApp.modules.channel', ['angular.filter', '
 
 channelModule.controller('kmApp.modules.channels.channels', [
     '$scope',
+    '$rootScope',
 	'kmApp.libraries.channel.channelService',
-	 function ($scope, channelService) {
+	 function ($scope, $rootScope, channelService) {
+	     $rootScope.draftChannel = undefined;
 	     $scope.nochannel = true;
 	     $scope.channels = channelService.getChannels();
 
@@ -37,6 +39,22 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction', [
                 $scope.model = $rootScope.draftChannel;
         }
 
+        $scope.copyChannel = function () {
+            $rootScope.draftChannel = {};
+            $rootScope.draftChannel = $scope.model;
+
+            //adding custom value due to static object
+            $rootScope.draftChannel.channel_name = $rootScope.draftChannel.channel_name + ' copy';
+            $rootScope.draftChannel.id = $rootScope.draftChannel.id + 1;
+
+            $location.path('/' + $rootScope.UserData.clientName + '/channels/summary/0');
+        };
+
+        $scope.removeChannel = function () {
+            channelService.removeChannel($scope.id);
+            $location.path('/' + $rootScope.UserData.clientName + '/channels');
+        };
+
         $scope.saveChannel = function () {
             if ($scope.id != 0) {
                 channelService.editChannel($scope.id, $scope.model);
@@ -46,7 +64,7 @@ channelModule.controller('kmApp.modules.channels.summaryEditAction', [
                 $rootScope.draftChannel = $scope.model;
             }
             $location.path('/' + $rootScope.UserData.clientName + '/channels/design/' + $scope.id);
-        }
+        };
 
     }]);
 
@@ -66,6 +84,17 @@ channelModule.controller('kmApp.modules.channels.design', [
 
 	    if ($scope.id != 0) {
 	        $scope.model = channelService.getChannel($scope.id);
+	    }
+	    else {
+	        $scope.templateTypeCustom = false;
+	        $scope.templateCustomTitle = 'Select';
+	        $scope.templateViewTitle = 'Selected';	        
+	    }
+
+	    if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)
+	        $scope.model = $rootScope.draftChannel;
+
+	    if ($scope.model.template_type != undefined && $scope.model.template_type != null) {
 	        if ($scope.model.template_type == "offerviewer") {
 	            $scope.templateTypeCustom = false;
 	            $scope.templateCustomTitle = 'Select';
@@ -76,17 +105,23 @@ channelModule.controller('kmApp.modules.channels.design', [
 	            $scope.templateCustomTitle = 'Selected';
 	            $scope.templateViewTitle = 'Select';
 	        }
-
-	        console.log($scope.model.template_type);
 	    }
-	    else {
-	        if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)
-	            $scope.model = $rootScope.draftChannel;
 
-	        $scope.templateTypeCustom = false;
-	        $scope.templateCustomTitle = 'Select';
-	        $scope.templateViewTitle = 'Selected';
-	    }
+	    $scope.copyChannel = function () {
+	        $rootScope.draftChannel = {};
+	        $rootScope.draftChannel = $scope.model;
+
+	        //adding custom value due to static object
+	        $rootScope.draftChannel.channel_name = $rootScope.draftChannel.channel_name + ' copy';
+	        $rootScope.draftChannel.id = $rootScope.draftChannel.id + 1;
+
+	        $location.path('/' + $rootScope.UserData.clientName + '/channels/summary/0');
+	    };
+
+	    $scope.removeChannel = function () {
+	        channelService.removeChannel($scope.id);
+	        $location.path('/' + $rootScope.UserData.clientName + '/channels');
+	    };
 
 	    $scope.saveChannel = function () {
 	        if ($scope.templateTypeCustom == false) {
@@ -123,10 +158,27 @@ channelModule.controller('kmApp.modules.channels.details', [
 
 	    if ($scope.id != 0) {
 	        $scope.model = channelService.getChannel($scope.id);
-	    } else {
-	        if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)
-	            $scope.model = $rootScope.draftChannel;
+	    } else {	        
 	    }
+
+	    if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)
+	        $scope.model = $rootScope.draftChannel;
+
+	    $scope.copyChannel = function () {
+	        $rootScope.draftChannel = {};
+	        $rootScope.draftChannel = $scope.model;
+
+	        //adding custom value due to static object
+	        $rootScope.draftChannel.channel_name = $rootScope.draftChannel.channel_name + ' copy';
+	        $rootScope.draftChannel.id = $rootScope.draftChannel.id + 1;
+
+	        $location.path('/' + $rootScope.UserData.clientName + '/channels/summary/0');
+	    };
+
+	    $scope.removeChannel = function () {
+	        channelService.removeChannel($scope.id);
+	        $location.path('/' + $rootScope.UserData.clientName + '/channels');
+	    };
 
 	}]);
 
@@ -151,6 +203,22 @@ channelModule.controller('kmApp.modules.channels.details.done', [
             if ($rootScope.draftChannel != undefined && $rootScope.draftChannel != null)
                 $scope.model = $rootScope.draftChannel;
         }
+
+        $scope.copyChannel = function () {
+            $rootScope.draftChannel = {};
+            $rootScope.draftChannel = $scope.model;
+
+            //adding custom value due to static object
+            $rootScope.draftChannel.channel_name = $rootScope.draftChannel.channel_name + ' copy';
+            $rootScope.draftChannel.id = $rootScope.draftChannel.id + 1;
+
+            $location.path('/' + $rootScope.UserData.clientName + '/channels/summary/0');
+        };
+
+        $scope.removeChannel = function () {
+            channelService.removeChannel($scope.id);
+            $location.path('/' + $rootScope.UserData.clientName + '/channels');
+        };
 
         $scope.saveChannel = function () {
             if ($scope.id != 0) {

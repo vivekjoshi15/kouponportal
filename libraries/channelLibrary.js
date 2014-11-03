@@ -29,14 +29,14 @@ channelLibrary.service('kmApp.libraries.channel.channelService', ['$filter', fun
         channelList[channelList.indexOf(found[0])] = item;
     }
 
-    var removeChannel = function (item) {
-        var found = $filter('filter')(channelList, { channel_name: item[0] }, true);
+    var removeChannel = function (id) {
+        var found = $filter('filter')(channelList, { id: parseInt(id) }, true);
         channelList.splice(channelList.indexOf(found), 1);
         return channelList;
     }
 
     var copyChannel = function (item) {
-        item.name = item.name + ' copy';
+        item.channel_name = item.channel_name + ' copy';
         item.id = item.id + 1;
         channelList.push(item);
         return channelList;
