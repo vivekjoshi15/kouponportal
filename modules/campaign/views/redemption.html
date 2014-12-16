@@ -22,7 +22,11 @@
             <div class="from">
               <p>Dates Available for Redemption</p>
               <div class="timeDetails calender-icon">
-                <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>
+                <p ng-click="open($event,'opened')" ng-model="start_date_date" is-open="opened"  >{{start_date_date| date:'MMM dd yyyy'}}</p>
+                
+                 <datetimepicker data-ng-model="data.inputOnTimeSet"
+                                    data-on-set-time="inputOnTimeSet(newDate)"></datetimepicker>
+              <!--  <p ng-click="open($event,'opened')" class="form-control" datepicker-popup="{{format}}" ng-model="start_date_date" is-open="opened" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" >{{start_date_date| date:'MMM dd yyyy'}}</p>-->
                 <time>12:35 PM</time>              
               </div>
             </div>

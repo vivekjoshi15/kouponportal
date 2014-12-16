@@ -13,6 +13,8 @@ require.config({
 	    /* 3rd party */
 	    rANGULAR_FILTER: 'libraries/3rdParty/angular-filter.min',
 	    rANGULAR_SELECT: 'libraries/3rdParty/select.min',
+		rANGULAR_DATETIME: 'libraries/3rdParty/datetimepicker',
+		rANGULAR_MOMENTWITHLOCALES: 'libraries/3rdParty/moment-with-locales.min',
 		//rJQUERYUI: 'libraries/3rdParty/jqueryUI/jquery-ui-custom.min',
 		//rJQUERYUI_PLUGIN_TIMEPICKER: 'libraries/3rdParty/jqueryUI/jquery-ui-timepicker-addon',
 		//rJQUERY_PLUGIN_VALIDATOR: 'libraries/3rdParty/jqueryValidator/jquery.validator.min',
@@ -134,7 +136,9 @@ require.config({
 		'rSELECT_DIRECTIVES': ['rKMAPP'],
 		'rFILTERS_GLOBAL': ['rKMAPP'],
 		'rANGULAR_FILTER': ['rKMAPP'],
-		'rANGULAR_SELECT': ['rANGULAR']
+		'rANGULAR_SELECT': ['rANGULAR'],
+		'rANGULAR_DATETIME':['rANGULAR'],
+		'rANGULAR_MOMENTWITHLOCALES':['rJQUERY']
         //'rANGULARUI_MAPS': ['rKMAPP'],
         //'rANGULARUI_EVENT': ['rKMAPP'],
         //'rANGULARUI_MAP_UTILS': ['rKMAPP','rANGULARUI_MAPS'],
@@ -162,7 +166,9 @@ require([
 	'rANGULAR_SANITIZE',
 	'rKMAPP',
     'rANGULAR_FILTER',
-     'rANGULAR_SELECT',
+    'rANGULAR_SELECT',
+	'rANGULAR_DATETIME',
+	'rANGULAR_MOMENTWITHLOCALES',
 	//'rBASE64',
 	//'rSTORELOC',
 	//'rJQUERYFORM',

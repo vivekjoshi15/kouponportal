@@ -1,4 +1,4 @@
-var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter', 'kmApp.libraries.notification', 'ui.bootstrap', 'ui.select']);
+var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter', 'kmApp.libraries.notification', 'ui.bootstrap', 'ui.select','ui.bootstrap.datetimepicker']);
 
 offerModule.controller('kmApp.modules.campaign.offer',
 						 ['$scope',
@@ -258,6 +258,16 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 	'kmApp.libraries.store.storeService',
 	'kmApp.libraries.pool.poolService',
 	 function ($scope, $rootScope, $filter, $location, $routeParams, datepickerConfig, notification, campaignService, storeService, poolService) {
+		 
+		$scope.inputOnTimeSet = function (newDate) {
+        // If you are not using jQuery or bootstrap.js,
+        // this will throw an error.
+        // However, can write this function to take any
+        // action necessary once the user has selected a
+        // date/time using the picker
+        console.log(newDate);
+       // $('#dropdown3').dropdown('toggle');
+		};
 	     $scope.model = {};
 	     datepickerConfig.showWeeks = false;
 	     $scope.showButtonBar = false;

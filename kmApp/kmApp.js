@@ -4,6 +4,7 @@ var kmApp = angular.module('kmApp', [
 	'Scope.onReady',
     'angular.filter',
     'ui.select',
+	'ui.bootstrap.datetimepicker',
     'kmApp.libraries.notification',
     'kmApp.libraries.waitLoader',
     'kmApp.libraries.toolTip',
