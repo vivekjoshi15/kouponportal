@@ -371,9 +371,9 @@ select {
     left: -10px;
 }
 
-    .category-popup ul, .category .category-popup ul{
+    .category-popup ul, .category .category-popup ul {
         border: 1px solid #d1d1d3;
-        display:block;
+        display: block;
     }
 
     .category-popup li {
@@ -384,7 +384,7 @@ select {
 
     .category-popup ul li:hover {
         background: #39b54a;
-        color:#fff;
+        color: #fff;
     }
 
 #logo {
@@ -2994,6 +2994,13 @@ main.offers .groups {
         font-family: "Open Sans Semibold";
         font-size: 12px;
     }
+
+        .selectOffer a.selected {
+            background-color: #39b54a;
+            color: #fff;
+            background-position: right;
+            text-transform: capitalize;
+        }
 
 .data.sltTemplate {
     width: 480px;

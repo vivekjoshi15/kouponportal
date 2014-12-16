@@ -9,7 +9,7 @@
     </header>
     <div class="wrapContain ">
       <div class="selectOffer"> <span class="pencil-grey-icon">Blank Offer</span> 
-      <a  ng-init="blank='Select'" ng-click="blank='Selected';template='blank'">{{blank}}</a> </div>
+          <a ng-init="blank='Select'" ng-click="blank='selected';template='blank'" ng-class="blank">{{blank}}</a> </div>
     </div>
     <div class="divider"></div>
     <div class="centerButtom"><a href="#/{{UserData.clientName}}/campaign/details/0" ng-show="template!=null">Continue</a></div>
