@@ -121,8 +121,8 @@ offerModule.controller('kmApp.modules.campaign.offer',
                                    rowdata.push(data[i].campaign_id);
                                    rowdata.push(data[i].campaign_name);
                                    rowdata.push(data[i].campaign_title);
-                                   rowdata.push($filter('date')(new Date(data[i].start_date_date), 'MMM dd yyyy', 'utc'));
-                                   rowdata.push($filter('date')(new Date(data[i].end_date_date), 'MMM dd yyyy', 'utc'));
+                                   rowdata.push($filter('date')(new Date(data[i].start_date), 'MMM dd yyyy', 'utc'));
+                                   rowdata.push($filter('date')(new Date(data[i].end_date), 'MMM dd yyyy', 'utc'));
                                    rowdata.push(data[i].isActive);
                                    rowval.push(rowdata);
 
@@ -148,12 +148,12 @@ offerModule.controller('kmApp.modules.campaign.offer',
                                    var data = campaignService.removeCampaign(K);
                                    var rowval = [];
                                    for (var i = 0; i < data.length; i++) {
-                                       var rowdata = [];
+                                       var rowdata = [];									   
                                        rowdata.push(data[i].campaign_id);
                                        rowdata.push(data[i].campaign_name);
                                        rowdata.push(data[i].campaign_title);
-                                       rowdata.push($filter('date')(new Date(data[i].start_date_date), 'MMM dd yyyy', 'utc'));
-                                       rowdata.push($filter('date')(new Date(data[i].end_date_date), 'MMM dd yyyy', 'utc'));
+                                       rowdata.push(new Date(data[i].start_date));
+                                       rowdata.push(new Date(data[i].end_date));
                                        rowdata.push(data[i].isActive);
                                        rowval.push(rowdata);
                                    }
@@ -181,15 +181,52 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
 						'kmApp.libraries.notification.screenNotifyService',
 						'kmApp.libraries.campaign.campaignService',
 						'kmApp.libraries.store.storeService',
-                        function ($scope, $rootScope, $routeParams, $filter, $location, notification, campaignService, storeService) {
+						'kmApp.libraries.general.generalService',
+                        function ($scope, $rootScope, $routeParams, $filter, $location, notification, campaignService, storeService,generalService) {
 
                             $scope.title = 'New Offer';
                             $scope.iscopy = $routeParams.copy;
                             $scope.campaign_id = $routeParams.id;
+							
+							function getExtension(filename) {
+								var parts = filename.split('.');
+								return parts[parts.length - 1];
+							}
+							$scope.isImage = function(filename) {
+									var ext = getExtension(filename);
+									switch (ext.toLowerCase()) {
+									case 'jpg':
+									case 'gif':
+									case 'png':
+										//etc
+										return true;
+									}
+									return false;
+								}
+							
+							$scope.uploadImg=function(files) {							
+								//var files = evt.target.files; // FileList object
+								 if($scope.isImage(files.name)){
+									// Loop through the FileList and render image files as thumbnails.							
+									  var reader = new FileReader();
+									  // Closure to capture the file information.
+									  reader.onload = (function(theFile) {
+										return function(e) {
+										  // Render thumbnail.
+										  $scope.model.campaign_img= e.target.result;
+										   $scope.$apply();
+										};
+									  })(files);
+								
+									  // Read in the image file as a data URL.
+									  reader.readAsDataURL(files);
+									}
+							  }
 
                             $scope.model = {};
-
-                            $scope.categoriesList = [{ offer_category: 'categories' }, { offer_category: 'categories 2' }, { offer_category: 'categories 3' }];
+							
+							
+                            $scope.categoriesList = generalService.getGeneralOffersResponse().OfferCategories;
                             $scope.model.categories = undefined;
 
                             $scope.ddTypeList = [{ offer_type: 'AORPI' }, { offer_type: 'AORPI 2' }, { offer_type: 'AORPI 3' }];
@@ -259,24 +296,46 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 	'kmApp.libraries.pool.poolService',
 	 function ($scope, $rootScope, $filter, $location, $routeParams, datepickerConfig, notification, campaignService, storeService, poolService) {
 		 
-		$scope.inputOnTimeSet = function (newDate) {
-        // If you are not using jQuery or bootstrap.js,
-        // this will throw an error.
-        // However, can write this function to take any
-        // action necessary once the user has selected a
-        // date/time using the picker
-        console.log(newDate);
-       // $('#dropdown3').dropdown('toggle');
+		moment.locale('en');
+		$scope.getLocale = function () {
+			return moment.locale();
+		 };
+	
+		$scope.setLocale = function (newLocale) {
+			moment.locale(newLocale);
+		  };
+		$scope.start_date_fn = function (newDate) {
+		  	$('.popups').hide();
+			$('body').find('.timeDetails').removeClass('dt90');	
+			$scope.model.start_date_date = $filter('date')(newDate, 'MMM dd yyyy', 'utc');
+			$scope.model.start_date_time = $filter('date')(newDate, 'shortTime', 'utc');
 		};
+		$scope.end_date_fn= function (newDate) {
+			$('.popups').hide();
+			$('body').find('.timeDetails').removeClass('dt90');
+			$scope.model.end_date_date = $filter('date')(newDate, 'MMM dd yyyy', 'utc');
+			$scope.model.end_date_time = $filter('date')(newDate, 'shortTime', 'utc');
+      	  	
+		};	
+		$scope.publish_date_fn = function (newDate) {
+      	  	$('.popups').hide();
+			$('body').find('.timeDetails').removeClass('dt90');
+			$scope.model.publish_date_date = $filter('date')(newDate, 'MMM dd yyyy', 'utc');
+			$scope.model.publish_date_time = $filter('date')(newDate, 'shortTime', 'utc');
+		};	
+		var popups=false; 
+		
+  
 	     $scope.model = {};
 	     datepickerConfig.showWeeks = false;
 	     $scope.showButtonBar = false;
 	     $scope.today = function () {
-	         $scope.start_date_date = new Date();
-	         $scope.end_date_date = new Date();
-	         $scope.publish_date_date = new Date();
+			 
+	       	$scope.start_date = new Date($scope.model.start_date); 
+	         $scope.end_date = new Date($scope.model.end_date);
+	         $scope.publish_date = new Date($scope.model.publish_date);
 	     };
-	     $scope.today();
+	    // $scope.today();
 	     $scope.toggleMin = function () {
 	         $scope.minDate = $scope.minDate ? null : new Date('Thu Jul 03 2014 13:34:18 GMT+0530 (India Standard Time)');
 	     };
@@ -297,20 +356,15 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 	         else {
 	             $scope.title = 'Edit Offer';
 	             $scope.model = campaignService.getCampaign($scope.campaign_id);
-	             $scope.start_date_date = new Date($scope.model.start_date_date);
-	             $scope.end_date_date = new Date($scope.model.end_date_date);
 	         }
+			$scope.today();
 	     } else {
 	         if ($rootScope.draftCampaign != null)
 	             $scope.model = $rootScope.draftCampaign;
 	     }
-
+			
 	     $scope.open = function ($event, opens) {
-	         $event.preventDefault();
-	         $event.stopPropagation();
-	         $scope.opened = false;
-	         $scope.opened2 = false;
-	         $scope.opened3 = false;
+			        
 	         switch (opens) {
 	             case 'opened':
 	                 $scope.opened = true;
@@ -354,9 +408,6 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 	     $scope.pool;
 
 	     $scope.saveRedemption = function () {
-	         $scope.model.start_date_date = $filter('date')($scope.start_date_date, 'MMM dd yyyy', 'utc');
-	         $scope.model.end_date_date = $filter('date')($scope.end_date_date, 'MMM dd yyyy', 'utc');
-	         $scope.model.publish_date_date = $filter('date')($scope.publish_date_date, 'MMM dd yyyy', 'utc');
 
 	         var draft = $rootScope.draftCampaign;
 	         if (draft != null) {
@@ -410,3 +461,24 @@ offerModule.controller('kmApp.modules.campaign.channels', [
 	        $location.path('/' + $rootScope.UserData.clientName + '/campaign');
 	    }
 	}]);
+	
+$(document).ready(function(){
+		var popups=false;
+		$('body').on('click','.timeDetails',function(){
+			if($('body').find('.dt90').length < 1){
+				$(this).find(".popups").show();
+				$(this).addClass('dt90');
+				popups=false;
+			}
+		});
+		
+		$('body').click(function(){
+			if(popups){
+				$('.popups').hide();
+				$('body').find('.timeDetails').removeClass('dt90');			
+			}
+			else{
+				popups=true;
+			}
+		});
+});

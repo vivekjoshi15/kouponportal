@@ -35,8 +35,8 @@
                         <p>Offer Categories</p>
                         <div class="selection2">
                             <ui-select  ng-model="model.categories" theme="select2" ng-disabled="disabled" style="width: 100%;">
-                                <ui-select-match placeholder="Select Categories">{{model.categories.offer_category}}</ui-select-match>
-                                <ui-select-choices repeat="item in categoriesList | filter:$select.search"> {{item.offer_category}} </ui-select-choices>
+                                <ui-select-match placeholder="Select Categories">{{model.categories.Name}}</ui-select-match>
+                                <ui-select-choices repeat="item in categoriesList | filter:$select.search"> {{item.Name}} </ui-select-choices>
                             </ui-select>
                         </div>
                     </div>
@@ -105,10 +105,10 @@
                     <div class="setbackground">
                         <header>
                             <h1>Primary Image</h1>
-                            <a class="remove close-grey-icon" href="#">Remove</a>
+                            <a class="remove close-grey-icon" ng-click="model.campaign_img=''" ng-show="model.campaign_img!=null">Remove</a>
                         </header>
-                        <div class="setImage"><img src="kmApp/images/preview.png" alt="" /></div>
-                        <div class="imgPreview"> <a href="#">Preview Size</a></div>
+                        <div class="setImage"><img src="{{model.campaign_img}}" alt="" /></div>
+                        <div class="imgPreview"> <a ng-show="model.campaign_img!=null">Preview Size</a></div>
                     </div>
                 </div>
                 <div class="wrapContainer">
@@ -119,7 +119,7 @@
                         <div class="setuploading">
                             <div class="btnFile">
                                 <span class="file-icon">Upload New</span>
-                                <input type="file">
+                                <input type="file" onchange="angular.element(this).scope().uploadImg(this.files[0])">
                             </div>
                         </div>
                     </div>
