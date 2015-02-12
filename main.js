@@ -41,7 +41,7 @@ require.config({
 		rCOLORPICKER: 'libraries/3rdParty/colorPicker/bootstrap-colorpicker-module',
 		
 		/* modules */
-		rMODULES_OFFER: 'modules/campaign/campaign',
+		rMODULES_OFFER: 'modules/offers/offers',
 		rMODULES_CHANNEL: 'modules/channels/channels',
 		rMODULES_GENERAL: 'modules/general/general',
 		rMODULES_ACCOUNT: 'modules/account/account',

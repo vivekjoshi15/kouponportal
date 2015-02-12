@@ -14,7 +14,7 @@ var kmApp = angular.module('kmApp', [
 	'kmApp.libraries.account',
     'kmApp.libraries.general',
 	'kmApp.libraries.pool',
-	'kmApp.modules.campaign',
+	'kmApp.modules.offers',
 	'kmApp.modules.channel',
     'kmApp.modules.store',
 	'kmApp.modules.general',
@@ -25,41 +25,41 @@ kmApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
     $locationProvider.html5Mode(false);
 
     $routeProvider.
-			when('/:clientName/campaign', {
-			    templateUrl: 'modules/campaign/views/index.html',
-			    controller: 'kmApp.modules.campaign.offer'
+			when('/:clientName/offers', {
+			    templateUrl: 'modules/offers/views/index.html',
+			    controller: 'kmApp.modules.offers.offer'
 			}).
-			when('/:clientName/campaign/template', {
-			    templateUrl: 'modules/campaign/views/select.template.html',
-			    controller: 'kmApp.modules.campaign.template'
+			when('/:clientName/offers/template', {
+			    templateUrl: 'modules/offers/views/select.template.html',
+			    controller: 'kmApp.modules.offers.template'
 			}).
-			when('/:clientName/campaign/details/edit/:id', {
-			    templateUrl: 'modules/campaign/views/details.html',
-			    controller: 'kmApp.modules.campaign.details'
+			when('/:clientName/offers/details/edit/:id', {
+			    templateUrl: 'modules/offers/views/details.html',
+			    controller: 'kmApp.modules.offers.details'
 			}).
-			when('/:clientName/campaign/details/:id', {
-			    templateUrl: 'modules/campaign/views/details.html',
-			    controller: 'kmApp.modules.campaign.detailsEditAction'
+			when('/:clientName/offers/details/:id', {
+			    templateUrl: 'modules/offers/views/details.html',
+			    controller: 'kmApp.modules.offers.detailsEditAction'
 			}).
-			when('/:clientName/campaign/details/:id/copy/:copy', {
-			    templateUrl: 'modules/campaign/views/details.html',
-			    controller: 'kmApp.modules.campaign.detailsEditAction'
+			when('/:clientName/offers/details/:id/copy/:copy', {
+			    templateUrl: 'modules/offers/views/details.html',
+			    controller: 'kmApp.modules.offers.detailsEditAction'
 			}).
-			when('/:clientName/campaign/redemption/:id', {
-			    templateUrl: 'modules/campaign/views/redemption.html',
-			    controller: 'kmApp.modules.campaign.redemptionEditAction'
+			when('/:clientName/offers/redemption/:id', {
+			    templateUrl: 'modules/offers/views/redemption.html',
+			    controller: 'kmApp.modules.offers.redemptionEditAction'
 			}).
-			when('/:clientName/campaign/redemption/:id/copy/:copy', {
-			    templateUrl: 'modules/campaign/views/redemption.html',
-			    controller: 'kmApp.modules.campaign.redemptionEditAction'
+			when('/:clientName/offers/redemption/:id/copy/:copy', {
+			    templateUrl: 'modules/offers/views/redemption.html',
+			    controller: 'kmApp.modules.offers.redemptionEditAction'
 			}).
-			when('/:clientName/campaign/channels/:id', {
-			    templateUrl: 'modules/campaign/views/channels.html',
-			    controller: 'kmApp.modules.campaign.channels'
+			when('/:clientName/offers/channels/:id', {
+			    templateUrl: 'modules/offers/views/channels.html',
+			    controller: 'kmApp.modules.offers.channels'
 			}).
-			when('/:clientName/campaign/channels/:id/copy/:copy', {
-			    templateUrl: 'modules/campaign/views/channels.html',
-			    controller: 'kmApp.modules.campaign.channels'
+			when('/:clientName/offers/channels/:id/copy/:copy', {
+			    templateUrl: 'modules/offers/views/channels.html',
+			    controller: 'kmApp.modules.offers.channels'
 			}).
 			when('/:clientName/channels', {
 			    templateUrl: 'modules/channels/views/index.html',

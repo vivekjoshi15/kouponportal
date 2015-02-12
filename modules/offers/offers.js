@@ -1,6 +1,6 @@
-var offerModule = angular.module('kmApp.modules.campaign', ['angular.filter', 'kmApp.libraries.notification', 'ui.bootstrap', 'ui.select','ui.bootstrap.datetimepicker']);
+var offerModule = angular.module('kmApp.modules.offers', ['angular.filter', 'kmApp.libraries.notification', 'ui.bootstrap', 'ui.select','ui.bootstrap.datetimepicker']);
 
-offerModule.controller('kmApp.modules.campaign.offer',
+offerModule.controller('kmApp.modules.offers.offer',
 						 ['$scope',
 						  '$sce',
 						  '$rootScope',
@@ -160,19 +160,19 @@ offerModule.controller('kmApp.modules.campaign.offer',
                                    $scope.tabledata.rowval = rowval;
                                }
                                $scope.editTemplate = function (I, K) {
-                                   $location.path('/' + $rootScope.UserData.clientName + '/campaign/details/' + K[0]);
+                                   $location.path('/' + $rootScope.UserData.clientName + '/offers/details/' + K[0]);
                                }
                                $scope.copyTemplate = function (I, K) {
-                                   $location.path('/' + $rootScope.UserData.clientName + '/campaign/details/' + K[0] + '/copy/true');
+                                   $location.path('/' + $rootScope.UserData.clientName + '/offers/details/' + K[0] + '/copy/true');
                                }
 
                            }]);
 
-offerModule.controller('kmApp.modules.campaign.template',
+offerModule.controller('kmApp.modules.offers.template',
                           function ($scope) {
                           });
 
-offerModule.controller('kmApp.modules.campaign.detailsEditAction',
+offerModule.controller('kmApp.modules.offers.detailsEditAction',
 					   ['$scope',
 						'$rootScope',
 						'$routeParams',
@@ -279,11 +279,11 @@ offerModule.controller('kmApp.modules.campaign.detailsEditAction',
                                     $rootScope.draftCampaign = $scope.model;
                                     notification.addSuccess("Offer saved as draft!!!");
                                 }
-                                $location.path('/' + $rootScope.UserData.clientName + '/campaign/redemption/' + $scope.campaign_id + $scope.copy);
+                                $location.path('/' + $rootScope.UserData.clientName + '/offers/redemption/' + $scope.campaign_id + $scope.copy);
                             }
                         }]);
 
-offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
+offerModule.controller('kmApp.modules.offers.redemptionEditAction', [
     '$scope',
 	'$rootScope',
 	'$filter',
@@ -418,7 +418,7 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 	         }
 
 	         notification.addSuccess("Offer saved successfully!!!");
-	         $location.path('/' + $rootScope.UserData.clientName + '/campaign/channels/' + $scope.campaign_id + $scope.copy);
+	         $location.path('/' + $rootScope.UserData.clientName + '/offers/channels/' + $scope.campaign_id + $scope.copy);
 	     }
 	     $scope.advancedCapList = ['cap', 'cap 2', 'cap 3'];
 	     $scope.advancedCap;
@@ -431,7 +431,7 @@ offerModule.controller('kmApp.modules.campaign.redemptionEditAction', [
 
 	 }]);
 
-offerModule.controller('kmApp.modules.campaign.channels', [
+offerModule.controller('kmApp.modules.offers.channels', [
     '$scope',
 	'$rootScope',
 	'$routeParams',
@@ -458,7 +458,7 @@ offerModule.controller('kmApp.modules.campaign.channels', [
 	        else {
 	            campaignService.addCampaign($scope.model);
 	        }
-	        $location.path('/' + $rootScope.UserData.clientName + '/campaign');
+	        $location.path('/' + $rootScope.UserData.clientName + '/offers');
 	    }
 	}]);
 	
